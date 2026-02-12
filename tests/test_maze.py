@@ -1,8 +1,10 @@
 import unittest
 
-from models import Maze, Open
+from models.cell import Open
+from models.maze import Maze
 
 
+# TODO Fix tests
 class TestMaze(unittest.TestCase):
     def test_construct_basic_maze(self) -> None:
         false_list = [False] * 4

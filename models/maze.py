@@ -1,25 +1,25 @@
-from typing import List, cast
+from typing import List, Tuple
 
 import pygame
 
-from models import Cell, Open, Wall
+from models.cell import Cell, Open, Wall
 
 
 class Maze:
-    def __init__(self, maze: List[List[int]], start=None, end=None) -> None:
-        self.start = start
-        self.end = end
-        self.grid: List[List[Cell]] = self._build_maze(maze)
+    def __init__(self, maze: List[List[int]], start: Tuple, end: Tuple) -> None:
+        self.grid: List[List[Cell]] = self._build_maze(maze, start, end)
+        self.start = self._get_cell(*start)
+        self.end = self._get_cell(*end)
         self.WALL_COLOR = (20, 20, 20)
         self.OPEN_COLOR = (240, 240, 240)
         self.START_COLOR = (0, 240, 0)
         self.END_COLOR = (240, 0, 0)
 
-    def _build_maze(self, grid: List[List[int]]) -> List[List[Cell]]:
+    def _build_maze(self, grid: List[List[int]], start, end) -> List[List[Cell]]:
         rows, cols = len(grid), len(grid[0])
 
         def is_wall(x: int, y: int) -> bool:
-            return grid[x][y] == 1 and (x, y) != self.start and (x, y) != self.end
+            return grid[x][y] == 1 and (x, y) != start and (x, y) != end
 
         maze: List[List[Cell]] = []
         for x in range(rows):
@@ -47,12 +47,20 @@ class Maze:
                 if isinstance(cell, Wall):
                     pygame.draw.rect(screen, self.WALL_COLOR, rect)
                 else:
-                    if cell.coordinates() == self.start:
+                    if cell == self.start:
                         pygame.draw.rect(screen, self.START_COLOR, rect)
-                    elif cell.coordinates() == self.end:
+                    elif cell == self.end:
                         pygame.draw.rect(screen, self.END_COLOR, rect)
                     else:
                         pygame.draw.rect(screen, self.OPEN_COLOR, rect)
+
+    def _get_cell(self, x, y) -> Cell:
+        for row in self.grid:
+            for cell in row:
+                if cell.coordinates() == (x, y):
+                    return cell
+
+        raise Exception(f'Could not find Cell for coordinates ({x},{y})')
 
     def __str__(self) -> str:
         str = ''

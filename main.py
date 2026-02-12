@@ -15,6 +15,7 @@ def main(height, width, generator, seed):
     running = True
 
     raw_maze, start, end = generate_maze(height, width, generator, seed)
+
     rows, cols = len(raw_maze), len(raw_maze[0])
     cell_size = 16
     screen = pygame.display.set_mode(

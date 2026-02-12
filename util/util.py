@@ -1,3 +1,5 @@
+from typing import List, Tuple
+
 from mazelib import Maze
 from mazelib.generate.AldousBroder import AldousBroder
 from mazelib.generate.BacktrackingGenerator import BacktrackingGenerator
@@ -6,7 +8,9 @@ from mazelib.generate.CellularAutomaton import CellularAutomaton
 from mazelib.generate.Prims import MazeGenAlgo, Prims
 
 
-def generate_maze(height: int, width: int, generator: str, seed: None | int):
+def generate_maze(
+    height: int, width: int, generator: str, seed: None | int
+) -> Tuple[List[List[int]], Tuple[int, int], Tuple[int, int]]:
     m: Maze = Maze()
 
     if seed:
@@ -28,6 +32,6 @@ def create_generator(generator, h, w) -> MazeGenAlgo:
     elif generator == 'binarytree':
         return BinaryTree(h, w)
     elif generator == 'cellular':
-        return CellularAutomaton(h, w)
+        return CellularAutomaton(h, w, complexity=2)
     else:
         return BacktrackingGenerator(h, w)
