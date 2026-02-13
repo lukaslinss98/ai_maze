@@ -52,6 +52,5 @@ if __name__ == '__main__':
         choices=['prims', 'backtracking', 'aldousbroder', 'binarytree', 'cellular'],
         default='Prims',
     )
-
     cli_args = parser.parse_args()
     main(cli_args.height, cli_args.width, cli_args.generator, cli_args.seed)
