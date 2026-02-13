@@ -5,13 +5,12 @@ os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
 
 import pygame
 
-from algorithms.pathfinding import BFS, DFS
 from models.agent import Agent
 from models.maze import Maze
 from util.maze_generation import generate_maze
 
 
-def main(height, width, generator, seed, speed):
+def main(height, width, solver, generator, seed, speed):
     pygame.init()
     clock = pygame.time.Clock()
     running = True
@@ -26,7 +25,7 @@ def main(height, width, generator, seed, speed):
     clock = pygame.time.Clock()
 
     maze = Maze(raw_maze, start, end)
-    agent = Agent(maze, BFS())
+    agent = Agent(maze, solver)
 
     while running:
         for event in pygame.event.get():
@@ -56,6 +55,12 @@ if __name__ == '__main__':
     parser.add_argument('--width', type=int, default=10)
     parser.add_argument('--seed', type=int)
     parser.add_argument(
+        '--solver',
+        type=str,
+        choices=['bfs', 'dfs'],
+        default='dfs',
+    )
+    parser.add_argument(
         '--generator',
         type=str,
         choices=['prims', 'backtracking', 'aldousbroder', 'binarytree', 'cellular'],
@@ -66,6 +71,7 @@ if __name__ == '__main__':
     main(
         cli_args.height,
         cli_args.width,
+        cli_args.solver,
         cli_args.generator,
         cli_args.seed,
         cli_args.speed,

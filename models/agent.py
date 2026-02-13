@@ -1,8 +1,8 @@
-from typing import List, Protocol
+from typing import Protocol
 
 import pygame
 
-from algorithms.pathfinding import PathFindingResult
+from algorithms.pathfinding import BFS, DFS, PathFindingResult
 from models.cell import Open
 from models.maze import Maze
 
@@ -12,11 +12,12 @@ class Solver(Protocol):
 
 
 class Agent:
-    def __init__(self, maze: Maze, solver: Solver) -> None:
+    def __init__(self, maze: Maze, solver: str) -> None:
         self.maze: Maze = maze
         self.curr: Open = maze.start
         self.curr_i: int = 0
-        self.pathfinding_result: PathFindingResult = solver.solve(maze, self.curr)
+        self.solver = self._create_solver(solver)
+        self.pathfinding_result: PathFindingResult = self.solver.solve(maze, self.curr)
 
     def draw(self, screen: pygame.Surface, cell_size: int = 32) -> None:
         sub_path = self.pathfinding_result.visited[: self.curr_i + 1]
@@ -46,3 +47,11 @@ class Agent:
             self.curr_i += 1
 
         return len_visited == len_curr_i
+
+    def _create_solver(self, solver: str | None) -> Solver:
+        if solver == 'bfs':
+            return BFS()
+        elif solver == 'dfs':
+            return DFS()
+        else:
+            return DFS()

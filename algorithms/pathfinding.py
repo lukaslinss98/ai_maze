@@ -22,7 +22,7 @@ class PathfindingAlgorithm(ABC):
 class DFS(PathfindingAlgorithm):
     def solve(self, maze: Maze, start: Open) -> PathFindingResult:
         stack = [start]
-        visited = []
+        visited = OrderedDict.fromkeys([])
         parent_map: Dict[Open, Open | None] = {start: None}
 
         while stack:
@@ -35,19 +35,19 @@ class DFS(PathfindingAlgorithm):
                     shortest_path.append(at)
                     at = parent_map.get(at)
 
-                return PathFindingResult(visited, shortest_path)
+                return PathFindingResult(list(visited.keys()), shortest_path)
 
             if curr in visited:
                 continue
 
-            visited.append(curr)
+            visited[curr] = None
 
             for neighbors in maze.neighbors(curr):
                 if neighbors not in visited:
                     stack.append(neighbors)
                     parent_map[neighbors] = curr
 
-        return PathFindingResult([], [])
+        return PathFindingResult(list(visited.keys()), [])
 
 
 class BFS(PathfindingAlgorithm):
