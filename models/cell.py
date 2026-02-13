@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 
 
-@dataclass
+@dataclass(frozen=True)
 class Cell:
     x: int
     y: int
@@ -13,17 +13,14 @@ class Cell:
         return (self.x, self.y)
 
 
-@dataclass
+@dataclass(frozen=True)
 class Open(Cell):
     north: bool
     east: bool
     south: bool
     west: bool
 
-    def __str__(self) -> str:
-        return f'({self.x}, {self.y}, n: {self.north}, e: {self.east}, s: {self.south}, w: {self.west})'
 
-
-@dataclass
+@dataclass(frozen=True)
 class Wall(Cell):
     pass

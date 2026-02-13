@@ -11,7 +11,7 @@ from models.maze import Maze
 from util.maze_generation import generate_maze
 
 
-def main(height, width, generator, seed):
+def main(height, width, generator, seed, speed):
     pygame.init()
     clock = pygame.time.Clock()
     running = True
@@ -27,7 +27,6 @@ def main(height, width, generator, seed):
 
     maze = Maze(raw_maze, start, end)
     agent = Agent(maze, DFS())
-    agent.path = [maze.start]
 
     while running:
         for event in pygame.event.get():
@@ -37,13 +36,13 @@ def main(height, width, generator, seed):
                 screen = pygame.display.set_mode(event.size, pygame.RESIZABLE)
 
         screen.fill((30, 30, 30))
-        maze.draw(screen, cell_size)
 
+        maze.draw(screen, cell_size)
         agent.draw(screen, cell_size)
         agent.step()
 
         pygame.display.flip()
-        clock.tick(60)
+        clock.tick(speed)
 
     pygame.quit()
 
@@ -60,5 +59,12 @@ if __name__ == '__main__':
         choices=['prims', 'backtracking', 'aldousbroder', 'binarytree', 'cellular'],
         default='Prims',
     )
+    parser.add_argument('--speed', type=int, default=30)
     cli_args = parser.parse_args()
-    main(cli_args.height, cli_args.width, cli_args.generator, cli_args.seed)
+    main(
+        cli_args.height,
+        cli_args.width,
+        cli_args.generator,
+        cli_args.seed,
+        cli_args.speed,
+    )

@@ -8,8 +8,8 @@ from models.cell import Cell, Open, Wall
 class Maze:
     def __init__(self, maze: List[List[int]], start: Tuple, end: Tuple) -> None:
         self.grid: List[List[Cell]] = self._build_maze(maze, start, end)
-        self.start = self._get_cell(*start)
-        self.end = self._get_cell(*end)
+        self.start: Open = self.get_cell(*start)
+        self.end: Open = self.get_cell(*end)
         self.WALL_COLOR = (20, 20, 20)
         self.OPEN_COLOR = (240, 240, 240)
         self.START_COLOR = (0, 240, 0)
@@ -54,13 +54,25 @@ class Maze:
                     else:
                         pygame.draw.rect(screen, self.OPEN_COLOR, rect)
 
-    def _get_cell(self, x, y) -> Cell:
+    def get_cell(self, x, y) -> Open:
         for row in self.grid:
             for cell in row:
-                if cell.coordinates() == (x, y):
+                if cell.coordinates() == (x, y) and isinstance(cell, Open):
                     return cell
 
         raise Exception(f'Could not find Cell for coordinates ({x},{y})')
+
+    def get(self, curr, direction: str) -> Open:
+        if direction == 'north':
+            return self.get_cell(curr.x - 1, curr.y)
+        elif direction == 'south':
+            return self.get_cell(curr.x + 1, curr.y)
+        elif direction == 'west':
+            return self.get_cell(curr.x, curr.y - 1)
+        elif direction == 'east':
+            return self.get_cell(curr.x, curr.y + 1)
+        else:
+            raise Exception(f'unexpected value for direction {direction}')
 
     def __str__(self) -> str:
         str = ''
