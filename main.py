@@ -5,7 +5,7 @@ os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
 
 import pygame
 
-from algorithms.pathfinding import DFS
+from algorithms.pathfinding import BFS, DFS
 from models.agent import Agent
 from models.maze import Maze
 from util.maze_generation import generate_maze
@@ -26,7 +26,7 @@ def main(height, width, generator, seed, speed):
     clock = pygame.time.Clock()
 
     maze = Maze(raw_maze, start, end)
-    agent = Agent(maze, DFS())
+    agent = Agent(maze, BFS())
 
     while running:
         for event in pygame.event.get():
