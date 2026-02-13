@@ -74,6 +74,19 @@ class Maze:
         else:
             raise Exception(f'unexpected value for direction {direction}')
 
+    def neighbors(self, cell: Open) -> List[Open]:
+        neigbors = []
+        if cell.north:
+            neigbors.append(self.get_cell(cell.x - 1, cell.y))
+        if cell.west:
+            neigbors.append(self.get_cell(cell.x, cell.y - 1))
+        if cell.south:
+            neigbors.append(self.get_cell(cell.x + 1, cell.y))
+        if cell.east:
+            neigbors.append(self.get_cell(cell.x, cell.y + 1))
+
+        return neigbors
+
     def __str__(self) -> str:
         str = ''
         for r in self.grid:

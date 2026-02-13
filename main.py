@@ -39,7 +39,9 @@ def main(height, width, generator, seed, speed):
 
         maze.draw(screen, cell_size)
         agent.draw(screen, cell_size)
-        agent.step()
+        is_last_step = agent.step()
+        if is_last_step:
+            agent.draw_shortest_path(screen, cell_size)
 
         pygame.display.flip()
         clock.tick(speed)

@@ -1,49 +1,59 @@
 from abc import ABC, abstractmethod
-from typing import List
+from dataclasses import dataclass
+from typing import Dict, List
 
 from models.cell import Open
 from models.maze import Maze
 
 
+@dataclass(frozen=True)
+class PathFindingResult:
+    visited: List[Open]
+    shortest_path: List[Open]
+
+
 class PathfindingAlgorithm(ABC):
     @abstractmethod
-    def solve(self, maze: Maze, start: Open) -> List[Open]:
+    def solve(self, maze: Maze, start: Open) -> PathFindingResult:
         pass
 
 
 class DFS(PathfindingAlgorithm):
-    def solve(self, maze: Maze, start: Open) -> List[Open]:
-        stack = []
+    def solve(self, maze: Maze, start: Open) -> PathFindingResult:
+        stack = [start]
         visited = []
-        curr = start
-        while (stack or curr) and curr != maze.end:
-            visited.append(curr)
-            if curr.north and maze.get(curr, 'north') not in visited:
-                stack.append(curr)
-                curr = maze.get(curr, 'north')
-            elif curr.east and maze.get(curr, 'east') not in visited:
-                stack.append(curr)
-                curr = maze.get_cell(curr.x, curr.y + 1)
-            elif curr.south and maze.get(curr, 'south') not in visited:
-                stack.append(curr)
-                curr = maze.get_cell(curr.x + 1, curr.y)
-            elif curr.west and maze.get(curr, 'west') not in visited:
-                stack.append(curr)
-                curr = maze.get_cell(curr.x, curr.y - 1)
-            else:
-                curr = stack.pop()
+        parent_map: Dict[Open, Open | None] = {start: None}
 
-        if curr == maze.end:
+        while stack:
+            curr = stack.pop()
+
+            if curr == maze.end:
+                shortest_path = []
+                at = curr
+                while at:
+                    shortest_path.append(at)
+                    at = parent_map.get(at)
+
+                return PathFindingResult(visited, shortest_path)
+
+            if curr in visited:
+                continue
+
             visited.append(curr)
 
-        return visited
+            for neighbors in maze.neighbors(curr):
+                if neighbors not in visited:
+                    stack.append(neighbors)
+                    parent_map[neighbors] = curr
+
+        return PathFindingResult([], [])
 
 
 class BFS(PathfindingAlgorithm):
-    def solve(self, maze: Maze, start: Open) -> List[Open]:
+    def solve(self, maze: Maze, start: Open) -> PathFindingResult:
         pass
 
 
 class AStar(PathfindingAlgorithm):
-    def solve(self, maze: Maze, start: Open) -> List[Open]:
+    def solve(self, maze: Maze, start: Open) -> PathFindingResult:
         pass
