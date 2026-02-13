@@ -5,8 +5,10 @@ os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
 
 import pygame
 
+from algorithms.pathfinding import DFS
+from models.agent import Agent
 from models.maze import Maze
-from util import generate_maze
+from util.maze_generation import generate_maze
 
 
 def main(height, width, generator, seed):
@@ -24,6 +26,8 @@ def main(height, width, generator, seed):
     clock = pygame.time.Clock()
 
     maze = Maze(raw_maze, start, end)
+    agent = Agent(maze, DFS())
+    agent.path = [maze.start]
 
     while running:
         for event in pygame.event.get():
@@ -34,6 +38,10 @@ def main(height, width, generator, seed):
 
         screen.fill((30, 30, 30))
         maze.draw(screen, cell_size)
+
+        agent.draw(screen, cell_size)
+        agent.step()
+
         pygame.display.flip()
         clock.tick(60)
 
