@@ -35,8 +35,6 @@ def main(height, width, generator, seed):
         screen.fill((30, 30, 30))
         maze.draw(screen, cell_size)
         pygame.display.flip()
-
-        pygame.display.flip()
         clock.tick(60)
 
     pygame.quit()
