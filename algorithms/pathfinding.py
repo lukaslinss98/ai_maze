@@ -85,6 +85,7 @@ class AStar(PathfindingAlgorithm):
 
     def solve(self, maze: Maze, start: Open) -> PathFindingResult:
         priority_queue = PriorityQueue()
+
         visited = OrderedDict.fromkeys([])
         parent_by_cell: Dict[Open, Open | None] = {start: None}
         path_cost_by_cell = {start: 0.0}
