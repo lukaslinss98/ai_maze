@@ -12,6 +12,9 @@ class Cell:
     def coordinates(self):
         return (self.x, self.y)
 
+    def manhatten_dist(self, other) -> int:
+        return abs(self.x - other.x) + abs(self.y - other.y)
+
 
 @dataclass(frozen=True)
 class Open(Cell):

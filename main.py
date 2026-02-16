@@ -54,10 +54,11 @@ if __name__ == '__main__':
     parser.add_argument('--height', type=int, default=10)
     parser.add_argument('--width', type=int, default=10)
     parser.add_argument('--seed', type=int)
+    parser.add_argument('--speed', type=int, default=30)
     parser.add_argument(
         '--solver',
         type=str,
-        choices=['bfs', 'dfs'],
+        choices=['bfs', 'dfs', 'astar_manhatten', 'astar_euclid', 'astar_chebyshev'],
         default='dfs',
     )
     parser.add_argument(
@@ -66,8 +67,9 @@ if __name__ == '__main__':
         choices=['prims', 'backtracking', 'aldousbroder', 'binarytree', 'cellular'],
         default='Prims',
     )
-    parser.add_argument('--speed', type=int, default=30)
+
     cli_args = parser.parse_args()
+
     main(
         cli_args.height,
         cli_args.width,
