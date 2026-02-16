@@ -32,7 +32,7 @@ class Agent:
                 (cell.x * cell_size) + cell_size / 2,
             )
             color = (0, 240, 0) if i == len(sub_path) - 1 else (128, 0, 128)
-            pygame.draw.circle(screen, color, (px, py), cell_size // 3)
+            pygame.draw.circle(screen, color, (px, py), cell_size // 4)
 
     def draw_shortest_path(self, screen: pygame.Surface, cell_size: int = 32) -> None:
         shortest_path = self.pathfinding_result.shortest_path
@@ -41,7 +41,7 @@ class Agent:
                 (cell.y * cell_size) + cell_size / 2,
                 (cell.x * cell_size) + cell_size / 2,
             )
-            pygame.draw.circle(screen, (0, 240, 0), (px, py), cell_size // 3)
+            pygame.draw.circle(screen, (0, 230, 0), (px, py), cell_size // 3.5)
 
     def step(self) -> bool:
         len_visited = len(self.pathfinding_result.visited)
