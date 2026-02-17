@@ -45,6 +45,10 @@ def main(height, width, solver, generator, seed, speed):
         pygame.display.flip()
         clock.tick(speed)
 
+    print(f"""
+Result:
+    Shortest Path Length: {len(agent.pathfinding_result.shortest_path)}
+    Cells Visited: {len(agent.pathfinding_result.visited)}""")
     pygame.quit()
 
 
@@ -69,6 +73,15 @@ if __name__ == '__main__':
     )
 
     cli_args = parser.parse_args()
+
+    print(f"""
+Settings:
+    height: {cli_args.height}
+    width: {cli_args.width}
+    generator: {cli_args.generator}
+    solver: {cli_args.solver}
+    seed: {cli_args.seed}
+    speed: {cli_args.speed}""")
 
     main(
         cli_args.height,
