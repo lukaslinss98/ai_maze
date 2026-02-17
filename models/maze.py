@@ -55,12 +55,11 @@ class Maze:
                         pygame.draw.rect(screen, self.OPEN_COLOR, rect)
 
     def get_cell(self, x, y) -> Open:
-        for row in self.grid:
-            for cell in row:
-                if cell.coordinates() == (x, y) and isinstance(cell, Open):
-                    return cell
+        cell = self.grid[x][y]
+        if isinstance(cell, Open):
+            return cell
 
-        raise Exception(f'Could not find Cell for coordinates ({x},{y})')
+        raise Exception(f'Cell at ({x},{y}) is not of type Open')
 
     def get(self, curr, direction: str) -> Open:
         if direction == 'north':
