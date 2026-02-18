@@ -1,6 +1,8 @@
 import argparse
 import os
 
+from util.colors import DARK_GREY
+
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
 
 import pygame
@@ -10,7 +12,63 @@ from models.maze import Maze
 from util.maze_generation import generate_maze
 
 
-def main(height, width, solver, generator, seed, speed):
+def run_mdp(height, width, generator, seed, speed, **_):
+
+    print(
+        f"""height: {height}\nwidth: {width}\ngenerator: {generator}\nseed: {seed}\nspeed: {speed}"""
+    )
+
+    pygame.init()
+    clock = pygame.time.Clock()
+    running = True
+
+    raw_maze, start, end = generate_maze(height, width, generator, seed)
+
+    rows, cols = len(raw_maze), len(raw_maze[0])
+    cell_size = 32
+    screen = pygame.display.set_mode(
+        (cols * cell_size, rows * cell_size), pygame.RESIZABLE
+    )
+    clock = pygame.time.Clock()
+
+    maze = Maze(raw_maze, start, end)
+
+    maze.init_state_values(0.0)
+
+    dV = 100.0
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            if event.type == pygame.VIDEORESIZE:
+                screen = pygame.display.set_mode(event.size, pygame.RESIZABLE)
+
+        screen.fill(DARK_GREY)
+
+        maze.draw(screen, cell_size, draw_values=True)
+        theta = 0.0001
+        if dV > theta:
+            dV = maze.value_iteration()
+        else:
+            maze.draw_policy(screen, start=maze.start, cell_size=cell_size)
+
+        pygame.display.flip()
+        clock.tick(speed)
+
+    pygame.quit()
+
+
+def run_pathfinding(height, width, solver, generator, seed, speed, **_):
+
+    print(f"""
+    Settings:
+        height: {height}
+        width: {width}
+        generator: {generator}
+        solver: {solver}
+        seed: {seed}
+        speed: {speed}""")
+
     pygame.init()
     clock = pygame.time.Clock()
     running = True
@@ -34,7 +92,7 @@ def main(height, width, solver, generator, seed, speed):
             if event.type == pygame.VIDEORESIZE:
                 screen = pygame.display.set_mode(event.size, pygame.RESIZABLE)
 
-        screen.fill((30, 30, 30))
+        screen.fill(DARK_GREY)
 
         maze.draw(screen, cell_size)
         agent.draw(screen, cell_size)
@@ -52,42 +110,47 @@ Result:
     pygame.quit()
 
 
-if __name__ == '__main__':
+def read_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
+    subparser = parser.add_subparsers(dest='mode', required=True)
 
-    parser.add_argument('--height', type=int, default=10)
-    parser.add_argument('--width', type=int, default=10)
-    parser.add_argument('--seed', type=int)
-    parser.add_argument('--speed', type=int, default=30)
-    parser.add_argument(
+    pathfinding = subparser.add_parser('pathfinding', help='Run search algorithms')
+    pathfinding.add_argument('--height', type=int, default=10)
+    pathfinding.add_argument('--width', type=int, default=10)
+    pathfinding.add_argument('--seed', type=int)
+    pathfinding.add_argument('--speed', type=int, default=30)
+    pathfinding.add_argument(
         '--solver',
         type=str,
         choices=['bfs', 'dfs', 'astar_manhatten', 'astar_euclid', 'astar_chebyshev'],
         default='dfs',
     )
-    parser.add_argument(
+    pathfinding.add_argument(
         '--generator',
         type=str,
         choices=['prims', 'backtracking', 'aldousbroder', 'binarytree', 'cellular'],
         default='Prims',
     )
 
-    cli_args = parser.parse_args()
-
-    print(f"""
-Settings:
-    height: {cli_args.height}
-    width: {cli_args.width}
-    generator: {cli_args.generator}
-    solver: {cli_args.solver}
-    seed: {cli_args.seed}
-    speed: {cli_args.speed}""")
-
-    main(
-        cli_args.height,
-        cli_args.width,
-        cli_args.solver,
-        cli_args.generator,
-        cli_args.seed,
-        cli_args.speed,
+    mdp = subparser.add_parser('mdp', help='Run MDP algorithms')
+    mdp.add_argument('--height', type=int, default=10)
+    mdp.add_argument('--width', type=int, default=10)
+    mdp.add_argument('--seed', type=int)
+    mdp.add_argument('--speed', type=int, default=30)
+    mdp.add_argument(
+        '--generator',
+        type=str,
+        choices=['prims', 'backtracking', 'aldousbroder', 'binarytree', 'cellular'],
+        default='Prims',
     )
+
+    return parser.parse_args()
+
+
+if __name__ == '__main__':
+    cli_args = read_args()
+
+    if cli_args.mode == 'pathfinding':
+        run_pathfinding(**vars(cli_args))
+    elif cli_args.mode == 'mdp':
+        run_mdp(**vars(cli_args))

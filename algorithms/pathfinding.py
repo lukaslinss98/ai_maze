@@ -43,7 +43,7 @@ class DFS(PathfindingAlgorithm):
 
             visited[curr] = None
 
-            for neighbors in maze.neighbors(curr):
+            for _, neighbors in maze.neighbors(curr):
                 if neighbors not in visited:
                     stack.append(neighbors)
                     parent_map[neighbors] = curr
@@ -70,11 +70,11 @@ class BFS(PathfindingAlgorithm):
 
                 return PathFindingResult(list(visited.keys()), shortest_path)
 
-            for neighbors in maze.neighbors(curr):
-                if neighbors not in visited:
-                    visited[neighbors] = None
-                    queue.append(neighbors)
-                    parent_map[neighbors] = curr
+            for _, neighbor in maze.neighbors(curr):
+                if neighbor not in visited:
+                    visited[neighbor] = None
+                    queue.append(neighbor)
+                    parent_map[neighbor] = curr
 
         return PathFindingResult(list(visited.keys()), [])
 
@@ -104,7 +104,7 @@ class AStar(PathfindingAlgorithm):
 
                 return PathFindingResult(list(visited.keys()), shortest_path)
 
-            for neighbor in maze.neighbors(curr):
+            for _, neighbor in maze.neighbors(curr):
                 if neighbor not in visited:
                     visited[neighbor] = None
                     path_cost_by_cell[neighbor] = path_cost_by_cell[curr] + 1.0
