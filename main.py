@@ -1,14 +1,12 @@
 import argparse
 import os
 
-from util.colors import DARK_GREY, WHITE
-
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
-
 import pygame
 
 from models.agent import Agent
-from models.maze import Maze
+from models.maze import Maze, MdpMaze
+from util.colors import DARK_GREY, WHITE
 from util.maze_generation import generate_maze
 
 
@@ -26,20 +24,18 @@ def run_mdp(height, width, generator, seed, speed, **_):
 
     rows, cols = len(raw_maze), len(raw_maze[0])
     cell_size = 32
+
     screen = pygame.display.set_mode(
         (cols * cell_size, rows * cell_size), pygame.RESIZABLE
     )
-    clock = pygame.time.Clock()
 
-    maze = Maze(raw_maze, start, end)
-
+    maze = MdpMaze(raw_maze, start, end)
     maze.init_state_values(initial_value=0, goal_reward=10)
-    print(maze.start)
-    print(maze.neighbors(maze.start))
 
     delta_V = float('inf')
     iteration = 0
     font = pygame.font.SysFont('arial', 16)
+    clock = pygame.time.Clock()
 
     while running:
         for event in pygame.event.get():
@@ -75,7 +71,6 @@ def run_pathfinding(height, width, solver, generator, seed, speed, **_):
     )
 
     pygame.init()
-    clock = pygame.time.Clock()
     running = True
 
     raw_maze, start, end = generate_maze(height, width, generator, seed)
@@ -85,11 +80,11 @@ def run_pathfinding(height, width, solver, generator, seed, speed, **_):
     screen = pygame.display.set_mode(
         (cols * cell_size, rows * cell_size), pygame.RESIZABLE
     )
-    clock = pygame.time.Clock()
 
     maze = Maze(raw_maze, start, end)
     agent = Agent(maze, solver)
 
+    clock = pygame.time.Clock()
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:

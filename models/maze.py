@@ -12,7 +12,6 @@ class Maze:
         self.grid: List[List[Cell]] = self._build_maze(maze, start, end)
         self.start: Open = self.get_cell(*start)
         self.end: Open = self.get_cell(*end)
-        self.policy: dict[Open, Open] = {}
 
     def _build_maze(self, grid: List[List[int]], start, end) -> List[List[Cell]]:
         rows, cols = len(grid), len(grid[0])
@@ -36,70 +35,6 @@ class Maze:
             maze.append(row)
 
         return maze
-
-    def init_state_values(self, initial_value: float, goal_reward: float) -> None:
-        for cell in self.open_cells():
-            if isinstance(cell, Open):
-                cell.value = initial_value if cell != self.end else goal_reward
-
-    def value_iteration_step(
-        self, discount_factor: float, living_reward: float, noise: float = 0.2
-    ) -> float:
-        max_diff_value = float('-inf')
-        newPolicy: dict[Open, Open] = {}
-        for cell in self.open_cells():
-            if cell == self.end:
-                cell.best_direction = None
-                continue
-
-            value_by_action: dict[Direction, float] = {}
-            neighbors = self.neighbors(cell)
-            neigh_by_dir = {d: n for d, n in neighbors}
-
-            for dir, neigh in neighbors:
-                if neigh.value is None:
-                    continue
-
-                expected_value = 0
-                for dir2, neigh2 in neighbors:
-                    no_neighbors = len(neighbors)
-                    if no_neighbors == 1:
-                        expected_value += neigh2.value
-                    else:
-                        probability = (
-                            1 - noise if dir == dir2 else noise / (no_neighbors - 1)
-                        )
-
-                        expected_value += probability * neigh2.value
-
-                value_by_action[dir] = expected_value
-
-            if value_by_action:
-                best_direction = max(value_by_action, key=value_by_action.get)
-                max_q = value_by_action[best_direction]
-
-                old_value = cell.value
-                new_value = living_reward + discount_factor * max_q
-
-                max_diff_value = max(max_diff_value, abs(new_value - old_value))
-                cell.value = new_value
-                cell.best_direction = best_direction
-                newPolicy[cell] = neigh_by_dir[best_direction]
-
-        self.policy = newPolicy
-        return max_diff_value
-
-    def draw_policy(self, screen, start, cell_size) -> None:
-        path: List[Open] = []
-        seen = set()
-        curr = start
-        while curr and curr not in seen:
-            path.append(curr)
-            seen.add(curr)
-            curr = self.policy.get(curr, None)
-
-        for c in path:
-            c.draw_cell_arrow(screen, cell_size, GREEN)
 
     def draw(
         self, screen: pygame.Surface, cell_size: int = 32, draw_values=False
@@ -154,7 +89,7 @@ class Maze:
 
         return neigbors
 
-    def open_cells(self) -> List[Open]:
+    def get_open_cells(self) -> List[Open]:
         return [cell for row in self.grid for cell in row if isinstance(cell, Open)]
 
     def __str__(self) -> str:
@@ -165,3 +100,73 @@ class Maze:
             str += '\n'
 
         return str
+
+
+class MdpMaze(Maze):
+    def __init__(self, maze: List[List[int]], start: Tuple, end: Tuple) -> None:
+        super().__init__(maze, start, end)
+        self.policy: dict[Open, Open] = {}
+
+    def init_state_values(self, initial_value: float, goal_reward: float) -> None:
+        for cell in super().get_open_cells():
+            if isinstance(cell, Open):
+                cell.value = initial_value if cell != self.end else goal_reward
+
+    def value_iteration_step(
+        self, discount_factor: float, living_reward: float, noise: float = 0.2
+    ) -> float:
+        max_diff_value = float('-inf')
+        newPolicy: dict[Open, Open] = {}
+        for cell in super().get_open_cells():
+            if cell == self.end:
+                cell.best_direction = None
+                continue
+
+            value_by_action: dict[Direction, float] = {}
+            neighbors = self.neighbors(cell)
+            neigh_by_dir = {d: n for d, n in neighbors}
+
+            for dir, neigh in neighbors:
+                if neigh.value is None:
+                    continue
+
+                expected_value = 0
+                for dir2, neigh2 in neighbors:
+                    no_neighbors = len(neighbors)
+                    if no_neighbors == 1:
+                        expected_value += neigh2.value
+                    else:
+                        probability = (
+                            1 - noise if dir == dir2 else noise / (no_neighbors - 1)
+                        )
+
+                        expected_value += probability * neigh2.value
+
+                value_by_action[dir] = expected_value
+
+            if value_by_action:
+                best_direction = max(value_by_action, key=value_by_action.get)
+                max_q = value_by_action[best_direction]
+
+                old_value = cell.value
+                new_value = living_reward + discount_factor * max_q
+
+                max_diff_value = max(max_diff_value, abs(new_value - old_value))
+                cell.value = new_value
+                cell.best_direction = best_direction
+                newPolicy[cell] = neigh_by_dir[best_direction]
+
+        self.policy = newPolicy
+        return max_diff_value
+
+    def draw_policy(self, screen, start, cell_size) -> None:
+        path: List[Open] = []
+        seen = set()
+        curr = start
+        while curr and curr not in seen:
+            path.append(curr)
+            seen.add(curr)
+            curr = self.policy.get(curr, None)
+
+        for c in path:
+            c.draw_cell_arrow(screen, cell_size, GREEN)
