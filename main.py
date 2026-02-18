@@ -1,7 +1,7 @@
 import argparse
 import os
 
-from util.colors import DARK_GREY
+from util.colors import DARK_GREY, WHITE
 
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
 
@@ -25,7 +25,7 @@ def run_mdp(height, width, generator, seed, speed, **_):
     raw_maze, start, end = generate_maze(height, width, generator, seed)
 
     rows, cols = len(raw_maze), len(raw_maze[0])
-    cell_size = 20
+    cell_size = 32
     screen = pygame.display.set_mode(
         (cols * cell_size, rows * cell_size), pygame.RESIZABLE
     )
@@ -33,9 +33,14 @@ def run_mdp(height, width, generator, seed, speed, **_):
 
     maze = Maze(raw_maze, start, end)
 
-    maze.init_state_values(0.0)
+    maze.init_state_values(initial_value=0, goal_reward=10)
+    print(maze.start)
+    print(maze.neighbors(maze.start))
 
-    dV = 100.0
+    delta_V = float('inf')
+    iteration = 0
+    font = pygame.font.SysFont('arial', 16)
+
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -47,11 +52,16 @@ def run_mdp(height, width, generator, seed, speed, **_):
 
         maze.draw(screen, cell_size, draw_values=True)
         theta = 0.0001
-        if dV > theta:
-            dV = maze.value_iteration_step(discount_factor=0.9, living_reward=-0.01)
+        if delta_V > theta:
+            delta_V = maze.value_iteration_step(
+                discount_factor=0.9, living_reward=-0.01, noise=0.2
+            )
+            iteration += 1
         else:
             maze.draw_policy(screen, start=maze.start, cell_size=cell_size)
 
+        status = font.render(f'ΔV={delta_V:.4f} Iterations={iteration}', True, WHITE)
+        screen.blit(status, (10, 10))
         pygame.display.flip()
         clock.tick(speed)
 
