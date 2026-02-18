@@ -25,7 +25,7 @@ def run_mdp(height, width, generator, seed, speed, **_):
     raw_maze, start, end = generate_maze(height, width, generator, seed)
 
     rows, cols = len(raw_maze), len(raw_maze[0])
-    cell_size = 32
+    cell_size = 20
     screen = pygame.display.set_mode(
         (cols * cell_size, rows * cell_size), pygame.RESIZABLE
     )
@@ -48,7 +48,7 @@ def run_mdp(height, width, generator, seed, speed, **_):
         maze.draw(screen, cell_size, draw_values=True)
         theta = 0.0001
         if dV > theta:
-            dV = maze.value_iteration()
+            dV = maze.value_iteration_step(discount_factor=0.9, living_reward=-0.01)
         else:
             maze.draw_policy(screen, start=maze.start, cell_size=cell_size)
 
@@ -60,14 +60,9 @@ def run_mdp(height, width, generator, seed, speed, **_):
 
 def run_pathfinding(height, width, solver, generator, seed, speed, **_):
 
-    print(f"""
-    Settings:
-        height: {height}
-        width: {width}
-        generator: {generator}
-        solver: {solver}
-        seed: {seed}
-        speed: {speed}""")
+    print(
+        f"""height: {height}\nwidth: {width}\ngenerator: {generator}\nsolver:{solver}\nseed: {seed}\nspeed: {speed}"""
+    )
 
     pygame.init()
     clock = pygame.time.Clock()
@@ -103,10 +98,9 @@ def run_pathfinding(height, width, solver, generator, seed, speed, **_):
         pygame.display.flip()
         clock.tick(speed)
 
-    print(f"""
-Result:
-    Shortest Path Length: {len(agent.pathfinding_result.shortest_path)}
-    Cells Visited: {len(agent.pathfinding_result.visited)}""")
+    print(
+        f"""Shortest Path Length: {len(agent.pathfinding_result.shortest_path)}\nCells Visited: {len(agent.pathfinding_result.visited)}"""
+    )
     pygame.quit()
 
 

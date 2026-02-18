@@ -42,9 +42,9 @@ class Maze:
             if isinstance(cell, Open):
                 cell.value = initial_value if cell != self.end else 100.0
 
-    def value_iteration(self) -> float:
-        discount_factor = 0.9
-        living_reward = -1
+    def value_iteration_step(
+        self, discount_factor: float, living_reward: float
+    ) -> float:
         max_dv = float('-inf')
         for cell in self.open_cells():
             if cell == self.end:
