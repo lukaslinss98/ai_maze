@@ -3,7 +3,7 @@ from typing import Protocol
 
 import pygame
 
-from algorithms.pathfinding import BFS, DFS, AStar, PathFindingResult
+from algorithms.algorithms import BFS, DFS, AStar, PathFindingResult
 from models.cell import Open
 from models.maze import Maze
 

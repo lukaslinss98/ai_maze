@@ -12,6 +12,7 @@ from util.colors import BLACK
 class Cell:
     x: int
     y: int
+    size: int
 
     def coordinates(self):
         return (self.x, self.y)
@@ -32,26 +33,26 @@ class Open(Cell):
     value: float = 100
     policy: Action = Action.NORTH
 
-    def draw_cell_value(self, screen: Surface, cell_size: int):
+    def draw_cell_value(self, screen: Surface):
         font = pygame.font.SysFont('arial', 11)
-        cx = self.y * cell_size
-        cy = self.x * cell_size
+        cx = self.y * self.size
+        cy = self.x * self.size
 
         if self.value is not None:
             text = font.render(f'{self.value:.2f}', True, BLACK)
         else:
             text = font.render('-', True, BLACK)
 
-        screen.blit(text, (cx + cell_size // 4, cy + cell_size // 4))
-        # self.draw_cell_arrow(screen, cell_size)
+        screen.blit(text, (cx + self.size // 4, cy + self.size // 4))
+        # self.draw_cell_arrow(screen, self.size)
 
-    def draw_cell_arrow(self, screen: Surface, cell_size: int, color=BLACK):
+    def draw_cell_arrow(self, screen: Surface, color=BLACK):
         if not self.policy:
             return
 
-        cx = self.y * cell_size + cell_size // 2
-        cy = self.x * cell_size + cell_size // 2
-        half = cell_size // 3
+        cx = self.y * self.size + self.size // 2
+        cy = self.x * self.size + self.size // 2
+        half = self.size // 3
 
         if self.policy == Action.NORTH:
             points = [(cx, cy - half), (cx - half, cy + half), (cx + half, cy + half)]

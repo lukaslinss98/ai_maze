@@ -1,117 +1,68 @@
-from abc import ABC, abstractmethod
-from collections import deque
-from dataclasses import dataclass
-from typing import Callable, Dict, List, OrderedDict
+import os
 
-from models.cell import Cell, Open
+os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
+import pygame
+
+from models.agent import Agent
 from models.maze import Maze
-from util.datastructures import PriorityQueue
+from util.colors import DARK_GREY, WHITE
+from util.maze_generation import generate_maze
 
 
-@dataclass(frozen=True)
-class PathFindingResult:
-    visited: List[Open]
-    shortest_path: List[Open]
+def run_pathfinding(**kwargs):
+    for k, v in kwargs.items():
+        print(f'{k}: {v}')
 
+    height = kwargs['height']
+    width = kwargs['width']
+    generator = kwargs['generator']
+    seed = kwargs['seed']
+    solver = kwargs['solver']
+    speed = kwargs['speed']
 
-class PathfindingAlgorithm(ABC):
-    @abstractmethod
-    def solve(self, maze: Maze, start: Open) -> PathFindingResult:
-        pass
+    pygame.init()
+    font = pygame.font.SysFont('arial', 16)
+    running = True
 
+    raw_maze, start, end = generate_maze(height, width, generator, seed)
 
-class DFS(PathfindingAlgorithm):
-    def solve(self, maze: Maze, start: Open) -> PathFindingResult:
-        stack = [start]
-        visited = OrderedDict.fromkeys([])
-        parent_map: Dict[Open, Open | None] = {start: None}
+    maze = Maze(raw_maze, start, end, cell_size=32)
+    agent = Agent(maze, solver)
 
-        while stack:
-            curr = stack.pop()
+    rows, cols = maze.dims()
+    cell_size = maze.start.size
+    screen = pygame.display.set_mode(
+        (cols * cell_size, rows * cell_size), pygame.RESIZABLE
+    )
+    clock = pygame.time.Clock()
+    iterations = 0
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            if event.type == pygame.VIDEORESIZE:
+                screen = pygame.display.set_mode(event.size, pygame.RESIZABLE)
 
-            if curr == maze.end:
-                shortest_path = []
-                at = curr
-                while at:
-                    shortest_path.append(at)
-                    at = parent_map.get(at)
+        screen.fill(DARK_GREY)
 
-                return PathFindingResult(list(visited.keys()), shortest_path)
+        maze.draw(screen, cell_size)
+        agent.draw(screen, cell_size)
+        is_last_step = agent.step()
+        iterations = iterations if is_last_step else iterations + 1
+        if is_last_step:
+            agent.draw_shortest_path(screen, cell_size)
 
-            if curr in visited:
-                continue
+        eval_text = font.render(
+            f'Iterations={iterations}',
+            True,
+            WHITE,
+        )
+        screen.blit(eval_text, (10, 10))
 
-            visited[curr] = None
+        pygame.display.flip()
+        clock.tick(speed)
 
-            for _, neighbors in maze.neighbors(curr):
-                if neighbors not in visited:
-                    stack.append(neighbors)
-                    parent_map[neighbors] = curr
-
-        return PathFindingResult(list(visited.keys()), [])
-
-
-class BFS(PathfindingAlgorithm):
-    def solve(self, maze: Maze, start: Open) -> PathFindingResult:
-        queue = deque([start])
-        visited = OrderedDict.fromkeys([])
-        parent_map: Dict[Open, Open | None] = {start: None}
-
-        visited[start] = None
-        while queue:
-            curr = queue.popleft()
-
-            if curr == maze.end:
-                shortest_path = []
-                at = curr
-                while at:
-                    shortest_path.append(at)
-                    at = parent_map.get(at)
-
-                return PathFindingResult(list(visited.keys()), shortest_path)
-
-            for _, neighbor in maze.neighbors(curr):
-                if neighbor not in visited:
-                    visited[neighbor] = None
-                    queue.append(neighbor)
-                    parent_map[neighbor] = curr
-
-        return PathFindingResult(list(visited.keys()), [])
-
-
-class AStar(PathfindingAlgorithm):
-    def __init__(self, heuristic: Callable[[Cell, Cell], float]) -> None:
-        self.heuistic = heuristic
-
-    def solve(self, maze: Maze, start: Open) -> PathFindingResult:
-        priority_queue = PriorityQueue()
-
-        visited = OrderedDict.fromkeys([])
-        parent_by_cell: Dict[Open, Open | None] = {start: None}
-        path_cost_by_cell = {start: 0.0}
-
-        priority_queue.push(start, 1.0)
-        visited[start] = None
-        while priority_queue:
-            curr = priority_queue.pop()
-
-            if curr == maze.end:
-                shortest_path = []
-                at = curr
-                while at:
-                    shortest_path.append(at)
-                    at = parent_by_cell.get(at)
-
-                return PathFindingResult(list(visited.keys()), shortest_path)
-
-            for _, neighbor in maze.neighbors(curr):
-                if neighbor not in visited:
-                    visited[neighbor] = None
-                    path_cost_by_cell[neighbor] = path_cost_by_cell[curr] + 1.0
-
-                    f = self.heuistic(neighbor, maze.end) + path_cost_by_cell[neighbor]
-
-                    priority_queue.push(neighbor, f)
-                    parent_by_cell[neighbor] = curr
-
-        return PathFindingResult(list(visited.keys()), [])
+    print(
+        f"""Shortest Path Length: {len(agent.pathfinding_result.shortest_path)}\nCells Visited: {len(agent.pathfinding_result.visited)}"""
+    )
+    pygame.quit()
