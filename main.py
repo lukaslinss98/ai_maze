@@ -1,6 +1,8 @@
 import argparse
 import os
 
+from models import cell
+
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
 import pygame
 
@@ -10,7 +12,9 @@ from util.colors import DARK_GREY, WHITE
 from util.maze_generation import generate_maze
 
 
-def run_mdp(height, width, generator, seed, speed, reward, discount, noise, **_):
+def run_mdp(
+    solver, height, width, generator, seed, speed, reward, discount, noise, **_
+):
 
     print(
         f"""{height=}\n{width=}\n{generator=}\n{seed=}\n{speed=}\n{reward=}\n{discount=}\n{noise=}"""
@@ -30,13 +34,17 @@ def run_mdp(height, width, generator, seed, speed, reward, discount, noise, **_)
     )
 
     maze = MdpMaze(raw_maze, start, end)
-    maze.init_state_values(initial_value=0, goal_reward=10)
+    maze.init_states(initial_value=0, goal_reward=10)
 
+    font = pygame.font.SysFont('arial', 16)
     delta_V = float('inf')
     iteration = 0
-    font = pygame.font.SysFont('arial', 16)
+    theta = 0.0001
     clock = pygame.time.Clock()
 
+    delta = float('inf')
+    converged = False
+    is_stable = False
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -47,15 +55,32 @@ def run_mdp(height, width, generator, seed, speed, reward, discount, noise, **_)
         screen.fill(DARK_GREY)
 
         maze.draw(screen, cell_size, draw_values=True)
-        theta = 0.0001
-        if delta_V > theta:
-            delta_V = maze.value_iteration_step(discount, reward, noise)
-            iteration += 1
-        else:
-            maze.draw_policy(screen, start=maze.start, cell_size=cell_size)
 
-        status = font.render(f'ΔV={delta_V:.4f} Iterations={iteration}', True, WHITE)
-        screen.blit(status, (10, 10))
+        if not converged and solver == 'value-iteration':
+            delta_V = maze.value_iteration_step(discount, reward, noise)
+            converged = delta_V < theta
+            iteration += 1
+
+        elif solver == 'policy-iteration' and not is_stable:
+            iteration += 1
+
+            if delta > theta:
+                eval_text = font.render(f'Eval iter', True, WHITE)
+                screen.blit(eval_text, (300, 10))
+                delta = maze.policy_evaluation_step(discount, reward, noise)
+            else:
+                improv_text = font.render(f'Improve', True, WHITE)
+                screen.blit(improv_text, (300, 10))
+                is_stable = maze.policy_improvement_step()
+                delta = float('inf')
+
+            eval_text = font.render(
+                f'ΔV={delta:.4f} Iterations={iteration}', True, WHITE
+            )
+            screen.blit(eval_text, (10, 10))
+        else:
+            maze.draw_policy(screen, maze.start, cell_size)
+
         pygame.display.flip()
         clock.tick(speed)
 
@@ -126,7 +151,7 @@ def read_args() -> argparse.Namespace:
         '--generator',
         type=str,
         choices=['prims', 'backtracking', 'aldousbroder', 'binarytree', 'cellular'],
-        default='Prims',
+        default='cellular',
     )
 
     mdp = subparser.add_parser('mdp', help='Run MDP algorithms')
@@ -138,10 +163,16 @@ def read_args() -> argparse.Namespace:
     mdp.add_argument('--discount', type=float, default=0.9)
     mdp.add_argument('--reward', type=float, default=-0.01)
     mdp.add_argument(
+        '--solver',
+        type=str,
+        default='value-iteration',
+        choices=['policy-iteration', 'value-iteration'],
+    )
+    mdp.add_argument(
         '--generator',
         type=str,
         choices=['prims', 'backtracking', 'aldousbroder', 'binarytree', 'cellular'],
-        default='Prims',
+        default='cellular',
     )
 
     return parser.parse_args()
