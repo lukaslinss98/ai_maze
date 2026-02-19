@@ -10,10 +10,10 @@ from util.colors import DARK_GREY, WHITE
 from util.maze_generation import generate_maze
 
 
-def run_mdp(height, width, generator, seed, speed, **_):
+def run_mdp(height, width, generator, seed, speed, reward, discount, noise, **_):
 
     print(
-        f"""height: {height}\nwidth: {width}\ngenerator: {generator}\nseed: {seed}\nspeed: {speed}"""
+        f"""{height=}\n{width=}\n{generator=}\n{seed=}\n{speed=}\n{reward=}\n{discount=}\n{noise=}"""
     )
 
     pygame.init()
@@ -49,9 +49,7 @@ def run_mdp(height, width, generator, seed, speed, **_):
         maze.draw(screen, cell_size, draw_values=True)
         theta = 0.0001
         if delta_V > theta:
-            delta_V = maze.value_iteration_step(
-                discount_factor=0.9, living_reward=-0.01, noise=0.2
-            )
+            delta_V = maze.value_iteration_step(discount, reward, noise)
             iteration += 1
         else:
             maze.draw_policy(screen, start=maze.start, cell_size=cell_size)
@@ -136,6 +134,9 @@ def read_args() -> argparse.Namespace:
     mdp.add_argument('--width', type=int, default=10)
     mdp.add_argument('--seed', type=int)
     mdp.add_argument('--speed', type=int, default=30)
+    mdp.add_argument('--noise', type=float, default=0.2)
+    mdp.add_argument('--discount', type=float, default=0.9)
+    mdp.add_argument('--reward', type=float, default=-0.01)
     mdp.add_argument(
         '--generator',
         type=str,
