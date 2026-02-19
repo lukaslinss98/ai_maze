@@ -45,12 +45,14 @@ def run_pathfinding(**kwargs):
 
         screen.fill(DARK_GREY)
 
-        maze.draw(screen, cell_size)
-        agent.draw(screen, cell_size)
+        maze.draw(screen)
+        agent.draw(screen)
         is_last_step = agent.step()
-        iterations = iterations if is_last_step else iterations + 1
+
         if is_last_step:
             agent.draw_shortest_path(screen, cell_size)
+        else:
+            iterations += 1
 
         eval_text = font.render(
             f'Iterations={iterations}',

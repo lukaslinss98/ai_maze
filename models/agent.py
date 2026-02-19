@@ -24,9 +24,10 @@ class Agent:
         self.solver = self._create_solver(solver)
         self.pathfinding_result: PathFindingResult = self.solver.solve(maze, self.curr)
 
-    def draw(self, screen: pygame.Surface, cell_size: int = 32) -> None:
+    def draw(self, screen: pygame.Surface) -> None:
         sub_path = self.pathfinding_result.visited[: self.curr_i + 1]
         for i, cell in enumerate(sub_path):
+            cell_size = cell.size
             px, py = (
                 (cell.y * cell_size) + cell_size / 2,
                 (cell.x * cell_size) + cell_size / 2,

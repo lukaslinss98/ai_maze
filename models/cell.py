@@ -33,20 +33,17 @@ class Open(Cell):
     value: float = 100
     policy: Action = Action.NORTH
 
-    def draw_cell_value(self, screen: Surface):
+    def draw_value(self, screen: Surface):
+        print('f')
         font = pygame.font.SysFont('arial', 11)
         cx = self.y * self.size
         cy = self.x * self.size
 
-        if self.value is not None:
-            text = font.render(f'{self.value:.2f}', True, BLACK)
-        else:
-            text = font.render('-', True, BLACK)
+        text = font.render(f'{self.value:.2f}', True, BLACK)
 
         screen.blit(text, (cx + self.size // 4, cy + self.size // 4))
-        # self.draw_cell_arrow(screen, self.size)
 
-    def draw_cell_arrow(self, screen: Surface, color=BLACK):
+    def draw_action(self, screen: Surface, color=BLACK):
         if not self.policy:
             return
 

@@ -2,6 +2,7 @@ import random
 from typing import List, Tuple
 
 import pygame
+from pygame import Surface
 
 from models.cell import Cell, Open, Wall
 from models.direction import Action
@@ -17,25 +18,28 @@ class Maze:
         self.end: Open = self.get_cell(*end)
 
     def draw(
-        self, screen: pygame.Surface, cell_size: int = 32, draw_values=False
+        self, screen: pygame.Surface, draw_values=True, draw_actions=False
     ) -> None:
-        for x, row in enumerate(self.grid):
-            for y, cell in enumerate(row):
-                px, py = y * cell_size, x * cell_size
-                rect = pygame.Rect(px, py, cell_size, cell_size)
+        print(draw_values)
+        for cell in self.get_cells():
+            cell_size = cell.size
+            px, py = cell.y * cell_size, cell.x * cell_size
+            rect = pygame.Rect(px, py, cell_size, cell.size)
 
-                if isinstance(cell, Wall):
-                    pygame.draw.rect(screen, DARK_GREY, rect)
-                elif isinstance(cell, Open):
-                    if cell == self.start:
-                        pygame.draw.rect(screen, RED, rect)
-                    elif cell == self.end:
-                        pygame.draw.rect(screen, GREEN, rect)
-                    else:
-                        pygame.draw.rect(screen, WHITE, rect)
+            if isinstance(cell, Wall):
+                pygame.draw.rect(screen, DARK_GREY, rect)
+            elif isinstance(cell, Open):
+                if cell == self.start:
+                    pygame.draw.rect(screen, RED, rect)
+                elif cell == self.end:
+                    pygame.draw.rect(screen, GREEN, rect)
+                else:
+                    pygame.draw.rect(screen, WHITE, rect)
 
-                    if draw_values:
-                        cell.draw_cell_value(screen)
+                if draw_values:
+                    cell.draw_value(screen)
+                if draw_actions:
+                    cell.draw_action(screen)
 
     def get_cell(self, x: int, y: int) -> Open:
         cell = self.grid[x][y]
@@ -68,7 +72,10 @@ class Maze:
         return neigbors
 
     def get_open_cells(self) -> List[Open]:
-        return [cell for row in self.grid for cell in row if isinstance(cell, Open)]
+        return [c for c in self.get_cells() if isinstance(c, Open)]
+
+    def get_cells(self) -> List[Cell]:
+        return [cell for row in self.grid for cell in row]
 
     def dims(self) -> Tuple[int, int]:
         return (len(self.grid), len(self.grid[0]))
@@ -197,7 +204,7 @@ class MdpMaze(Maze):
                 value_by_action[dir] = expected_value
 
             if value_by_action:
-                best_direction = max(value_by_action, key=value_by_action.get)
+                best_direction = max(value_by_action, key=lambda a: value_by_action[a])
                 max_q = value_by_action[best_direction]
 
                 old_value = cell.value
@@ -209,14 +216,20 @@ class MdpMaze(Maze):
 
         return max_diff_value
 
-    def draw_policy(self, screen, start) -> None:
+    def draw_policy(self, screen: Surface, start: Open, end: Open) -> None:
+        for c in self.shortest_path(start, end):
+            c.draw_action(screen, GREEN)
+
+    def shortest_path(self, start, end) -> List[Open]:
         path: List[Open] = []
         seen = set()
         curr = start
         while curr and curr not in seen:
+            if curr == end:
+                break
+
             path.append(curr)
             seen.add(curr)
             curr = self.move_to(curr, curr.policy)
 
-        for c in path:
-            c.draw_cell_arrow(screen, GREEN)
+        return path

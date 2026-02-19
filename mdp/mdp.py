@@ -62,7 +62,7 @@ def run_value_iteration(maze: MdpMaze, discount, reward, noise, speed):
 
         screen.fill(DARK_GREY)
 
-        maze.draw(screen, cell_size, draw_values=True)
+        maze.draw(screen, draw_values=True)
 
         if not converged:
             delta_V = maze.value_iteration_step(discount, reward, noise)
@@ -70,7 +70,7 @@ def run_value_iteration(maze: MdpMaze, discount, reward, noise, speed):
             iterations += 1
 
         else:
-            maze.draw_policy(screen, maze.start)
+            maze.draw_policy(screen, maze.start, maze.end)
 
         eval_text = font.render(
             f'ΔV={delta_V:.4f} Iterations={iterations}',
@@ -112,9 +112,14 @@ def run_policy_iteration(maze: MdpMaze, discount, noise, reward, speed):
 
         screen.fill(DARK_GREY)
 
-        maze.draw(screen, cell_size, draw_values=True)
-
         mode = 'eval' if delta > theta else 'improve'
+
+        draw_values = mode == 'eval'
+        draw_actions = mode == 'improve'
+
+        print(draw_values)
+
+        maze.draw(screen, draw_values, draw_actions)
         if not is_stable:
             if mode == 'eval':
                 eval_iters += 1
@@ -131,7 +136,7 @@ def run_policy_iteration(maze: MdpMaze, discount, noise, reward, speed):
             )
             screen.blit(eval_text, (10, 10))
         else:
-            maze.draw_policy(screen, maze.start)
+            maze.draw_policy(screen, maze.start, maze.end)
 
         pygame.display.flip()
         clock.tick(speed)
