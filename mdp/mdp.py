@@ -117,8 +117,6 @@ def run_policy_iteration(maze: MdpMaze, discount, noise, reward, speed):
         draw_values = mode == 'eval'
         draw_actions = mode == 'improve'
 
-        print(draw_values)
-
         maze.draw(screen, draw_values, draw_actions)
         if not is_stable:
             if mode == 'eval':
@@ -129,14 +127,15 @@ def run_policy_iteration(maze: MdpMaze, discount, noise, reward, speed):
                 is_stable = maze.policy_improvement_step()
                 delta = float('inf')
 
-            eval_text = font.render(
-                f'Mode={mode}, ΔV={delta:.4f} Total Iters={eval_iters + improve_iters}, {eval_iters=}, {improve_iters=}',
-                True,
-                WHITE,
-            )
-            screen.blit(eval_text, (10, 10))
         else:
             maze.draw_policy(screen, maze.start, maze.end)
+
+        eval_text = font.render(
+            f'Mode={mode}, ΔV={delta:.4f} Total Iters={eval_iters + improve_iters}, {eval_iters=}, {improve_iters=}',
+            True,
+            WHITE,
+        )
+        screen.blit(eval_text, (10, 10))
 
         pygame.display.flip()
         clock.tick(speed)

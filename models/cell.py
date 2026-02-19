@@ -34,7 +34,6 @@ class Open(Cell):
     policy: Action = Action.NORTH
 
     def draw_value(self, screen: Surface):
-        print('f')
         font = pygame.font.SysFont('arial', 11)
         cx = self.y * self.size
         cy = self.x * self.size

@@ -20,7 +20,6 @@ class Maze:
     def draw(
         self, screen: pygame.Surface, draw_values=True, draw_actions=False
     ) -> None:
-        print(draw_values)
         for cell in self.get_cells():
             cell_size = cell.size
             px, py = cell.y * cell_size, cell.x * cell_size
