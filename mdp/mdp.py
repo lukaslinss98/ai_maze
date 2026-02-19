@@ -62,7 +62,7 @@ def run_value_iteration(maze: MdpMaze, discount, reward, noise, speed):
 
         screen.fill(DARK_GREY)
 
-        maze.draw(screen, draw_values=True)
+        maze.draw(screen, draw_values=False, draw_actions=True)
 
         if not converged:
             delta_V = maze.value_iteration_step(discount, reward, noise)

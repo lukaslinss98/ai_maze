@@ -132,23 +132,12 @@ class MdpMaze(Maze):
         for cell in super().get_open_cells():
             if cell == self.end:
                 continue
+
             old_value = cell.value
 
-            expected_value = 0
-            neighbors = self.neighbors(cell)
-            for action, neighbor in neighbors:
-                if len(neighbors) == 1:
-                    prop = 1
-                else:
-                    prop = (
-                        1 - noise
-                        if action == cell.policy
-                        else noise / (len(neighbors) - 1)
-                    )
+            exp_value = self._value_by_action(cell, noise)[cell.policy]
 
-                expected_value += prop * neighbor.value
-
-            cell.value = living_reward + discount * expected_value
+            cell.value = living_reward + discount * exp_value
             dV = abs(cell.value - old_value)
             max_delta_v = max(max_delta_v, dV)
 
@@ -181,26 +170,7 @@ class MdpMaze(Maze):
             if cell == self.end:
                 continue
 
-            value_by_action: dict[Action, float] = {}
-            neighbors = self.neighbors(cell)
-
-            for dir, neigh in neighbors:
-                if neigh.value is None:
-                    continue
-
-                expected_value = 0
-                for dir2, neigh2 in neighbors:
-                    no_neighbors = len(neighbors)
-                    if no_neighbors == 1:
-                        expected_value += neigh2.value
-                    else:
-                        probability = (
-                            1 - noise if dir == dir2 else noise / (no_neighbors - 1)
-                        )
-
-                        expected_value += probability * neigh2.value
-
-                value_by_action[dir] = expected_value
+            value_by_action = self._value_by_action(cell, noise)
 
             if value_by_action:
                 best_direction = max(value_by_action, key=lambda a: value_by_action[a])
@@ -232,3 +202,25 @@ class MdpMaze(Maze):
             curr = self.move_to(curr, curr.policy)
 
         return path
+
+    def _value_by_action(self, cell, noise) -> dict[Action, float]:
+        value_by_action = {}
+        neighbors = self.neighbors(cell)
+        for dir, neigh in neighbors:
+            if neigh.value is None:
+                continue
+
+            expected_value = 0
+            for dir2, neigh2 in neighbors:
+                no_neighbors = len(neighbors)
+                if no_neighbors == 1:
+                    expected_value += neigh2.value
+                else:
+                    probability = (
+                        1 - noise if dir == dir2 else noise / (no_neighbors - 1)
+                    )
+
+                    expected_value += probability * neigh2.value
+
+            value_by_action[dir] = expected_value
+        return value_by_action
