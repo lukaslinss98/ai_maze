@@ -1,8 +1,8 @@
 import argparse
 import os
 
-from algorithms.pathfinding import run_pathfinding
 from mdp.mdp import run_mdp
+from pathfinding.pathfinding import run_pathfinding
 
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
 
