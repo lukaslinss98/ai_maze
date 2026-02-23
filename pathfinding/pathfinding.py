@@ -19,6 +19,7 @@ def run_pathfinding(**kwargs):
     seed = kwargs['seed']
     solver = kwargs['solver']
     speed = kwargs['speed']
+    cell_size = kwargs['cell_size']
 
     pygame.init()
     font = pygame.font.SysFont('arial', 16)
@@ -26,7 +27,7 @@ def run_pathfinding(**kwargs):
 
     raw_maze, start, end = generate_maze(height, width, generator, seed)
 
-    maze = Maze(raw_maze, start, end, cell_size=5)
+    maze = Maze(raw_maze, start, end, cell_size)
     agent = Agent(maze, solver)
 
     rows, cols = maze.dims()
