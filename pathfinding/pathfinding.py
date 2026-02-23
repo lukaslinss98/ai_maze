@@ -65,7 +65,8 @@ def run_pathfinding(**kwargs):
         pygame.display.flip()
         clock.tick(speed)
 
+    result = agent.pathfinding_result
     print(
-        f"""Shortest Path Length: {len(agent.pathfinding_result.shortest_path)}\nCells Visited: {len(agent.pathfinding_result.visited)}"""
+        f"""Shortest Path Length: {len(result.shortest_path)}\nCells Visited: {len(result.visited)}\nRun Time: {result.run_time}"""
     )
     pygame.quit()
