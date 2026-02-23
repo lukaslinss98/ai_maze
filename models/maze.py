@@ -18,7 +18,7 @@ class Maze:
         self.end: Open = self.get_cell(*end)
 
     def draw(
-        self, screen: pygame.Surface, draw_values=True, draw_actions=False
+        self, screen: pygame.Surface, draw_values=False, draw_actions=False
     ) -> None:
         for cell in self.get_cells():
             cell_size = cell.size
