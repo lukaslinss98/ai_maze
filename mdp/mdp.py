@@ -23,7 +23,7 @@ def run_mdp(**kwargs):
     noise = kwargs['noise']
 
     raw_maze, start, end = generate_maze(height, width, generator, seed)
-    maze = MdpMaze(raw_maze, start, end, cell_size=32)
+    maze = MdpMaze(raw_maze, start, end, cell_size=15)
     maze.init_states(initial_value=0, goal_reward=10)
 
     if solver == 'value-iteration':
@@ -117,7 +117,7 @@ def run_policy_iteration(maze: MdpMaze, discount, noise, reward, speed):
         draw_values = mode == 'eval'
         draw_actions = mode == 'improve'
 
-        maze.draw(screen, draw_values, draw_actions)
+        maze.draw(screen, False, True)
         if not is_stable:
             if mode == 'eval':
                 eval_iters += 1
