@@ -1,17 +1,12 @@
-import math
 from typing import Protocol
 
 import pygame
 
-from algorithms.pathfinding import (
-    BFS,
-    DFS,
-    AStar,
-    PathFindingResult,
-    chebyshev_distance,
-    euclidean_distance,
-    manhatten_distance,
-)
+from algorithms.pathfinding_algorithms import (BFS, DFS, AStar,
+                                               PathFindingResult,
+                                               chebyshev_distance,
+                                               euclidean_distance,
+                                               manhatten_distance)
 from models.cell import Open
 from models.maze import Maze
 

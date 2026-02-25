@@ -1,6 +1,6 @@
 import os
 
-from algorithms.mdp import PolicyIteration, ValueIteration
+from algorithms.mdp_algorithms import PolicyIteration, ValueIteration
 
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
 import pygame
@@ -130,8 +130,8 @@ def run_policy_iteration(
 ):
     pygame.init()
     clock = pygame.time.Clock()
-    title_font = pygame.font.SysFont('arial', 18, bold=True)
-    body_font = pygame.font.SysFont('arial', 14)
+    title_font = pygame.font.SysFont('arial', 20, bold=True)
+    body_font = pygame.font.SysFont('arial', 16)
     running = True
 
     cols, rows = maze.dims()
