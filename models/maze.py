@@ -125,43 +125,6 @@ class MdpMaze(Maze):
             cell.value = initial_value if cell != self.end else goal_reward
             cell.policy = random.choice(cell.open_directions())
 
-    def policy_evaluation_step(
-        self, discount: float, living_reward: float, noise: float
-    ) -> float:
-        max_delta_v = float('-inf')
-        for cell in super().get_open_cells():
-            if cell == self.end:
-                continue
-
-            old_value = cell.value
-
-            exp_value = self.value_by_action(cell, noise)[cell.policy]
-
-            cell.value = living_reward + discount * exp_value
-            dV = abs(cell.value - old_value)
-            max_delta_v = max(max_delta_v, dV)
-
-        return max_delta_v
-
-    def policy_improvement_step(self) -> bool:
-        is_stable = True
-
-        for cell in super().get_open_cells():
-            if cell == self.end:
-                continue
-
-            old_policy = cell.policy
-            max_value = float('-inf')
-            for action, neighbor in self.neighbors(cell):
-                if neighbor.value > max_value:
-                    max_value = neighbor.value
-                    cell.policy = action
-
-            if old_policy != cell.policy:
-                is_stable = False
-
-        return is_stable
-
     def draw_policy(self, screen: Surface, start: Open, end: Open) -> None:
         for c in self.shortest_path(start, end):
             c.draw_action(screen, GREEN)
