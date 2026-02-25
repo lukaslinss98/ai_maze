@@ -79,6 +79,14 @@ def run_value_iteration(maze: MdpMaze, discount, reward, noise, speed):
         pygame.display.flip()
         clock.tick(speed)
 
+    print('\n------------Evaluation-------------\n')
+
+    print(
+        f"""Shortest Path Length: {len(result.shortest_path)}
+Run Time: {result.run_time:.6f}s,
+Peak Memory: {result.peak_memory} bytes
+"""
+    )
     pygame.quit()
 
 
@@ -112,7 +120,7 @@ def run_policy_iteration(maze: MdpMaze, discount, noise, reward, speed):
         draw_values = snapshot.mode == 'eval'
         draw_actions = snapshot.mode == 'improve'
 
-        snapshot.maze.draw(screen, draw_values=False, draw_actions=True)
+        snapshot.maze.draw(screen, draw_values, draw_actions)
         if iteration < len(result.snapshots) - 1:
             iteration += 1
         else:
@@ -130,4 +138,11 @@ def run_policy_iteration(maze: MdpMaze, discount, noise, reward, speed):
         pygame.display.flip()
         clock.tick(speed)
 
+    print('\n------------Evaluation-------------\n')
+    print(
+        f"""Shortest Path Length: {len(result.shortest_path)}
+Run Time: {result.run_time:.6f}s,
+Peak Memory: {result.peak_memory} bytes
+"""
+    )
     pygame.quit()

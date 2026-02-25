@@ -67,7 +67,12 @@ def run_pathfinding(**kwargs):
 
     result = agent.pathfinding_result
     print('\n------------Evaluation-------------\n')
+
     print(
-        f"""Shortest Path Length: {len(result.shortest_path)}\nCells Visited: {len(result.visited)}\nRun Time: {result.run_time}"""
+        f"""Shortest Path Length: {len(result.shortest_path)}
+Cells Visited: {len(result.visited)}
+Run Time: {result.run_time:.6f}s,
+Peak Memory: {result.peak_memory_bytes} bytes
+"""
     )
     pygame.quit()

@@ -1,3 +1,4 @@
+import tracemalloc
 from abc import ABC, abstractmethod
 from copy import deepcopy
 from dataclasses import dataclass
@@ -24,24 +25,28 @@ class PolicySnapshot:
 
 
 @dataclass(frozen=True)
-class MdpResult:
+class ValueIterationResult:
     snapshots: List[Snapshot]
     shortest_path: List[Open]
     run_time: float
+    peak_memory: int
 
 
 @dataclass(frozen=True)
-class PolicyResult:
+class PolicyIterationResult:
     snapshots: List[PolicySnapshot]
     shortest_path: List[Open]
     run_time: float
+    peak_memory: int
     total_eval_iterations: int
     total_improve_iterations: int
 
 
 class MdpAlgorithm(ABC):
     @abstractmethod
-    def solve(self, maze: MdpMaze) -> Union[MdpResult, PolicyResult]:
+    def solve(
+        self, maze: MdpMaze, take_snapshots: bool
+    ) -> Union[ValueIterationResult, PolicyIterationResult]:
         pass
 
 
@@ -54,19 +59,23 @@ class ValueIteration(MdpAlgorithm):
         self.noise = noise
         self.theta = theta
 
-    def solve(self, maze: MdpMaze) -> MdpResult:
+    def solve(self, maze: MdpMaze, take_snapshots=True) -> ValueIterationResult:
         delta_V = float('inf')
         snapshots = []
         start_time = perf_counter()
+        tracemalloc.start()
         while delta_V > self.theta:
             delta_V = self._value_iteration_step(maze)
 
-            snapshot = Snapshot(deepcopy(maze), delta_V)
-            snapshots.append(snapshot)
+            if take_snapshots:
+                snapshot = Snapshot(deepcopy(maze), delta_V)
+                snapshots.append(snapshot)
 
+        _, peak_mem = tracemalloc.get_traced_memory()
+        tracemalloc.stop()
         run_time = perf_counter() - start_time
         shortest_path = maze.shortest_path(maze.start, maze.end)
-        return MdpResult(snapshots, shortest_path, run_time)
+        return ValueIterationResult(snapshots, shortest_path, run_time, peak_mem)
 
     def _value_iteration_step(self, maze: MdpMaze) -> float:
         max_diff_value = 0.0
@@ -99,11 +108,12 @@ class PolicyIteration(MdpAlgorithm):
         self.noise = noise
         self.theta = theta
 
-    def solve(self, maze: MdpMaze) -> PolicyResult:
+    def solve(self, maze: MdpMaze, take_snapshots=True) -> PolicyIterationResult:
         snapshots = []
         eval_iters = 0
         improve_iters = 0
         start_time = perf_counter()
+        tracemalloc.start()
         delta = float('inf')
         is_stable = False
 
@@ -111,23 +121,28 @@ class PolicyIteration(MdpAlgorithm):
             while delta > self.theta:
                 delta = self._policy_evaluation_step(maze)
                 eval_iters += 1
-                snapshot = PolicySnapshot(
-                    deepcopy(maze), delta, 'eval', eval_iters, improve_iters
-                )
-                snapshots.append(snapshot)
+                if take_snapshots:
+                    snapshot = PolicySnapshot(
+                        deepcopy(maze), delta, 'eval', eval_iters, improve_iters
+                    )
+                    snapshots.append(snapshot)
 
             is_stable = self._policy_improvement_step(maze)
             improve_iters += 1
-            snapshot = PolicySnapshot(
-                deepcopy(maze), 0.0, 'improve', eval_iters, improve_iters
-            )
-            snapshots.append(snapshot)
             delta = float('inf')
 
+            if take_snapshots:
+                snapshot = PolicySnapshot(
+                    deepcopy(maze), 0.0, 'improve', eval_iters, improve_iters
+                )
+                snapshots.append(snapshot)
+
+        _, peak_mem = tracemalloc.get_traced_memory()
+        tracemalloc.stop()
         run_time = perf_counter() - start_time
         shortest_path = maze.shortest_path(maze.start, maze.end)
-        return PolicyResult(
-            snapshots, shortest_path, run_time, eval_iters, improve_iters
+        return PolicyIterationResult(
+            snapshots, shortest_path, run_time, peak_mem, eval_iters, improve_iters
         )
 
     def _policy_evaluation_step(self, maze: MdpMaze) -> float:
