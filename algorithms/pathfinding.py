@@ -17,6 +17,7 @@ class PathFindingResult:
     shortest_path: List[Open]
     run_time: float
     peak_memory_bytes: int
+    max_frontier_size: int
 
 
 class PathfindingAlgorithm(ABC):
@@ -33,6 +34,7 @@ class DFS(PathfindingAlgorithm):
         stack = [start]
         visited = OrderedDict.fromkeys([])
         parent_map: Dict[Open, Open | None] = {start: None}
+        max_frontier_size = len(stack)
 
         while stack:
             curr = stack.pop()
@@ -48,7 +50,11 @@ class DFS(PathfindingAlgorithm):
                     at = parent_map.get(at)
 
                 return PathFindingResult(
-                    list(visited.keys()), shortest_path, run_time, peak_mem
+                    list(visited.keys()),
+                    shortest_path,
+                    run_time,
+                    peak_mem,
+                    max_frontier_size,
                 )
 
             if curr in visited:
@@ -60,8 +66,9 @@ class DFS(PathfindingAlgorithm):
                 if neighbors not in visited:
                     stack.append(neighbors)
                     parent_map[neighbors] = curr
+            max_frontier_size = max(max_frontier_size, len(stack))
 
-        return PathFindingResult(list(visited.keys()), [], 0, 0)
+        return PathFindingResult(list(visited.keys()), [], 0, 0, max_frontier_size)
 
 
 class BFS(PathfindingAlgorithm):
@@ -72,6 +79,7 @@ class BFS(PathfindingAlgorithm):
         queue = deque([start])
         visited = OrderedDict.fromkeys([])
         parent_map: Dict[Open, Open | None] = {start: None}
+        max_frontier_size = len(queue)
 
         visited[start] = None
 
@@ -89,7 +97,11 @@ class BFS(PathfindingAlgorithm):
                     at = parent_map.get(at)
 
                 return PathFindingResult(
-                    list(visited.keys()), shortest_path, run_time, peak_mem
+                    list(visited.keys()),
+                    shortest_path,
+                    run_time,
+                    peak_mem,
+                    max_frontier_size,
                 )
 
             for _, neighbor in maze.neighbors(curr):
@@ -97,8 +109,9 @@ class BFS(PathfindingAlgorithm):
                     visited[neighbor] = None
                     queue.append(neighbor)
                     parent_map[neighbor] = curr
+            max_frontier_size = max(max_frontier_size, len(queue))
 
-        return PathFindingResult(list(visited.keys()), [], 0, 0)
+        return PathFindingResult(list(visited.keys()), [], 0, 0, max_frontier_size)
 
 
 chebyshev_distance = lambda c1, c2: max(abs(c2.x - c1.x), abs(c2.y - c1.y))
@@ -121,6 +134,7 @@ class AStar(PathfindingAlgorithm):
 
         priority_queue.push(start, 1.0)
         visited[start] = None
+        max_frontier_size = len(priority_queue.heap)
 
         while priority_queue:
             curr = priority_queue.pop()
@@ -136,7 +150,11 @@ class AStar(PathfindingAlgorithm):
                     at = parent_by_cell.get(at)
 
                 return PathFindingResult(
-                    list(visited.keys()), shortest_path, run_time, peak_mem
+                    list(visited.keys()),
+                    shortest_path,
+                    run_time,
+                    peak_mem,
+                    max_frontier_size,
                 )
 
             for _, neighbor in maze.neighbors(curr):
@@ -148,5 +166,6 @@ class AStar(PathfindingAlgorithm):
 
                     priority_queue.push(neighbor, f)
                     parent_by_cell[neighbor] = curr
+            max_frontier_size = max(max_frontier_size, len(priority_queue.heap))
 
-        return PathFindingResult(list(visited.keys()), [], 0, 0)
+        return PathFindingResult(list(visited.keys()), [], 0, 0, max_frontier_size)

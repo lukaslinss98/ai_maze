@@ -6,8 +6,9 @@ os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
 import pygame
 
 from models.maze import MdpMaze
-from util.colors import DARK_GREY, WHITE
+from util.colors import DARK_GREY
 from util.maze_generation import generate_maze
+from util.panel import PANEL_WIDTH, draw_info_panel
 
 
 def run_mdp(**kwargs):
@@ -30,25 +31,33 @@ def run_mdp(**kwargs):
     maze.init_states(initial_value=0, goal_reward=10)
 
     if solver == 'value-iteration':
-        run_value_iteration(maze, discount, reward, noise, speed)
+        run_value_iteration(
+            maze, discount, reward, noise, speed, height, width, generator
+        )
 
     if solver == 'policy-iteration':
-        run_policy_iteration(maze, discount, noise, reward, speed)
+        run_policy_iteration(
+            maze, discount, noise, reward, speed, height, width, generator
+        )
 
 
-def run_value_iteration(maze: MdpMaze, discount, reward, noise, speed):
-
+def run_value_iteration(
+    maze: MdpMaze, discount, reward, noise, speed, height, width, generator
+):
     pygame.init()
-    font = pygame.font.SysFont('arial', 16)
+    title_font = pygame.font.SysFont('arial', 18, bold=True)
+    body_font = pygame.font.SysFont('arial', 14)
     clock = pygame.time.Clock()
     running = True
 
     cell_size = maze.start.size
 
     cols, rows = maze.dims()
+    maze_pixel_width = rows * cell_size
+    maze_pixel_height = cols * cell_size
 
     screen = pygame.display.set_mode(
-        (rows * cell_size, cols * cell_size), pygame.RESIZABLE
+        (maze_pixel_width + PANEL_WIDTH, maze_pixel_height), pygame.RESIZABLE
     )
 
     value_iteration = ValueIteration(discount, reward, noise)
@@ -65,17 +74,43 @@ def run_value_iteration(maze: MdpMaze, discount, reward, noise, speed):
 
         snapshot = result.snapshots[iteration]
         snapshot.maze.draw(screen, draw_values=False, draw_actions=True)
-        if iteration < len(result.snapshots) - 1:
-            iteration += 1
-        else:
+        is_last = iteration >= len(result.snapshots) - 1
+        if is_last:
             snapshot.maze.draw_policy(screen, maze.start, maze.end)
+        else:
+            iteration += 1
 
-        eval_text = font.render(
-            f'ΔV={snapshot.delta_v:.4f} Iterations={iteration}',
-            True,
-            WHITE,
+        entries = [
+            ('Generator', generator),
+            ('Size', f'{width}x{height}'),
+            ('Discount', str(discount)),
+            ('Noise', str(noise)),
+            ('Reward', str(reward)),
+            ('---', ''),
+            ('Iteration', str(iteration)),
+            ('Delta V', f'{snapshot.delta_v:.4f}'),
+        ]
+
+        if is_last:
+            entries.extend(
+                [
+                    ('---', ''),
+                    ('Path Length', str(len(result.shortest_path))),
+                    ('Runtime', f'{result.run_time:.4f}s'),
+                    ('Memory', f'{result.peak_memory} B'),
+                ]
+            )
+
+        draw_info_panel(
+            screen,
+            maze_pixel_width,
+            screen.get_height(),
+            'Value Iteration',
+            entries,
+            title_font,
+            body_font,
         )
-        screen.blit(eval_text, (10, 10))
+
         pygame.display.flip()
         clock.tick(speed)
 
@@ -90,17 +125,22 @@ Peak Memory: {result.peak_memory} bytes
     pygame.quit()
 
 
-def run_policy_iteration(maze: MdpMaze, discount, noise, reward, speed):
+def run_policy_iteration(
+    maze: MdpMaze, discount, noise, reward, speed, height, width, generator
+):
     pygame.init()
     clock = pygame.time.Clock()
-    font = pygame.font.SysFont('arial', 16)
+    title_font = pygame.font.SysFont('arial', 18, bold=True)
+    body_font = pygame.font.SysFont('arial', 14)
     running = True
 
     cols, rows = maze.dims()
     cell_size = maze.start.size
+    maze_pixel_width = rows * cell_size
+    maze_pixel_height = cols * cell_size
 
     screen = pygame.display.set_mode(
-        (rows * cell_size, cols * cell_size), pygame.RESIZABLE
+        (maze_pixel_width + PANEL_WIDTH, maze_pixel_height), pygame.RESIZABLE
     )
 
     policy_iteration = PolicyIteration(discount, reward, noise, theta=0.0001)
@@ -121,19 +161,45 @@ def run_policy_iteration(maze: MdpMaze, discount, noise, reward, speed):
         draw_actions = snapshot.mode == 'improve'
 
         snapshot.maze.draw(screen, draw_values, draw_actions)
-        if iteration < len(result.snapshots) - 1:
-            iteration += 1
-        else:
+        is_last = iteration >= len(result.snapshots) - 1
+        if is_last:
             snapshot.maze.draw_policy(screen, maze.start, maze.end)
+        else:
+            iteration += 1
 
-        eval_text = font.render(
-            f'Mode={snapshot.mode}, ΔV={snapshot.delta_v:.4f} '
-            f'Total Iters={snapshot.eval_iters + snapshot.improve_iters}, '
-            f'Eval={snapshot.eval_iters}, Improve={snapshot.improve_iters}',
-            True,
-            WHITE,
+        entries = [
+            ('Generator', generator),
+            ('Size', f'{width}x{height}'),
+            ('Discount', str(discount)),
+            ('Noise', str(noise)),
+            ('Reward', str(reward)),
+            ('---', ''),
+            ('Mode', snapshot.mode),
+            ('Eval Iters', str(snapshot.eval_iters)),
+            ('Improve Iters', str(snapshot.improve_iters)),
+            ('Total Iters', str(snapshot.eval_iters + snapshot.improve_iters)),
+            ('Delta V', f'{snapshot.delta_v:.4f}'),
+        ]
+
+        if is_last:
+            entries.extend(
+                [
+                    ('---', ''),
+                    ('Path Length', str(len(result.shortest_path))),
+                    ('Runtime', f'{result.run_time:.4f}s'),
+                    ('Memory', f'{result.peak_memory} B'),
+                ]
+            )
+
+        draw_info_panel(
+            screen,
+            maze_pixel_width,
+            screen.get_height(),
+            'Policy Iteration',
+            entries,
+            title_font,
+            body_font,
         )
-        screen.blit(eval_text, (10, 10))
 
         pygame.display.flip()
         clock.tick(speed)

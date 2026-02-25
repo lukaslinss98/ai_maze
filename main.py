@@ -1,6 +1,7 @@
 import argparse
 import os
 
+from evaluation.evaluation import run_eval
 from mdp.mdp import run_mdp
 from pathfinding.pathfinding import run_pathfinding
 
@@ -52,6 +53,30 @@ def read_args() -> argparse.Namespace:
         default='cellular',
     )
 
+    eval_parser = subparser.add_parser(
+        'eval', help='Run headless evaluation of all algorithms'
+    )
+    eval_parser.add_argument('--height', type=int, default=10)
+    eval_parser.add_argument('--width', type=int, default=10)
+    eval_parser.add_argument('--size', type=int, help='Set both width and height')
+    eval_parser.add_argument('--seed', type=int)
+    eval_parser.add_argument(
+        '--generator',
+        type=str,
+        choices=['prims', 'backtracking', 'aldousbroder', 'binarytree', 'cellular'],
+        default='cellular',
+    )
+    eval_parser.add_argument('--noise', type=float, default=0.2)
+    eval_parser.add_argument('--discount', type=float, default=0.9)
+    eval_parser.add_argument('--reward', type=float, default=-0.01)
+    eval_parser.add_argument(
+        '--csv', action='store_true', help='Write results to CSV file'
+    )
+    eval_parser.add_argument(
+        '--pathfinding', action='store_true', help='Run pathfinding algorithms'
+    )
+    eval_parser.add_argument('--mdp', action='store_true', help='Run MDP algorithms')
+
     return parser.parse_args()
 
 
@@ -62,3 +87,5 @@ if __name__ == '__main__':
         run_pathfinding(**vars(cli_args))
     elif cli_args.mode == 'mdp':
         run_mdp(**vars(cli_args))
+    elif cli_args.mode == 'eval':
+        run_eval(**vars(cli_args))

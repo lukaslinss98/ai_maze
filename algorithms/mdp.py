@@ -30,6 +30,7 @@ class ValueIterationResult:
     shortest_path: List[Open]
     run_time: float
     peak_memory: int
+    iterations: int
 
 
 @dataclass(frozen=True)
@@ -62,10 +63,12 @@ class ValueIteration(MdpAlgorithm):
     def solve(self, maze: MdpMaze, take_snapshots=True) -> ValueIterationResult:
         delta_V = float('inf')
         snapshots = []
+        iterations = 0
         start_time = perf_counter()
         tracemalloc.start()
         while delta_V > self.theta:
             delta_V = self._value_iteration_step(maze)
+            iterations += 1
 
             if take_snapshots:
                 snapshot = Snapshot(deepcopy(maze), delta_V)
@@ -75,7 +78,9 @@ class ValueIteration(MdpAlgorithm):
         tracemalloc.stop()
         run_time = perf_counter() - start_time
         shortest_path = maze.shortest_path(maze.start, maze.end)
-        return ValueIterationResult(snapshots, shortest_path, run_time, peak_mem)
+        return ValueIterationResult(
+            snapshots, shortest_path, run_time, peak_mem, iterations
+        )
 
     def _value_iteration_step(self, maze: MdpMaze) -> float:
         max_diff_value = 0.0
