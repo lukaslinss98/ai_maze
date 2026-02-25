@@ -66,6 +66,7 @@ def run_pathfinding(**kwargs):
         clock.tick(speed)
 
     result = agent.pathfinding_result
+    print('\n------------Evaluation-------------\n')
     print(
         f"""Shortest Path Length: {len(result.shortest_path)}\nCells Visited: {len(result.visited)}\nRun Time: {result.run_time}"""
     )

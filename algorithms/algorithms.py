@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from collections import deque
 from dataclasses import dataclass
-from time import time
+from time import perf_counter
 from typing import Callable, Dict, List, OrderedDict
 
 from models.cell import Cell, Open
@@ -13,7 +13,7 @@ from util.datastructures import PriorityQueue
 class PathFindingResult:
     visited: List[Open]
     shortest_path: List[Open]
-    run_time: float | None
+    run_time: float
 
 
 class PathfindingAlgorithm(ABC):
@@ -24,7 +24,7 @@ class PathfindingAlgorithm(ABC):
 
 class DFS(PathfindingAlgorithm):
     def solve(self, maze: Maze, start: Open) -> PathFindingResult:
-        start_time = time()
+        start_time = perf_counter()
         stack = [start]
         visited = OrderedDict.fromkeys([])
         parent_map: Dict[Open, Open | None] = {start: None}
@@ -33,7 +33,7 @@ class DFS(PathfindingAlgorithm):
             curr = stack.pop()
 
             if curr == maze.end:
-                run_time = time() - start_time
+                run_time = perf_counter() - start_time
                 shortest_path = []
                 at = curr
                 while at:
@@ -52,12 +52,12 @@ class DFS(PathfindingAlgorithm):
                     stack.append(neighbors)
                     parent_map[neighbors] = curr
 
-        return PathFindingResult(list(visited.keys()), [], None)
+        return PathFindingResult(list(visited.keys()), [], 0)
 
 
 class BFS(PathfindingAlgorithm):
     def solve(self, maze: Maze, start: Open) -> PathFindingResult:
-        start_time = time()
+        start_time = perf_counter()
         queue = deque([start])
         visited = OrderedDict.fromkeys([])
         parent_map: Dict[Open, Open | None] = {start: None}
@@ -67,7 +67,7 @@ class BFS(PathfindingAlgorithm):
             curr = queue.popleft()
 
             if curr == maze.end:
-                run_time = time() - start_time
+                run_time = perf_counter() - start_time
                 shortest_path = []
                 at = curr
                 while at:
@@ -82,7 +82,7 @@ class BFS(PathfindingAlgorithm):
                     queue.append(neighbor)
                     parent_map[neighbor] = curr
 
-        return PathFindingResult(list(visited.keys()), [], None)
+        return PathFindingResult(list(visited.keys()), [], 0)
 
 
 class AStar(PathfindingAlgorithm):
@@ -90,7 +90,7 @@ class AStar(PathfindingAlgorithm):
         self.heuistic = heuristic
 
     def solve(self, maze: Maze, start: Open) -> PathFindingResult:
-        start_time = time()
+        start_time = perf_counter()
         priority_queue = PriorityQueue()
 
         visited = OrderedDict.fromkeys([])
@@ -103,7 +103,7 @@ class AStar(PathfindingAlgorithm):
             curr = priority_queue.pop()
 
             if curr == maze.end:
-                run_time = time() - start_time
+                run_time = perf_counter() - start_time
 
                 shortest_path = []
                 at = curr
@@ -123,4 +123,4 @@ class AStar(PathfindingAlgorithm):
                     priority_queue.push(neighbor, f)
                     parent_by_cell[neighbor] = curr
 
-        return PathFindingResult(list(visited.keys()), [], None)
+        return PathFindingResult(list(visited.keys()), [], 0)
