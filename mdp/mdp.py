@@ -1,5 +1,7 @@
 import os
 
+from algorithms.mdp import ValueIteration
+
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
 import pygame
 
@@ -21,9 +23,10 @@ def run_mdp(**kwargs):
     reward = kwargs['reward']
     discount = kwargs['discount']
     noise = kwargs['noise']
+    cell_size = kwargs['cell_size']
 
     raw_maze, start, end = generate_maze(height, width, generator, seed)
-    maze = MdpMaze(raw_maze, start, end, cell_size=15)
+    maze = MdpMaze(raw_maze, start, end, cell_size)
     maze.init_states(initial_value=0, goal_reward=10)
 
     if solver == 'value-iteration':
@@ -45,14 +48,12 @@ def run_value_iteration(maze: MdpMaze, discount, reward, noise, speed):
     cols, rows = maze.dims()
 
     screen = pygame.display.set_mode(
-        (cols * cell_size, rows * cell_size), pygame.RESIZABLE
+        (rows * cell_size, cols * cell_size), pygame.RESIZABLE
     )
 
-    delta_V = float('inf')
-    iterations = 0
-    theta = 0.0001
-
-    converged = False
+    value_iteration = ValueIteration(discount, reward, noise)
+    result = value_iteration.solve(maze)
+    iteration = 0
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -62,18 +63,15 @@ def run_value_iteration(maze: MdpMaze, discount, reward, noise, speed):
 
         screen.fill(DARK_GREY)
 
-        maze.draw(screen, draw_values=False, draw_actions=True)
-
-        if not converged:
-            delta_V = maze.value_iteration_step(discount, reward, noise)
-            converged = delta_V < theta
-            iterations += 1
-
+        snapshot = result.snapshots[iteration]
+        snapshot.maze.draw(screen, draw_values=False, draw_actions=True)
+        if iteration < len(result.snapshots) - 1:
+            iteration += 1
         else:
-            maze.draw_policy(screen, maze.start, maze.end)
+            snapshot.maze.draw_policy(screen, maze.start, maze.end)
 
         eval_text = font.render(
-            f'ΔV={delta_V:.4f} Iterations={iterations}',
+            f'ΔV={snapshot.delta_v:.4f} Iterations={iteration}',
             True,
             WHITE,
         )

@@ -135,7 +135,7 @@ class MdpMaze(Maze):
 
             old_value = cell.value
 
-            exp_value = self._value_by_action(cell, noise)[cell.policy]
+            exp_value = self.value_by_action(cell, noise)[cell.policy]
 
             cell.value = living_reward + discount * exp_value
             dV = abs(cell.value - old_value)
@@ -162,29 +162,6 @@ class MdpMaze(Maze):
 
         return is_stable
 
-    def value_iteration_step(
-        self, discount: float, living_reward: float, noise: float = 0.2
-    ) -> float:
-        max_diff_value = float('-inf')
-        for cell in super().get_open_cells():
-            if cell == self.end:
-                continue
-
-            value_by_action = self._value_by_action(cell, noise)
-
-            if value_by_action:
-                best_direction = max(value_by_action, key=lambda a: value_by_action[a])
-                max_q = value_by_action[best_direction]
-
-                old_value = cell.value
-                new_value = living_reward + discount * max_q
-
-                max_diff_value = max(max_diff_value, abs(new_value - old_value))
-                cell.value = new_value
-                cell.policy = best_direction
-
-        return max_diff_value
-
     def draw_policy(self, screen: Surface, start: Open, end: Open) -> None:
         for c in self.shortest_path(start, end):
             c.draw_action(screen, GREEN)
@@ -203,7 +180,7 @@ class MdpMaze(Maze):
 
         return path
 
-    def _value_by_action(self, cell, noise) -> dict[Action, float]:
+    def value_by_action(self, cell, noise) -> dict[Action, float]:
         value_by_action = {}
         neighbors = self.neighbors(cell)
         for dir, neigh in neighbors:
