@@ -3,13 +3,11 @@ from typing import Protocol
 
 import pygame
 
-from algorithms.algorithms import BFS, DFS, AStar, PathFindingResult
+from algorithms.pathfinding import (BFS, DFS, AStar, PathFindingResult,
+                                    chebyshev_distance, euclidean_distance,
+                                    manhatten_distance)
 from models.cell import Open
 from models.maze import Maze
-
-chebyshev = lambda c1, c2: max(abs(c2.x - c1.x), abs(c2.y - c1.y))
-euclidean_distance = lambda c1, c2: math.sqrt((c2.x - c1.x) ** 2 + (c1.y - c2.y) ** 2)
-manhatten_distance = lambda c1, c2: abs(c1.x - c2.x) + abs(c1.y - c2.y)
 
 
 class Solver(Protocol):
@@ -64,6 +62,6 @@ class Agent:
         elif solver == 'astar_euclid':
             return AStar(heuristic=euclidean_distance)
         elif solver == 'astar_chebyshev':
-            return AStar(heuristic=chebyshev)
+            return AStar(heuristic=chebyshev_distance)
         else:
             return DFS()

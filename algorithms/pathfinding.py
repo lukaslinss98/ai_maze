@@ -1,3 +1,4 @@
+import math
 from abc import ABC, abstractmethod
 from collections import deque
 from dataclasses import dataclass
@@ -83,6 +84,11 @@ class BFS(PathfindingAlgorithm):
                     parent_map[neighbor] = curr
 
         return PathFindingResult(list(visited.keys()), [], 0)
+
+
+chebyshev_distance = lambda c1, c2: max(abs(c2.x - c1.x), abs(c2.y - c1.y))
+euclidean_distance = lambda c1, c2: math.sqrt((c2.x - c1.x) ** 2 + (c1.y - c2.y) ** 2)
+manhatten_distance = lambda c1, c2: abs(c1.x - c2.x) + abs(c1.y - c2.y)
 
 
 class AStar(PathfindingAlgorithm):
