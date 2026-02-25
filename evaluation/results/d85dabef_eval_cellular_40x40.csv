@@ -1,0 +1,36 @@
+seed,type,algorithm,path_length,visited,total_iterations,inner_iterations,outer_iterations,max_frontier_size,runtime_s,memory_bytes
+1,pathfinding,DFS,125,172,,,,50,0.000571,31248
+1,pathfinding,BFS,113,2975,,,,59,0.008032,523128
+1,pathfinding,A* (Manhattan),113,783,,,,59,0.004087,187520
+1,pathfinding,A* (Euclidean),113,1113,,,,63,0.005885,191468
+1,pathfinding,A* (Chebyshev),113,1351,,,,93,0.006786,205164
+1,mdp,Value Iteration,112,,69,,,,1.536580,167288
+1,mdp,Policy Iteration,112,,315,249,66,,4.617872,169264
+2,pathfinding,DFS,641,1108,,,,197,0.003458,127600
+2,pathfinding,BFS,125,3640,,,,64,0.009803,523128
+2,pathfinding,A* (Manhattan),125,1050,,,,108,0.005275,189992
+2,pathfinding,A* (Euclidean),125,2254,,,,96,0.012762,384604
+2,pathfinding,A* (Chebyshev),125,2638,,,,99,0.013831,405708
+2,mdp,Value Iteration,132,,60,,,,1.320300,167744
+2,mdp,Policy Iteration,124,,243,197,46,,3.665284,169720
+3,pathfinding,DFS,1335,2227,,,,401,0.007407,255136
+3,pathfinding,BFS,111,3447,,,,71,0.009555,523128
+3,pathfinding,A* (Manhattan),111,1031,,,,73,0.005224,187452
+3,pathfinding,A* (Euclidean),111,1835,,,,88,0.009746,370704
+3,pathfinding,A* (Chebyshev),111,2133,,,,105,0.011391,375604
+3,mdp,Value Iteration,73,,54,,,,1.186557,167960
+3,mdp,Policy Iteration,110,,196,177,19,,3.244000,169936
+4,pathfinding,DFS,1639,3018,,,,519,0.010375,493292
+4,pathfinding,BFS,123,3613,,,,67,0.009758,523128
+4,pathfinding,A* (Manhattan),123,1220,,,,126,0.006001,200836
+4,pathfinding,A* (Euclidean),123,2181,,,,95,0.012169,379676
+4,pathfinding,A* (Chebyshev),123,2583,,,,108,0.014491,402908
+4,mdp,Value Iteration,58,,41,,,,0.886806,167240
+4,mdp,Policy Iteration,122,,153,134,19,,2.419930,169216
+5,pathfinding,DFS,127,140,,,,50,0.000479,25208
+5,pathfinding,BFS,119,3605,,,,63,0.009906,523128
+5,pathfinding,A* (Manhattan),119,826,,,,92,0.004249,186272
+5,pathfinding,A* (Euclidean),119,1730,,,,92,0.009685,370624
+5,pathfinding,A* (Chebyshev),119,2160,,,,94,0.010947,378012
+5,mdp,Value Iteration,118,,70,,,,1.537861,167840
+5,mdp,Policy Iteration,118,,317,246,71,,4.659161,169864

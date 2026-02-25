@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 from collections import deque
 from dataclasses import dataclass
 from time import perf_counter
-from typing import Callable, Dict, List, OrderedDict, Tuple
+from typing import Callable, Dict, List, OrderedDict
 
 from models.cell import Cell, Open
 from models.maze import Maze

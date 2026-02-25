@@ -59,7 +59,7 @@ def read_args() -> argparse.Namespace:
     eval_parser.add_argument('--height', type=int, default=10)
     eval_parser.add_argument('--width', type=int, default=10)
     eval_parser.add_argument('--size', type=int, help='Set both width and height')
-    eval_parser.add_argument('--seed', type=int)
+    eval_parser.add_argument('--seed', type=str)
     eval_parser.add_argument(
         '--generator',
         type=str,
