@@ -1,6 +1,6 @@
 import os
 
-from algorithms.mdp import ValueIteration
+from algorithms.mdp import PolicyIteration, ValueIteration
 
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
 import pygame
@@ -92,14 +92,12 @@ def run_policy_iteration(maze: MdpMaze, discount, noise, reward, speed):
     cell_size = maze.start.size
 
     screen = pygame.display.set_mode(
-        (cols * cell_size, rows * cell_size), pygame.RESIZABLE
+        (rows * cell_size, cols * cell_size), pygame.RESIZABLE
     )
 
-    delta = float('inf')
-    is_stable = False
-    eval_iters = 0
-    improve_iters = 0
-    theta = 0.0001
+    policy_iteration = PolicyIteration(discount, reward, noise, theta=0.0001)
+    result = policy_iteration.solve(maze)
+    iteration = 0
 
     while running:
         for event in pygame.event.get():
@@ -110,26 +108,20 @@ def run_policy_iteration(maze: MdpMaze, discount, noise, reward, speed):
 
         screen.fill(DARK_GREY)
 
-        mode = 'eval' if delta > theta else 'improve'
+        snapshot = result.snapshots[iteration]
+        draw_values = snapshot.mode == 'eval'
+        draw_actions = snapshot.mode == 'improve'
 
-        draw_values = mode == 'eval'
-        draw_actions = mode == 'improve'
-
-        maze.draw(screen, False, True)
-        if not is_stable:
-            if mode == 'eval':
-                eval_iters += 1
-                delta = maze.policy_evaluation_step(discount, reward, noise)
-            elif mode == 'improve':
-                improve_iters += 1
-                is_stable = maze.policy_improvement_step()
-                delta = float('inf')
-
+        snapshot.maze.draw(screen, draw_values=False, draw_actions=True)
+        if iteration < len(result.snapshots) - 1:
+            iteration += 1
         else:
-            maze.draw_policy(screen, maze.start, maze.end)
+            snapshot.maze.draw_policy(screen, maze.start, maze.end)
 
         eval_text = font.render(
-            f'Mode={mode}, ΔV={delta:.4f} Total Iters={eval_iters + improve_iters}, {eval_iters=}, {improve_iters=}',
+            f'Mode={snapshot.mode}, ΔV={snapshot.delta_v:.4f} '
+            f'Total Iters={snapshot.eval_iters + snapshot.improve_iters}, '
+            f'Eval={snapshot.eval_iters}, Improve={snapshot.improve_iters}',
             True,
             WHITE,
         )

@@ -33,7 +33,7 @@ def run_pathfinding(**kwargs):
     rows, cols = maze.dims()
     cell_size = maze.start.size
     screen = pygame.display.set_mode(
-        (cols * cell_size, rows * cell_size), pygame.RESIZABLE
+        (rows * cell_size, cols * cell_size), pygame.RESIZABLE
     )
     clock = pygame.time.Clock()
     iterations = 0
