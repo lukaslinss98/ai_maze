@@ -44,10 +44,9 @@ class DFS(PathfindingAlgorithm):
                 tracemalloc.stop()
                 run_time = perf_counter() - start_time
                 shortest_path = []
-                at = curr
-                while at:
-                    shortest_path.append(at)
-                    at = parent_map.get(at)
+                while curr:
+                    shortest_path.append(curr)
+                    curr = parent_map.get(curr)
 
                 return PathFindingResult(
                     list(visited.keys()),
@@ -91,10 +90,9 @@ class BFS(PathfindingAlgorithm):
                 tracemalloc.stop()
                 run_time = perf_counter() - start_time
                 shortest_path = []
-                at = curr
-                while at:
-                    shortest_path.append(at)
-                    at = parent_map.get(at)
+                while curr:
+                    shortest_path.append(curr)
+                    curr = parent_map.get(curr)
 
                 return PathFindingResult(
                     list(visited.keys()),
@@ -115,13 +113,13 @@ class BFS(PathfindingAlgorithm):
 
 
 chebyshev_distance = lambda c1, c2: max(abs(c2.x - c1.x), abs(c2.y - c1.y))
-euclidean_distance = lambda c1, c2: math.sqrt((c2.x - c1.x) ** 2 + (c1.y - c2.y) ** 2)
+euclidean_distance = lambda c1, c2: math.sqrt((c2.x - c1.x) ** 2 + (c2.y - c1.y) ** 2)
 manhatten_distance = lambda c1, c2: abs(c1.x - c2.x) + abs(c1.y - c2.y)
 
 
 class AStar(PathfindingAlgorithm):
     def __init__(self, heuristic: Callable[[Cell, Cell], float]) -> None:
-        self.heuistic = heuristic
+        self.heuristic = heuristic
 
     def solve(self, maze: Maze, start: Open) -> PathFindingResult:
         tracemalloc.start()
@@ -144,10 +142,9 @@ class AStar(PathfindingAlgorithm):
                 tracemalloc.stop()
                 run_time = perf_counter() - start_time
                 shortest_path = []
-                at = curr
-                while at:
-                    shortest_path.append(at)
-                    at = parent_by_cell.get(at)
+                while curr:
+                    shortest_path.append(curr)
+                    curr = parent_by_cell.get(curr)
 
                 return PathFindingResult(
                     list(visited.keys()),
@@ -162,7 +159,7 @@ class AStar(PathfindingAlgorithm):
                     visited[neighbor] = None
                     path_cost_by_cell[neighbor] = path_cost_by_cell[curr] + 1.0
 
-                    f = self.heuistic(neighbor, maze.end) + path_cost_by_cell[neighbor]
+                    f = self.heuristic(neighbor, maze.end) + path_cost_by_cell[neighbor]
 
                     priority_queue.push(neighbor, f)
                     parent_by_cell[neighbor] = curr

@@ -6,7 +6,7 @@ from pygame import Surface
 
 from models.cell import Cell, Open, Wall
 from models.direction import Action
-from util.colors import DARK_GREY, GREEN, RED, WHITE
+from util.colors import BLUE, DARK_GREY, GREEN, RED, WHITE
 
 
 class Maze:
@@ -29,14 +29,23 @@ class Maze:
                 pygame.draw.rect(screen, DARK_GREY, rect)
             elif isinstance(cell, Open):
                 if cell == self.start:
-                    pygame.draw.rect(screen, RED, rect)
+                    pygame.draw.rect(screen, BLUE, rect)
                 elif cell == self.end:
                     pygame.draw.rect(screen, GREEN, rect)
+                elif draw_values:
+                    values = [
+                        c.value for c in self.get_open_cells() if c.value is not None
+                    ]
+                    min_v = min(values) if values else 0
+                    max_v = max(values) if values else 1
+                    range_v = max_v - min_v if max_v != min_v else 1
+                    t = ((cell.value - min_v) / range_v) ** 0.3
+                    pygame.draw.rect(
+                        screen, (int(240 * (1 - t)), int(240 * t), 0), rect
+                    )
                 else:
                     pygame.draw.rect(screen, WHITE, rect)
 
-                if draw_values:
-                    cell.draw_value(screen)
                 if draw_actions:
                     cell.draw_action(screen)
 

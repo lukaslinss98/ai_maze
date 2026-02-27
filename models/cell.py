@@ -30,17 +30,8 @@ class Open(Cell):
     east: bool
     south: bool
     west: bool
-    value: float = 100
-    policy: Action = Action.NORTH
-
-    def draw_value(self, screen: Surface):
-        font = pygame.font.SysFont('arial', 11)
-        cx = self.y * self.size
-        cy = self.x * self.size
-
-        text = font.render(f'{self.value:.2f}', True, BLACK)
-
-        screen.blit(text, (cx + self.size // 4, cy + self.size // 4))
+    value = 100.0
+    policy = Action.NORTH
 
     def draw_action(self, screen: Surface, color=BLACK):
         if not self.policy:

@@ -56,9 +56,12 @@ def read_args() -> argparse.Namespace:
     eval_parser = subparser.add_parser(
         'eval', help='Run headless evaluation of all algorithms'
     )
-    eval_parser.add_argument('--height', type=int, default=10)
-    eval_parser.add_argument('--width', type=int, default=10)
-    eval_parser.add_argument('--size', type=int, help='Set both width and height')
+    eval_parser.add_argument(
+        '--size',
+        type=str,
+        default='10',
+        help='Comma-separated list of sizes, e.g. 10,20,50',
+    )
     eval_parser.add_argument('--seed', type=str)
     eval_parser.add_argument(
         '--generator',

@@ -44,6 +44,14 @@ class PolicyIterationResult:
 
 
 class MdpAlgorithm(ABC):
+    def __init__(
+        self, discount: float, living_reward: float, noise=0.2, theta=0.0001
+    ) -> None:
+        self.discount = discount
+        self.living_reward = living_reward
+        self.noise = noise
+        self.theta = theta
+
     @abstractmethod
     def solve(
         self, maze: MdpMaze, take_snapshots: bool
@@ -55,10 +63,7 @@ class ValueIteration(MdpAlgorithm):
     def __init__(
         self, discount: float, living_reward: float, noise=0.2, theta=0.0001
     ) -> None:
-        self.discount = discount
-        self.living_reward = living_reward
-        self.noise = noise
-        self.theta = theta
+        super().__init__(discount, living_reward, noise, theta)
 
     def solve(self, maze: MdpMaze, take_snapshots=True) -> ValueIterationResult:
         delta_V = float('inf')
@@ -108,10 +113,7 @@ class PolicyIteration(MdpAlgorithm):
     def __init__(
         self, discount: float, living_reward: float, noise=0.2, theta=0.0001
     ) -> None:
-        self.discount = discount
-        self.living_reward = living_reward
-        self.noise = noise
-        self.theta = theta
+        super().__init__(discount, living_reward, noise, theta)
 
     def solve(self, maze: MdpMaze, take_snapshots=True) -> PolicyIterationResult:
         snapshots = []

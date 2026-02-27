@@ -73,7 +73,7 @@ def run_value_iteration(
         screen.fill(DARK_GREY)
 
         snapshot = result.snapshots[iteration]
-        snapshot.maze.draw(screen, draw_values=False, draw_actions=True)
+        snapshot.maze.draw(screen, draw_values=True, draw_actions=True)
         is_last = iteration >= len(result.snapshots) - 1
         if is_last:
             snapshot.maze.draw_policy(screen, maze.start, maze.end)
@@ -157,10 +157,8 @@ def run_policy_iteration(
         screen.fill(DARK_GREY)
 
         snapshot = result.snapshots[iteration]
-        draw_values = snapshot.mode == 'eval'
-        draw_actions = snapshot.mode == 'improve'
 
-        snapshot.maze.draw(screen, draw_values, draw_actions)
+        snapshot.maze.draw(screen, True, snapshot.mode == 'improve')
         is_last = iteration >= len(result.snapshots) - 1
         if is_last:
             snapshot.maze.draw_policy(screen, maze.start, maze.end)

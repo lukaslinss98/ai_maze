@@ -4,10 +4,14 @@ import uuid
 from dataclasses import dataclass
 
 from algorithms.mdp_algorithms import PolicyIteration, ValueIteration
-from algorithms.pathfinding_algorithms import (BFS, DFS, AStar,
-                                               chebyshev_distance,
-                                               euclidean_distance,
-                                               manhatten_distance)
+from algorithms.pathfinding_algorithms import (
+    BFS,
+    DFS,
+    AStar,
+    chebyshev_distance,
+    euclidean_distance,
+    manhatten_distance,
+)
 from models.maze import Maze, MdpMaze
 from util.maze_generation import generate_maze
 
@@ -16,6 +20,7 @@ RESULTS_DIR = os.path.join(os.path.dirname(__file__), 'results')
 
 @dataclass(frozen=True)
 class EvalRow:
+    size: int
     seed: int
     type: str
     algorithm: str
@@ -30,9 +35,7 @@ class EvalRow:
 
 
 def run_eval(**kwargs):
-    size = kwargs['size']
-    height = size if size else kwargs['height']
-    width = size if size else kwargs['width']
+    sizes = [int(s) for s in kwargs['size'].split(',')]
     generator = kwargs['generator']
     seed_arg = kwargs['seed']
     noise = kwargs['noise']
@@ -52,29 +55,34 @@ def run_eval(**kwargs):
     print(f'Run ID: {run_id}')
 
     all_rows = []
-    for seed in seeds:
-        print(f'\n--- Seed: {seed} ---')
+    for size in sizes:
+        for seed in seeds:
+            print(f'\n--- Size: {size}, Seed: {seed} ---')
 
-        raw_maze, start, end = generate_maze(height, width, generator, seed)
+            raw_maze, start, end = generate_maze(size, size, generator, seed)
 
-        print(f'Maze: {width}x{height} | Generator: {generator} | Seed: {seed}')
+            print(f'Maze: {size}x{size} | Generator: {generator} | Seed: {seed}')
 
-        rows = []
-        if run_pathfinding:
-            rows.extend(_run_pathfinding_eval(raw_maze, start, end, seed))
-        if run_mdp:
-            rows.extend(
-                _run_mdp_eval(raw_maze, start, end, discount, reward, noise, seed)
-            )
+            rows = []
+            if run_pathfinding:
+                rows.extend(_run_pathfinding_eval(raw_maze, start, end, size, seed))
+            if run_mdp:
+                rows.extend(
+                    _run_mdp_eval(
+                        raw_maze, start, end, discount, reward, noise, size, seed
+                    )
+                )
 
-        _print_results(rows)
-        all_rows.extend(rows)
+            _print_results(rows)
+            all_rows.extend(rows)
 
     if write_csv:
-        _write_csv(all_rows, height, width, generator, run_id)
+        _write_csv(all_rows, generator, run_id)
 
 
-def _run_pathfinding_eval(raw_maze, start, end, seed: int | None) -> list[EvalRow]:
+def _run_pathfinding_eval(
+    raw_maze, start, end, size: int, seed: int | None
+) -> list[EvalRow]:
     maze = Maze(raw_maze, start, end, cell_size=1)
 
     solvers = [
@@ -90,6 +98,7 @@ def _run_pathfinding_eval(raw_maze, start, end, seed: int | None) -> list[EvalRo
         result = solver.solve(maze, maze.start)
         rows.append(
             EvalRow(
+                size=size,
                 seed=seed,
                 type='pathfinding',
                 algorithm=name,
@@ -108,7 +117,7 @@ def _run_pathfinding_eval(raw_maze, start, end, seed: int | None) -> list[EvalRo
 
 
 def _run_mdp_eval(
-    raw_maze, start, end, discount, reward, noise, seed: int | None
+    raw_maze, start, end, discount, reward, noise, size: int, seed: int | None
 ) -> list[EvalRow]:
     maze = MdpMaze(raw_maze, start, end, cell_size=1)
     maze.init_states(initial_value=0, goal_reward=10)
@@ -124,6 +133,7 @@ def _run_mdp_eval(
 
     return [
         EvalRow(
+            size=size,
             seed=seed,
             type='mdp',
             algorithm='Value Iteration',
@@ -137,6 +147,7 @@ def _run_mdp_eval(
             memory_bytes=vi_result.peak_memory,
         ),
         EvalRow(
+            size=size,
             seed=seed,
             type='mdp',
             algorithm='Policy Iteration',
@@ -192,18 +203,17 @@ def _print_results(rows: list[EvalRow]) -> None:
             )
 
 
-def _write_csv(
-    rows: list[EvalRow], height: int, width: int, generator: str, run_id: str
-) -> None:
+def _write_csv(rows: list[EvalRow], generator: str, run_id: str) -> None:
     os.makedirs(RESULTS_DIR, exist_ok=True)
 
-    filename = f'{run_id}_eval_{generator}_{width}x{height}.csv'
+    filename = f'{run_id}_eval_{generator}.csv'
     filepath = os.path.join(RESULTS_DIR, filename)
 
     with open(filepath, 'w', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(
             [
+                'size',
                 'seed',
                 'type',
                 'algorithm',
@@ -220,6 +230,7 @@ def _write_csv(
         for r in rows:
             writer.writerow(
                 [
+                    r.size,
                     r.seed if r.seed is not None else '',
                     r.type,
                     r.algorithm,

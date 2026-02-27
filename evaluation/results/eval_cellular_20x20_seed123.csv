@@ -1,3 +1,0 @@
-type,algorithm,path_length,visited,total_iterations,inner_iterations,outer_iterations,runtime_s,memory_bytes
-mdp,Value Iteration,54,,42,,,0.213264,43432
-mdp,Policy Iteration,54,,148,141,7,0.582736,43160

@@ -1,6 +1,0 @@
-type,algorithm,path_length,visited,total_iterations,inner_iterations,outer_iterations,max_frontier_size,runtime_s,memory_bytes
-pathfinding,DFS,251,621,,,,73,0.001860,65812
-pathfinding,BFS,55,833,,,,32,0.002173,131960
-pathfinding,A* (Manhattan),55,255,,,,37,0.001213,47852
-pathfinding,A* (Euclidean),55,359,,,,47,0.001748,92992
-pathfinding,A* (Chebyshev),55,454,,,,55,0.002191,93280
