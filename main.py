@@ -69,7 +69,7 @@ def read_args() -> argparse.Namespace:
         choices=['prims', 'backtracking', 'aldousbroder', 'binarytree', 'cellular'],
         default='cellular',
     )
-    eval_parser.add_argument('--noise', type=float, default=0.2)
+    eval_parser.add_argument('--noise', type=float, default=0.0)
     eval_parser.add_argument('--discount', type=float, default=0.9)
     eval_parser.add_argument('--reward', type=float, default=-0.01)
     eval_parser.add_argument(

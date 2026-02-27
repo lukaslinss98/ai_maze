@@ -82,7 +82,7 @@ def run_value_iteration(
 
         entries = [
             ('Generator', generator),
-            ('Size', f'{width}x{height}'),
+            ('Size', f'{rows}x{cols}'),
             ('Discount', str(discount)),
             ('Noise', str(noise)),
             ('Reward', str(reward)),
@@ -167,7 +167,7 @@ def run_policy_iteration(
 
         entries = [
             ('Generator', generator),
-            ('Size', f'{width}x{height}'),
+            ('Size', f'{rows}x{cols}'),
             ('Discount', str(discount)),
             ('Noise', str(noise)),
             ('Reward', str(reward)),

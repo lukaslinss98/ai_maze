@@ -1,0 +1,301 @@
+size,seed,type,algorithm,path_length,visited,total_iterations,inner_iterations,outer_iterations,max_frontier_size,runtime_s,memory_bytes
+10,1,pathfinding,DFS,17,28,,,,4,0.000121,3892
+10,1,pathfinding,BFS,17,47,,,,7,0.000328,8872
+10,1,pathfinding,A* (Manhattan),17,31,,,,6,0.000169,6296
+10,1,pathfinding,A* (Euclidean),17,32,,,,6,0.000134,5688
+10,1,pathfinding,A* (Chebyshev),17,35,,,,6,0.000142,5680
+10,2,pathfinding,DFS,17,20,,,,6,0.000076,3312
+10,2,pathfinding,BFS,17,53,,,,7,0.000150,8872
+10,2,pathfinding,A* (Manhattan),17,31,,,,6,0.000134,5672
+10,2,pathfinding,A* (Euclidean),17,34,,,,5,0.000141,5664
+10,2,pathfinding,A* (Chebyshev),17,40,,,,5,0.000165,5892
+10,3,pathfinding,DFS,13,26,,,,3,0.000091,3832
+10,3,pathfinding,BFS,13,39,,,,6,0.000104,4972
+10,3,pathfinding,A* (Manhattan),13,20,,,,4,0.000081,3148
+10,3,pathfinding,A* (Euclidean),13,21,,,,4,0.000083,3172
+10,3,pathfinding,A* (Chebyshev),13,24,,,,5,0.000095,5592
+10,4,pathfinding,DFS,17,26,,,,5,0.000090,3864
+10,4,pathfinding,BFS,17,42,,,,5,0.000112,5068
+10,4,pathfinding,A* (Manhattan),17,27,,,,7,0.000106,5616
+10,4,pathfinding,A* (Euclidean),17,28,,,,7,0.000106,5608
+10,4,pathfinding,A* (Chebyshev),17,30,,,,7,0.000116,5600
+10,5,pathfinding,DFS,17,51,,,,4,0.000166,7488
+10,5,pathfinding,BFS,17,52,,,,7,0.000142,8872
+10,5,pathfinding,A* (Manhattan),17,32,,,,9,0.000130,5592
+10,5,pathfinding,A* (Euclidean),17,38,,,,9,0.000155,5716
+10,5,pathfinding,A* (Chebyshev),17,40,,,,7,0.000161,5636
+10,6,pathfinding,DFS,23,41,,,,6,0.000133,6440
+10,6,pathfinding,BFS,19,50,,,,6,0.000131,8872
+10,6,pathfinding,A* (Manhattan),19,26,,,,6,0.000101,5560
+10,6,pathfinding,A* (Euclidean),19,27,,,,6,0.000109,5552
+10,6,pathfinding,A* (Chebyshev),19,31,,,,7,0.000122,5512
+10,7,pathfinding,DFS,17,48,,,,4,0.000153,7520
+10,7,pathfinding,BFS,17,50,,,,7,0.000136,8872
+10,7,pathfinding,A* (Manhattan),17,28,,,,4,0.000111,5504
+10,7,pathfinding,A* (Euclidean),17,30,,,,5,0.000122,5528
+10,7,pathfinding,A* (Chebyshev),17,35,,,,6,0.000139,5520
+10,8,pathfinding,DFS,15,18,,,,6,0.000092,3312
+10,8,pathfinding,BFS,15,51,,,,7,0.000148,8872
+10,8,pathfinding,A* (Manhattan),15,28,,,,7,0.000117,5512
+10,8,pathfinding,A* (Euclidean),15,31,,,,7,0.000125,5496
+10,8,pathfinding,A* (Chebyshev),15,37,,,,7,0.000151,5628
+10,9,pathfinding,DFS,19,30,,,,3,0.000103,3956
+10,9,pathfinding,BFS,19,48,,,,4,0.000130,8872
+10,9,pathfinding,A* (Manhattan),19,31,,,,5,0.000127,5448
+10,9,pathfinding,A* (Euclidean),19,32,,,,5,0.000128,5440
+10,9,pathfinding,A* (Chebyshev),19,37,,,,6,0.000146,5504
+10,10,pathfinding,DFS,13,46,,,,5,0.000148,7520
+10,10,pathfinding,BFS,13,41,,,,6,0.000107,5036
+10,10,pathfinding,A* (Manhattan),13,22,,,,5,0.000092,5456
+10,10,pathfinding,A* (Euclidean),13,23,,,,5,0.000094,5456
+10,10,pathfinding,A* (Chebyshev),13,26,,,,5,0.000103,5456
+20,1,pathfinding,DFS,71,112,,,,21,0.000354,15512
+20,1,pathfinding,BFS,35,212,,,,14,0.000523,34168
+20,1,pathfinding,A* (Manhattan),35,106,,,,18,0.000489,23016
+20,1,pathfinding,A* (Euclidean),35,137,,,,18,0.000532,22100
+20,1,pathfinding,A* (Chebyshev),35,149,,,,15,0.000629,22660
+20,2,pathfinding,DFS,73,160,,,,19,0.000475,25992
+20,2,pathfinding,BFS,25,191,,,,17,0.000490,34168
+20,2,pathfinding,A* (Manhattan),25,59,,,,12,0.000220,10528
+20,2,pathfinding,A* (Euclidean),25,70,,,,14,0.000278,10464
+20,2,pathfinding,A* (Chebyshev),25,83,,,,16,0.000328,10844
+20,3,pathfinding,DFS,29,56,,,,10,0.000182,7588
+20,3,pathfinding,BFS,25,195,,,,16,0.000492,34168
+20,3,pathfinding,A* (Manhattan),25,54,,,,12,0.000242,10528
+20,3,pathfinding,A* (Euclidean),25,68,,,,16,0.000268,10528
+20,3,pathfinding,A* (Chebyshev),25,86,,,,16,0.000300,21440
+20,4,pathfinding,DFS,27,26,,,,11,0.000098,3924
+20,4,pathfinding,BFS,27,178,,,,18,0.000440,34168
+20,4,pathfinding,A* (Manhattan),27,58,,,,11,0.000210,10528
+20,4,pathfinding,A* (Euclidean),27,65,,,,12,0.000236,10528
+20,4,pathfinding,A* (Chebyshev),27,79,,,,13,0.000288,10612
+20,5,pathfinding,DFS,55,200,,,,16,0.000585,30848
+20,5,pathfinding,BFS,27,182,,,,16,0.000448,34168
+20,5,pathfinding,A* (Manhattan),27,62,,,,15,0.000222,10464
+20,5,pathfinding,A* (Euclidean),27,72,,,,14,0.000271,10464
+20,5,pathfinding,A* (Chebyshev),27,93,,,,19,0.000358,21616
+20,6,pathfinding,DFS,49,92,,,,17,0.000293,15448
+20,6,pathfinding,BFS,29,186,,,,16,0.000449,34168
+20,6,pathfinding,A* (Manhattan),29,59,,,,9,0.000210,10464
+20,6,pathfinding,A* (Euclidean),29,72,,,,11,0.000253,10464
+20,6,pathfinding,A* (Chebyshev),29,82,,,,11,0.000284,10676
+20,7,pathfinding,DFS,55,78,,,,16,0.000253,12624
+20,7,pathfinding,BFS,35,215,,,,13,0.000513,34168
+20,7,pathfinding,A* (Manhattan),35,126,,,,19,0.000509,21692
+20,7,pathfinding,A* (Euclidean),35,161,,,,18,0.000660,23436
+20,7,pathfinding,A* (Chebyshev),35,168,,,,18,0.000725,23836
+20,8,pathfinding,DFS,67,110,,,,13,0.000336,15416
+20,8,pathfinding,BFS,35,210,,,,13,0.000537,34168
+20,8,pathfinding,A* (Manhattan),35,124,,,,14,0.000510,21320
+20,8,pathfinding,A* (Euclidean),35,147,,,,14,0.000625,22336
+20,8,pathfinding,A* (Chebyshev),35,161,,,,15,0.000710,23176
+20,9,pathfinding,DFS,83,156,,,,23,0.000472,16724
+20,9,pathfinding,BFS,31,177,,,,15,0.000463,34168
+20,9,pathfinding,A* (Manhattan),31,60,,,,12,0.000227,10464
+20,9,pathfinding,A* (Euclidean),31,64,,,,11,0.000259,10464
+20,9,pathfinding,A* (Chebyshev),31,71,,,,12,0.000275,10464
+20,10,pathfinding,DFS,37,57,,,,14,0.000186,7620
+20,10,pathfinding,BFS,29,202,,,,14,0.000525,34168
+20,10,pathfinding,A* (Manhattan),29,74,,,,10,0.000289,10464
+20,10,pathfinding,A* (Euclidean),29,92,,,,15,0.000380,21496
+20,10,pathfinding,A* (Chebyshev),29,114,,,,16,0.000462,21328
+30,1,pathfinding,DFS,55,122,,,,15,0.000378,15604
+30,1,pathfinding,BFS,51,478,,,,22,0.001257,66768
+30,1,pathfinding,A* (Manhattan),51,195,,,,19,0.000898,44528
+30,1,pathfinding,A* (Euclidean),51,254,,,,25,0.001216,44744
+30,1,pathfinding,A* (Chebyshev),51,309,,,,27,0.001420,48284
+30,2,pathfinding,DFS,189,430,,,,45,0.001286,61624
+30,2,pathfinding,BFS,49,481,,,,22,0.001246,66768
+30,2,pathfinding,A* (Manhattan),49,188,,,,28,0.000812,44864
+30,2,pathfinding,A* (Euclidean),49,308,,,,26,0.001535,48204
+30,2,pathfinding,A* (Chebyshev),49,353,,,,32,0.001735,91256
+30,3,pathfinding,DFS,167,376,,,,51,0.001152,61720
+30,3,pathfinding,BFS,43,482,,,,27,0.001275,66768
+30,3,pathfinding,A* (Manhattan),43,190,,,,25,0.000852,44744
+30,3,pathfinding,A* (Euclidean),43,245,,,,29,0.001128,44768
+30,3,pathfinding,A* (Chebyshev),43,284,,,,31,0.001327,46972
+30,4,pathfinding,DFS,87,465,,,,49,0.001395,61720
+30,4,pathfinding,BFS,51,464,,,,25,0.001197,66768
+30,4,pathfinding,A* (Manhattan),51,225,,,,27,0.001009,44768
+30,4,pathfinding,A* (Euclidean),51,270,,,,24,0.001282,45804
+30,4,pathfinding,A* (Chebyshev),51,297,,,,23,0.001399,47724
+30,5,pathfinding,DFS,147,323,,,,43,0.000980,51856
+30,5,pathfinding,BFS,43,480,,,,24,0.001253,66768
+30,5,pathfinding,A* (Manhattan),43,110,,,,19,0.000444,21472
+30,5,pathfinding,A* (Euclidean),43,184,,,,22,0.000902,44608
+30,5,pathfinding,A* (Chebyshev),43,261,,,,32,0.001218,45444
+30,6,pathfinding,DFS,45,94,,,,12,0.000296,15416
+30,6,pathfinding,BFS,45,459,,,,21,0.001140,66768
+30,6,pathfinding,A* (Manhattan),45,219,,,,24,0.000968,44704
+30,6,pathfinding,A* (Euclidean),45,263,,,,25,0.001154,45228
+30,6,pathfinding,A* (Chebyshev),45,291,,,,26,0.001302,47276
+30,7,pathfinding,DFS,51,276,,,,26,0.000823,31812
+30,7,pathfinding,BFS,47,480,,,,22,0.001240,66768
+30,7,pathfinding,A* (Manhattan),47,240,,,,33,0.001114,45072
+30,7,pathfinding,A* (Euclidean),47,319,,,,33,0.001454,49164
+30,7,pathfinding,A* (Chebyshev),47,374,,,,37,0.001749,91656
+30,8,pathfinding,DFS,173,434,,,,57,0.001450,61784
+30,8,pathfinding,BFS,45,453,,,,25,0.001105,66768
+30,8,pathfinding,A* (Manhattan),45,125,,,,23,0.000498,21644
+30,8,pathfinding,A* (Euclidean),45,182,,,,27,0.000863,44680
+30,8,pathfinding,A* (Chebyshev),45,226,,,,31,0.001184,44608
+30,9,pathfinding,DFS,147,389,,,,43,0.002877,61688
+30,9,pathfinding,BFS,43,360,,,,17,0.001172,66768
+30,9,pathfinding,A* (Manhattan),43,132,,,,15,0.000528,21780
+30,9,pathfinding,A* (Euclidean),43,164,,,,16,0.000774,23500
+30,9,pathfinding,A* (Chebyshev),43,198,,,,19,0.000880,44504
+30,10,pathfinding,DFS,107,240,,,,31,0.000703,30944
+30,10,pathfinding,BFS,43,425,,,,24,0.001093,66768
+30,10,pathfinding,A* (Manhattan),43,128,,,,24,0.000533,21836
+30,10,pathfinding,A* (Euclidean),43,200,,,,26,0.000993,44792
+30,10,pathfinding,A* (Chebyshev),43,223,,,,22,0.001005,44584
+40,1,pathfinding,DFS,201,845,,,,110,0.002516,123264
+40,1,pathfinding,BFS,47,695,,,,33,0.001788,131960
+40,1,pathfinding,A* (Manhattan),47,84,,,,24,0.000313,11100
+40,1,pathfinding,A* (Euclidean),47,106,,,,25,0.000472,21504
+40,1,pathfinding,A* (Chebyshev),47,140,,,,33,0.000592,22828
+40,2,pathfinding,DFS,127,262,,,,25,0.000771,31460
+40,2,pathfinding,BFS,79,884,,,,35,0.002305,131960
+40,2,pathfinding,A* (Manhattan),79,350,,,,50,0.001661,92000
+40,2,pathfinding,A* (Euclidean),79,626,,,,40,0.003269,98188
+40,2,pathfinding,A* (Chebyshev),79,660,,,,39,0.003244,99764
+40,3,pathfinding,DFS,247,762,,,,119,0.002271,123392
+40,3,pathfinding,BFS,59,808,,,,30,0.002089,131960
+40,3,pathfinding,A* (Manhattan),59,326,,,,44,0.001537,49624
+40,3,pathfinding,A* (Euclidean),59,421,,,,33,0.002042,91400
+40,3,pathfinding,A* (Chebyshev),59,447,,,,34,0.002160,91392
+40,4,pathfinding,DFS,177,682,,,,89,0.001989,103976
+40,4,pathfinding,BFS,57,775,,,,32,0.001990,131960
+40,4,pathfinding,A* (Manhattan),57,273,,,,37,0.001246,46388
+40,4,pathfinding,A* (Euclidean),57,361,,,,36,0.001821,91984
+40,4,pathfinding,A* (Chebyshev),57,426,,,,37,0.002014,91736
+40,5,pathfinding,DFS,275,559,,,,77,0.001649,63860
+40,5,pathfinding,BFS,59,783,,,,29,0.001992,131960
+40,5,pathfinding,A* (Manhattan),59,297,,,,32,0.001308,47788
+40,5,pathfinding,A* (Euclidean),59,372,,,,27,0.001906,91472
+40,5,pathfinding,A* (Chebyshev),59,427,,,,32,0.002040,91736
+40,6,pathfinding,DFS,99,187,,,,39,0.000562,31040
+40,6,pathfinding,BFS,63,816,,,,32,0.002128,131960
+40,6,pathfinding,A* (Manhattan),63,258,,,,39,0.001175,45552
+40,6,pathfinding,A* (Euclidean),63,410,,,,35,0.002073,92040
+40,6,pathfinding,A* (Chebyshev),63,461,,,,36,0.002110,91992
+40,7,pathfinding,DFS,87,102,,,,28,0.000324,15576
+40,7,pathfinding,BFS,79,884,,,,28,0.002290,131960
+40,7,pathfinding,A* (Manhattan),79,501,,,,51,0.002469,91912
+40,7,pathfinding,A* (Euclidean),79,739,,,,36,0.003651,183808
+40,7,pathfinding,A* (Chebyshev),79,766,,,,36,0.003689,183752
+40,8,pathfinding,DFS,149,264,,,,38,0.000785,31588
+40,8,pathfinding,BFS,53,788,,,,30,0.002034,131960
+40,8,pathfinding,A* (Manhattan),53,198,,,,28,0.000874,44808
+40,8,pathfinding,A* (Euclidean),53,278,,,,32,0.001271,46808
+40,8,pathfinding,A* (Chebyshev),53,377,,,,48,0.001724,92704
+40,9,pathfinding,DFS,73,850,,,,97,0.002527,123232
+40,9,pathfinding,BFS,53,799,,,,34,0.002032,131960
+40,9,pathfinding,A* (Manhattan),53,193,,,,25,0.000854,44648
+40,9,pathfinding,A* (Euclidean),53,291,,,,31,0.001446,47576
+40,9,pathfinding,A* (Chebyshev),53,357,,,,33,0.001682,91304
+40,10,pathfinding,DFS,59,785,,,,93,0.002324,123232
+40,10,pathfinding,BFS,55,748,,,,29,0.001918,131960
+40,10,pathfinding,A* (Manhattan),55,180,,,,26,0.000797,44760
+40,10,pathfinding,A* (Euclidean),55,269,,,,32,0.001319,46148
+40,10,pathfinding,A* (Chebyshev),55,336,,,,37,0.001507,50620
+50,1,pathfinding,DFS,97,130,,,,38,0.000404,16020
+50,1,pathfinding,BFS,85,1371,,,,38,0.003560,262352
+50,1,pathfinding,A* (Manhattan),85,497,,,,63,0.002455,92204
+50,1,pathfinding,A* (Euclidean),85,903,,,,51,0.004903,184600
+50,1,pathfinding,A* (Chebyshev),85,963,,,,50,0.004627,184128
+50,2,pathfinding,DFS,309,511,,,,86,0.001556,62420
+50,2,pathfinding,BFS,97,1392,,,,41,0.003549,262352
+50,2,pathfinding,A* (Manhattan),97,830,,,,69,0.004002,185480
+50,2,pathfinding,A* (Euclidean),97,1179,,,,50,0.006583,193544
+50,2,pathfinding,A* (Chebyshev),97,1217,,,,47,0.006187,195284
+50,3,pathfinding,DFS,589,1184,,,,175,0.003534,129892
+50,3,pathfinding,BFS,71,1337,,,,41,0.003440,134476
+50,3,pathfinding,A* (Manhattan),71,289,,,,43,0.001292,47716
+50,3,pathfinding,A* (Euclidean),71,591,,,,60,0.003146,98292
+50,3,pathfinding,A* (Chebyshev),71,762,,,,65,0.003857,185888
+50,4,pathfinding,DFS,423,770,,,,145,0.002319,123552
+50,4,pathfinding,BFS,71,1338,,,,35,0.003466,134508
+50,4,pathfinding,A* (Manhattan),71,217,,,,37,0.001008,44792
+50,4,pathfinding,A* (Euclidean),71,505,,,,54,0.002512,93284
+50,4,pathfinding,A* (Chebyshev),71,762,,,,65,0.003674,184504
+50,5,pathfinding,DFS,237,1283,,,,144,0.003857,132068
+50,5,pathfinding,BFS,81,1261,,,,34,0.003273,132044
+50,5,pathfinding,A* (Manhattan),81,336,,,,24,0.001561,50092
+50,5,pathfinding,A* (Euclidean),81,509,,,,25,0.002685,91280
+50,5,pathfinding,A* (Chebyshev),81,638,,,,34,0.003091,99084
+50,6,pathfinding,DFS,117,403,,,,59,0.001203,61784
+50,6,pathfinding,BFS,97,1395,,,,36,0.003651,262352
+50,6,pathfinding,A* (Manhattan),97,664,,,,75,0.003307,102084
+50,6,pathfinding,A* (Euclidean),97,1172,,,,54,0.006470,193156
+50,6,pathfinding,A* (Chebyshev),97,1217,,,,55,0.005986,195484
+50,7,pathfinding,DFS,135,1277,,,,195,0.003843,131812
+50,7,pathfinding,BFS,75,1280,,,,41,0.003344,132652
+50,7,pathfinding,A* (Manhattan),75,364,,,,28,0.001717,91640
+50,7,pathfinding,A* (Euclidean),75,542,,,,32,0.002908,93252
+50,7,pathfinding,A* (Chebyshev),75,689,,,,42,0.003346,183784
+50,8,pathfinding,DFS,109,216,,,,30,0.000646,30976
+50,8,pathfinding,BFS,81,1326,,,,38,0.003457,134120
+50,8,pathfinding,A* (Manhattan),81,530,,,,61,0.002560,95100
+50,8,pathfinding,A* (Euclidean),81,720,,,,47,0.003912,184376
+50,8,pathfinding,A* (Chebyshev),81,800,,,,49,0.003896,184424
+50,9,pathfinding,DFS,581,1041,,,,178,0.003134,125316
+50,9,pathfinding,BFS,75,1265,,,,37,0.003300,132172
+50,9,pathfinding,A* (Manhattan),75,394,,,,67,0.001756,92672
+50,9,pathfinding,A* (Euclidean),75,637,,,,49,0.003495,99932
+50,9,pathfinding,A* (Chebyshev),75,721,,,,45,0.003684,183824
+50,10,pathfinding,DFS,493,899,,,,142,0.002691,123424
+50,10,pathfinding,BFS,75,1179,,,,40,0.003009,131960
+50,10,pathfinding,A* (Manhattan),75,344,,,,38,0.001572,92264
+50,10,pathfinding,A* (Euclidean),75,432,,,,36,0.002306,91280
+50,10,pathfinding,A* (Chebyshev),75,531,,,,53,0.002586,94684
+100,1,pathfinding,DFS,1287,4127,,,,758,0.014468,499024
+100,1,pathfinding,BFS,155,5711,,,,77,0.015160,1045216
+100,1,pathfinding,A* (Manhattan),155,1463,,,,138,0.007335,372920
+100,1,pathfinding,A* (Euclidean),155,3407,,,,112,0.019685,739312
+100,1,pathfinding,A* (Chebyshev),155,3998,,,,122,0.020739,738624
+100,2,pathfinding,DFS,573,862,,,,217,0.002675,124080
+100,2,pathfinding,BFS,135,5240,,,,78,0.013791,530236
+100,2,pathfinding,A* (Manhattan),135,1174,,,,109,0.006009,197772
+100,2,pathfinding,A* (Euclidean),135,2107,,,,105,0.012049,376692
+100,2,pathfinding,A* (Chebyshev),135,2666,,,,147,0.013803,408644
+100,3,pathfinding,DFS,435,4702,,,,669,0.016157,512688
+100,3,pathfinding,BFS,129,4338,,,,78,0.011346,523128
+100,3,pathfinding,A* (Manhattan),129,945,,,,90,0.004777,187016
+100,3,pathfinding,A* (Euclidean),129,1356,,,,74,0.007470,205548
+100,3,pathfinding,A* (Chebyshev),129,1525,,,,86,0.007613,370776
+100,4,pathfinding,DFS,193,331,,,,81,0.001052,50656
+100,4,pathfinding,BFS,133,4429,,,,77,0.011509,523128
+100,4,pathfinding,A* (Manhattan),133,1120,,,,86,0.005626,193300
+100,4,pathfinding,A* (Euclidean),133,1562,,,,69,0.008715,369384
+100,4,pathfinding,A* (Chebyshev),133,1698,,,,80,0.008508,370088
+100,5,pathfinding,DFS,295,1051,,,,102,0.003115,124884
+100,5,pathfinding,BFS,131,5231,,,,74,0.013684,529948
+100,5,pathfinding,A* (Manhattan),131,1256,,,,93,0.006323,201040
+100,5,pathfinding,A* (Euclidean),131,2097,,,,92,0.011292,374884
+100,5,pathfinding,A* (Chebyshev),131,2701,,,,133,0.013670,411708
+100,6,pathfinding,DFS,2435,4865,,,,844,0.017095,523440
+100,6,pathfinding,BFS,129,5242,,,,73,0.013797,530300
+100,6,pathfinding,A* (Manhattan),129,1064,,,,92,0.005144,190164
+100,6,pathfinding,A* (Euclidean),129,1954,,,,111,0.010565,371000
+100,6,pathfinding,A* (Chebyshev),129,2555,,,,138,0.013360,403196
+100,7,pathfinding,DFS,1111,2055,,,,352,0.006544,249212
+100,7,pathfinding,BFS,143,5639,,,,75,0.014827,1045216
+100,7,pathfinding,A* (Manhattan),143,1052,,,,120,0.005120,191684
+100,7,pathfinding,A* (Euclidean),143,2748,,,,128,0.014937,739288
+100,7,pathfinding,A* (Chebyshev),143,3440,,,,125,0.017803,739960
+100,8,pathfinding,DFS,409,632,,,,143,0.001930,102712
+100,8,pathfinding,BFS,133,4934,,,,74,0.012955,523128
+100,8,pathfinding,A* (Manhattan),133,1097,,,,114,0.005462,193108
+100,8,pathfinding,A* (Euclidean),133,1961,,,,85,0.011173,370272
+100,8,pathfinding,A* (Chebyshev),133,2225,,,,85,0.011302,381828
+100,9,pathfinding,DFS,203,251,,,,86,0.000786,31700
+100,9,pathfinding,BFS,135,5243,,,,78,0.013734,530332
+100,9,pathfinding,A* (Manhattan),135,1408,,,,90,0.007171,370768
+100,9,pathfinding,A* (Euclidean),135,2409,,,,103,0.013274,392796
+100,9,pathfinding,A* (Chebyshev),135,2955,,,,128,0.014875,739488
+100,10,pathfinding,DFS,2525,4612,,,,838,0.015896,515344
+100,10,pathfinding,BFS,137,4645,,,,77,0.012170,523128
+100,10,pathfinding,A* (Manhattan),137,1035,,,,55,0.005001,186460
+100,10,pathfinding,A* (Euclidean),137,1621,,,,59,0.008800,367976
+100,10,pathfinding,A* (Chebyshev),137,1998,,,,73,0.010544,369360

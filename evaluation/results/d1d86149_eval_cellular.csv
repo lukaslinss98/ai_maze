@@ -1,0 +1,841 @@
+size,seed,type,algorithm,path_length,visited,total_iterations,inner_iterations,outer_iterations,max_frontier_size,runtime_s,memory_bytes
+10,1,pathfinding,DFS,17,28,,,,4,0.000120,3948
+10,1,pathfinding,BFS,17,47,,,,7,0.000141,8872
+10,1,pathfinding,A* (Manhattan),17,31,,,,6,0.000177,6296
+10,1,pathfinding,A* (Euclidean),17,32,,,,6,0.000124,5688
+10,1,pathfinding,A* (Chebyshev),17,35,,,,6,0.000132,5680
+10,1,mdp,Value Iteration,16,,14,,,,0.003207,2056
+10,1,mdp,Policy Iteration,16,,59,51,8,,0.010182,2688
+10,2,pathfinding,DFS,17,20,,,,6,0.000079,3312
+10,2,pathfinding,BFS,17,53,,,,7,0.000150,8872
+10,2,pathfinding,A* (Manhattan),17,31,,,,6,0.000137,5672
+10,2,pathfinding,A* (Euclidean),17,34,,,,5,0.000138,5664
+10,2,pathfinding,A* (Chebyshev),17,40,,,,5,0.000149,5700
+10,2,mdp,Value Iteration,16,,22,,,,0.004255,1624
+10,2,mdp,Policy Iteration,16,,96,75,21,,0.014218,2088
+10,3,pathfinding,DFS,13,26,,,,3,0.000106,3832
+10,3,pathfinding,BFS,13,39,,,,6,0.000101,4972
+10,3,pathfinding,A* (Manhattan),13,20,,,,4,0.000081,3148
+10,3,pathfinding,A* (Euclidean),13,21,,,,4,0.000086,3172
+10,3,pathfinding,A* (Chebyshev),13,24,,,,5,0.000094,5592
+10,3,mdp,Value Iteration,12,,14,,,,0.002528,1528
+10,3,mdp,Policy Iteration,12,,72,58,14,,0.009684,1896
+10,4,pathfinding,DFS,17,26,,,,5,0.000093,3864
+10,4,pathfinding,BFS,17,42,,,,5,0.000117,5068
+10,4,pathfinding,A* (Manhattan),17,27,,,,7,0.000108,5616
+10,4,pathfinding,A* (Euclidean),17,28,,,,7,0.000113,5608
+10,4,pathfinding,A* (Chebyshev),17,30,,,,7,0.000111,5600
+10,4,mdp,Value Iteration,16,,16,,,,0.002890,1528
+10,4,mdp,Policy Iteration,16,,70,57,13,,0.009406,1896
+10,5,pathfinding,DFS,17,51,,,,4,0.000175,7488
+10,5,pathfinding,BFS,17,52,,,,7,0.000144,8872
+10,5,pathfinding,A* (Manhattan),17,32,,,,9,0.000138,5592
+10,5,pathfinding,A* (Euclidean),17,38,,,,9,0.000155,5596
+10,5,pathfinding,A* (Chebyshev),17,40,,,,7,0.000156,5612
+10,5,mdp,Value Iteration,16,,6,,,,0.001115,1528
+10,5,mdp,Policy Iteration,16,,48,42,6,,0.007093,1944
+10,6,pathfinding,DFS,23,41,,,,6,0.000147,6440
+10,6,pathfinding,BFS,19,50,,,,6,0.000141,8872
+10,6,pathfinding,A* (Manhattan),19,26,,,,6,0.000110,5560
+10,6,pathfinding,A* (Euclidean),19,27,,,,6,0.000119,5552
+10,6,pathfinding,A* (Chebyshev),19,31,,,,7,0.000119,5512
+10,6,mdp,Value Iteration,18,,8,,,,0.001508,1528
+10,6,mdp,Policy Iteration,18,,53,45,8,,0.007600,1944
+10,7,pathfinding,DFS,17,48,,,,4,0.000163,7520
+10,7,pathfinding,BFS,17,50,,,,7,0.000142,8872
+10,7,pathfinding,A* (Manhattan),17,28,,,,4,0.000114,5504
+10,7,pathfinding,A* (Euclidean),17,30,,,,5,0.000115,5528
+10,7,pathfinding,A* (Chebyshev),17,35,,,,6,0.000133,5520
+10,7,mdp,Value Iteration,16,,14,,,,0.002499,1528
+10,7,mdp,Policy Iteration,16,,70,57,13,,0.009512,1896
+10,8,pathfinding,DFS,15,18,,,,6,0.000085,3312
+10,8,pathfinding,BFS,15,51,,,,7,0.000152,8872
+10,8,pathfinding,A* (Manhattan),15,28,,,,7,0.000142,5512
+10,8,pathfinding,A* (Euclidean),15,31,,,,7,0.000116,5496
+10,8,pathfinding,A* (Chebyshev),15,37,,,,7,0.000133,5488
+10,8,mdp,Value Iteration,14,,14,,,,0.002363,1528
+10,8,mdp,Policy Iteration,14,,67,56,11,,0.008885,1896
+10,9,pathfinding,DFS,19,30,,,,3,0.000116,3956
+10,9,pathfinding,BFS,19,48,,,,4,0.000124,8872
+10,9,pathfinding,A* (Manhattan),19,31,,,,5,0.000131,5448
+10,9,pathfinding,A* (Euclidean),19,32,,,,5,0.000126,5440
+10,9,pathfinding,A* (Chebyshev),19,37,,,,6,0.000132,5432
+10,9,mdp,Value Iteration,18,,18,,,,0.003216,1528
+10,9,mdp,Policy Iteration,18,,83,65,18,,0.010793,1872
+10,10,pathfinding,DFS,13,46,,,,5,0.000160,7520
+10,10,pathfinding,BFS,13,41,,,,6,0.000115,5036
+10,10,pathfinding,A* (Manhattan),13,22,,,,5,0.000091,5456
+10,10,pathfinding,A* (Euclidean),13,23,,,,5,0.000094,5456
+10,10,pathfinding,A* (Chebyshev),13,26,,,,5,0.000100,5456
+10,10,mdp,Value Iteration,12,,12,,,,0.002160,1528
+10,10,mdp,Policy Iteration,12,,65,54,11,,0.008716,1896
+10,11,pathfinding,DFS,15,50,,,,4,0.000174,7520
+10,11,pathfinding,BFS,15,46,,,,7,0.000126,8872
+10,11,pathfinding,A* (Manhattan),15,25,,,,7,0.000095,5456
+10,11,pathfinding,A* (Euclidean),15,27,,,,7,0.000106,5456
+10,11,pathfinding,A* (Chebyshev),15,31,,,,8,0.000112,5456
+10,11,mdp,Value Iteration,14,,6,,,,0.001086,1528
+10,11,mdp,Policy Iteration,14,,51,45,6,,0.007261,1896
+10,12,pathfinding,DFS,15,35,,,,8,0.000131,4148
+10,12,pathfinding,BFS,15,35,,,,3,0.000098,4960
+10,12,pathfinding,A* (Manhattan),15,24,,,,4,0.000100,5424
+10,12,pathfinding,A* (Euclidean),15,28,,,,4,0.000116,5424
+10,12,pathfinding,A* (Chebyshev),15,30,,,,4,0.000120,5424
+10,12,mdp,Value Iteration,14,,12,,,,0.002279,1528
+10,12,mdp,Policy Iteration,14,,63,53,10,,0.009118,1944
+10,13,pathfinding,DFS,15,30,,,,6,0.000113,3988
+10,13,pathfinding,BFS,15,34,,,,6,0.000088,4960
+10,13,pathfinding,A* (Manhattan),15,24,,,,6,0.000097,5424
+10,13,pathfinding,A* (Euclidean),15,24,,,,6,0.000097,5424
+10,13,pathfinding,A* (Chebyshev),15,25,,,,6,0.000095,5424
+10,13,mdp,Value Iteration,14,,15,,,,0.002675,1528
+10,13,mdp,Policy Iteration,14,,67,56,11,,0.009215,1896
+10,14,pathfinding,DFS,29,39,,,,6,0.000140,6440
+10,14,pathfinding,BFS,17,51,,,,8,0.000154,8872
+10,14,pathfinding,A* (Manhattan),17,35,,,,7,0.000135,5456
+10,14,pathfinding,A* (Euclidean),17,36,,,,7,0.000137,5456
+10,14,pathfinding,A* (Chebyshev),17,37,,,,7,0.000139,5456
+10,14,mdp,Value Iteration,16,,8,,,,0.001509,1528
+10,14,mdp,Policy Iteration,16,,68,57,11,,0.009733,1944
+10,15,pathfinding,DFS,17,22,,,,6,0.000091,3896
+10,15,pathfinding,BFS,17,52,,,,6,0.000146,8872
+10,15,pathfinding,A* (Manhattan),17,39,,,,7,0.000157,5468
+10,15,pathfinding,A* (Euclidean),17,40,,,,6,0.000155,5500
+10,15,pathfinding,A* (Chebyshev),17,43,,,,6,0.000166,10464
+10,15,mdp,Value Iteration,16,,16,,,,0.002980,1528
+10,15,mdp,Policy Iteration,16,,76,61,15,,0.010723,1944
+10,16,pathfinding,DFS,15,51,,,,6,0.000179,7552
+10,16,pathfinding,BFS,15,50,,,,6,0.000138,8872
+10,16,pathfinding,A* (Manhattan),15,33,,,,7,0.000130,5456
+10,16,pathfinding,A* (Euclidean),15,35,,,,6,0.000139,5456
+10,16,pathfinding,A* (Chebyshev),15,37,,,,6,0.000144,5456
+10,16,mdp,Value Iteration,14,,8,,,,0.001487,1528
+10,16,mdp,Policy Iteration,14,,47,41,6,,0.006798,1944
+10,17,pathfinding,DFS,23,42,,,,5,0.000148,6440
+10,17,pathfinding,BFS,23,42,,,,4,0.000119,5068
+10,17,pathfinding,A* (Manhattan),23,33,,,,3,0.000137,5424
+10,17,pathfinding,A* (Euclidean),23,33,,,,3,0.000138,5424
+10,17,pathfinding,A* (Chebyshev),23,33,,,,3,0.000143,5424
+10,17,mdp,Value Iteration,22,,14,,,,0.002529,1528
+10,17,mdp,Policy Iteration,22,,71,57,14,,0.009245,1872
+10,18,pathfinding,DFS,15,46,,,,4,0.000156,7520
+10,18,pathfinding,BFS,15,50,,,,6,0.000136,8872
+10,18,pathfinding,A* (Manhattan),15,27,,,,6,0.000105,5456
+10,18,pathfinding,A* (Euclidean),15,29,,,,6,0.000115,5456
+10,18,pathfinding,A* (Chebyshev),15,34,,,,6,0.000131,5456
+10,18,mdp,Value Iteration,14,,8,,,,0.001462,1528
+10,18,mdp,Policy Iteration,14,,62,52,10,,0.008195,1896
+10,19,pathfinding,DFS,15,42,,,,3,0.000147,6440
+10,19,pathfinding,BFS,15,51,,,,7,0.000147,8872
+10,19,pathfinding,A* (Manhattan),15,35,,,,9,0.000137,5456
+10,19,pathfinding,A* (Euclidean),15,40,,,,9,0.000160,5532
+10,19,pathfinding,A* (Chebyshev),15,44,,,,9,0.000171,10464
+10,19,mdp,Value Iteration,14,,14,,,,0.002512,1528
+10,19,mdp,Policy Iteration,14,,66,55,11,,0.009106,1896
+10,20,pathfinding,DFS,17,18,,,,5,0.000074,3312
+10,20,pathfinding,BFS,17,51,,,,7,0.000148,8872
+10,20,pathfinding,A* (Manhattan),17,30,,,,7,0.000130,5456
+10,20,pathfinding,A* (Euclidean),17,33,,,,7,0.000130,5456
+10,20,pathfinding,A* (Chebyshev),17,37,,,,6,0.000141,5456
+10,20,mdp,Value Iteration,16,,14,,,,0.002553,1528
+10,20,mdp,Policy Iteration,16,,72,59,13,,0.009797,1896
+20,1,pathfinding,DFS,71,112,,,,21,0.000379,15512
+20,1,pathfinding,BFS,35,212,,,,14,0.000563,34168
+20,1,pathfinding,A* (Manhattan),35,106,,,,18,0.000428,21504
+20,1,pathfinding,A* (Euclidean),35,137,,,,18,0.000596,22124
+20,1,pathfinding,A* (Chebyshev),35,149,,,,15,0.000634,22660
+20,1,mdp,Value Iteration,34,,24,,,,0.026759,8720
+20,1,mdp,Policy Iteration,34,,105,85,20,,0.080774,10616
+20,2,pathfinding,DFS,73,160,,,,19,0.000507,25992
+20,2,pathfinding,BFS,25,191,,,,17,0.000474,34168
+20,2,pathfinding,A* (Manhattan),25,59,,,,12,0.000222,10528
+20,2,pathfinding,A* (Euclidean),25,70,,,,14,0.000273,10464
+20,2,pathfinding,A* (Chebyshev),25,83,,,,16,0.000320,10844
+20,2,mdp,Value Iteration,24,,10,,,,0.010467,8696
+20,2,mdp,Policy Iteration,24,,82,68,14,,0.063245,10616
+20,3,pathfinding,DFS,29,56,,,,10,0.000204,7588
+20,3,pathfinding,BFS,25,195,,,,16,0.000505,34168
+20,3,pathfinding,A* (Manhattan),25,54,,,,12,0.000211,10528
+20,3,pathfinding,A* (Euclidean),25,68,,,,16,0.000272,10528
+20,3,pathfinding,A* (Chebyshev),25,86,,,,16,0.000332,21416
+20,3,mdp,Value Iteration,24,,34,,,,0.036631,8600
+20,3,mdp,Policy Iteration,24,,133,103,30,,0.095507,10544
+20,4,pathfinding,DFS,27,26,,,,11,0.000110,3924
+20,4,pathfinding,BFS,27,178,,,,18,0.000470,34168
+20,4,pathfinding,A* (Manhattan),27,58,,,,11,0.000227,10528
+20,4,pathfinding,A* (Euclidean),27,65,,,,12,0.000249,10528
+20,4,pathfinding,A* (Chebyshev),27,79,,,,13,0.000296,10612
+20,4,mdp,Value Iteration,26,,26,,,,0.028981,8792
+20,4,mdp,Policy Iteration,26,,105,83,22,,0.079256,10616
+20,5,pathfinding,DFS,55,200,,,,16,0.000645,30848
+20,5,pathfinding,BFS,27,182,,,,16,0.000459,34168
+20,5,pathfinding,A* (Manhattan),27,62,,,,15,0.000233,10464
+20,5,pathfinding,A* (Euclidean),27,72,,,,14,0.000305,10464
+20,5,pathfinding,A* (Chebyshev),27,93,,,,19,0.000372,21496
+20,5,mdp,Value Iteration,26,,12,,,,0.013165,8648
+20,5,mdp,Policy Iteration,26,,80,66,14,,0.061721,10592
+20,6,pathfinding,DFS,49,92,,,,17,0.000313,15448
+20,6,pathfinding,BFS,29,186,,,,16,0.000480,34168
+20,6,pathfinding,A* (Manhattan),29,59,,,,9,0.000242,10464
+20,6,pathfinding,A* (Euclidean),29,72,,,,11,0.000293,10464
+20,6,pathfinding,A* (Chebyshev),29,82,,,,11,0.000320,10676
+20,6,mdp,Value Iteration,28,,26,,,,0.029245,8840
+20,6,mdp,Policy Iteration,28,,116,92,24,,0.091571,10616
+20,7,pathfinding,DFS,55,78,,,,16,0.000284,12624
+20,7,pathfinding,BFS,35,215,,,,13,0.000608,34168
+20,7,pathfinding,A* (Manhattan),35,126,,,,19,0.000555,21572
+20,7,pathfinding,A* (Euclidean),35,161,,,,18,0.000732,23436
+20,7,pathfinding,A* (Chebyshev),35,168,,,,18,0.000770,23836
+20,7,mdp,Value Iteration,34,,24,,,,0.028659,8792
+20,7,mdp,Policy Iteration,34,,112,89,23,,0.089916,10688
+20,8,pathfinding,DFS,67,110,,,,13,0.000372,15416
+20,8,pathfinding,BFS,35,210,,,,13,0.000560,34168
+20,8,pathfinding,A* (Manhattan),35,124,,,,14,0.000534,21320
+20,8,pathfinding,A* (Euclidean),35,147,,,,14,0.000647,22336
+20,8,pathfinding,A* (Chebyshev),35,161,,,,15,0.000720,23176
+20,8,mdp,Value Iteration,34,,28,,,,0.030553,8624
+20,8,mdp,Policy Iteration,34,,135,103,32,,0.098821,10568
+20,9,pathfinding,DFS,83,156,,,,23,0.000513,16724
+20,9,pathfinding,BFS,31,177,,,,15,0.000467,34168
+20,9,pathfinding,A* (Manhattan),31,60,,,,12,0.000230,10464
+20,9,pathfinding,A* (Euclidean),31,64,,,,11,0.000267,10464
+20,9,pathfinding,A* (Chebyshev),31,71,,,,12,0.000284,10464
+20,9,mdp,Value Iteration,30,,14,,,,0.015895,8792
+20,9,mdp,Policy Iteration,30,,71,60,11,,0.056987,10568
+20,10,pathfinding,DFS,37,57,,,,14,0.000216,7620
+20,10,pathfinding,BFS,29,202,,,,14,0.000553,34168
+20,10,pathfinding,A* (Manhattan),29,74,,,,10,0.000300,10464
+20,10,pathfinding,A* (Euclidean),29,92,,,,15,0.000386,21376
+20,10,pathfinding,A* (Chebyshev),29,114,,,,16,0.000473,21328
+20,10,mdp,Value Iteration,28,,26,,,,0.029353,8624
+20,10,mdp,Policy Iteration,28,,123,96,27,,0.092436,10568
+20,11,pathfinding,DFS,63,173,,,,24,0.000549,30944
+20,11,pathfinding,BFS,35,209,,,,11,0.000539,34168
+20,11,pathfinding,A* (Manhattan),35,126,,,,20,0.000526,21572
+20,11,pathfinding,A* (Euclidean),35,144,,,,14,0.000645,22380
+20,11,pathfinding,A* (Chebyshev),35,158,,,,17,0.000686,23300
+20,11,mdp,Value Iteration,34,,22,,,,0.024325,8696
+20,11,mdp,Policy Iteration,34,,114,91,23,,0.087473,10640
+20,12,pathfinding,DFS,43,66,,,,11,0.000232,7908
+20,12,pathfinding,BFS,35,172,,,,13,0.000444,34168
+20,12,pathfinding,A* (Manhattan),35,77,,,,13,0.000296,10548
+20,12,pathfinding,A* (Euclidean),35,83,,,,10,0.000325,10740
+20,12,pathfinding,A* (Chebyshev),35,90,,,,11,0.000344,21320
+20,12,mdp,Value Iteration,34,,32,,,,0.034598,8648
+20,12,mdp,Policy Iteration,34,,133,102,31,,0.096232,10544
+20,13,pathfinding,DFS,43,58,,,,14,0.000211,7652
+20,13,pathfinding,BFS,39,206,,,,12,0.000547,34168
+20,13,pathfinding,A* (Manhattan),39,114,,,,22,0.000483,21504
+20,13,pathfinding,A* (Euclidean),39,140,,,,18,0.000608,22312
+20,13,pathfinding,A* (Chebyshev),39,153,,,,16,0.000649,22856
+20,13,mdp,Value Iteration,38,,37,,,,0.042169,8720
+20,13,mdp,Policy Iteration,38,,147,112,35,,0.111093,10616
+20,14,pathfinding,DFS,67,112,,,,16,0.000366,15448
+20,14,pathfinding,BFS,35,211,,,,12,0.000588,34168
+20,14,pathfinding,A* (Manhattan),35,112,,,,11,0.000469,21264
+20,14,pathfinding,A* (Euclidean),35,131,,,,11,0.000559,21572
+20,14,pathfinding,A* (Chebyshev),35,152,,,,13,0.000658,22748
+20,14,mdp,Value Iteration,34,,30,,,,0.032738,8648
+20,14,mdp,Policy Iteration,34,,134,103,31,,0.099300,10592
+20,15,pathfinding,DFS,55,100,,,,14,0.000373,15416
+20,15,pathfinding,BFS,31,206,,,,15,0.000571,34168
+20,15,pathfinding,A* (Manhattan),31,107,,,,15,0.000452,21344
+20,15,pathfinding,A* (Euclidean),31,123,,,,14,0.000519,21296
+20,15,pathfinding,A* (Chebyshev),31,138,,,,16,0.000580,21844
+20,15,mdp,Value Iteration,30,,28,,,,0.030166,8648
+20,15,mdp,Policy Iteration,30,,123,95,28,,0.090567,10592
+20,16,pathfinding,DFS,35,188,,,,22,0.000593,30912
+20,16,pathfinding,BFS,31,205,,,,16,0.000549,34168
+20,16,pathfinding,A* (Manhattan),31,99,,,,19,0.000404,21392
+20,16,pathfinding,A* (Euclidean),31,114,,,,13,0.000507,21328
+20,16,pathfinding,A* (Chebyshev),31,122,,,,12,0.000524,21264
+20,16,mdp,Value Iteration,30,,12,,,,0.013026,8648
+20,16,mdp,Policy Iteration,30,,84,69,15,,0.064844,10592
+20,17,pathfinding,DFS,67,117,,,,12,0.000397,15416
+20,17,pathfinding,BFS,39,205,,,,12,0.000548,34168
+20,17,pathfinding,A* (Manhattan),39,116,,,,21,0.000466,21368
+20,17,pathfinding,A* (Euclidean),39,143,,,,18,0.000648,22460
+20,17,pathfinding,A* (Chebyshev),39,166,,,,17,0.000752,23724
+20,17,mdp,Value Iteration,38,,14,,,,0.015237,8624
+20,17,mdp,Policy Iteration,38,,99,79,20,,0.074480,10568
+20,18,pathfinding,DFS,43,54,,,,11,0.000191,7616
+20,18,pathfinding,BFS,39,206,,,,12,0.000542,34168
+20,18,pathfinding,A* (Manhattan),39,123,,,,17,0.000538,21364
+20,18,pathfinding,A* (Euclidean),39,158,,,,21,0.000697,23300
+20,18,pathfinding,A* (Chebyshev),39,171,,,,20,0.000743,44464
+20,18,mdp,Value Iteration,38,,40,,,,0.041940,8528
+20,18,mdp,Policy Iteration,38,,154,115,39,,0.113943,10472
+20,19,pathfinding,DFS,79,171,,,,22,0.000563,30912
+20,19,pathfinding,BFS,27,175,,,,19,0.000466,34168
+20,19,pathfinding,A* (Manhattan),27,58,,,,16,0.000224,10528
+20,19,pathfinding,A* (Euclidean),27,73,,,,16,0.000303,10528
+20,19,pathfinding,A* (Chebyshev),27,84,,,,14,0.000337,10820
+20,19,mdp,Value Iteration,26,,12,,,,0.013792,8816
+20,19,mdp,Policy Iteration,26,,69,59,10,,0.057855,10688
+20,20,pathfinding,DFS,67,173,,,,26,0.000567,30976
+20,20,pathfinding,BFS,37,208,,,,12,0.000563,34168
+20,20,pathfinding,A* (Manhattan),37,123,,,,16,0.000526,21332
+20,20,pathfinding,A* (Euclidean),37,139,,,,14,0.000632,22108
+20,20,pathfinding,A* (Chebyshev),37,149,,,,15,0.000654,22668
+20,20,mdp,Value Iteration,36,,20,,,,0.022603,8696
+20,20,mdp,Policy Iteration,36,,93,75,18,,0.076210,10592
+30,1,pathfinding,DFS,55,122,,,,15,0.000429,15604
+30,1,pathfinding,BFS,51,478,,,,22,0.001344,66768
+30,1,pathfinding,A* (Manhattan),51,195,,,,19,0.000937,44528
+30,1,pathfinding,A* (Euclidean),51,254,,,,25,0.001274,44744
+30,1,pathfinding,A* (Chebyshev),51,309,,,,27,0.001500,48284
+30,1,mdp,Value Iteration,50,,58,,,,0.174501,21728
+30,1,mdp,Policy Iteration,50,,221,164,57,,0.383405,23576
+30,2,pathfinding,DFS,189,430,,,,45,0.001325,61624
+30,2,pathfinding,BFS,49,481,,,,22,0.001246,66768
+30,2,pathfinding,A* (Manhattan),49,188,,,,28,0.000802,44864
+30,2,pathfinding,A* (Euclidean),49,308,,,,26,0.001511,48204
+30,2,pathfinding,A* (Chebyshev),49,353,,,,32,0.001726,91256
+30,2,mdp,Value Iteration,48,,14,,,,0.035121,21560
+30,2,mdp,Policy Iteration,48,,111,90,21,,0.194928,23504
+30,3,pathfinding,DFS,167,376,,,,51,0.001187,61720
+30,3,pathfinding,BFS,43,482,,,,27,0.001280,66768
+30,3,pathfinding,A* (Manhattan),43,190,,,,25,0.000837,44744
+30,3,pathfinding,A* (Euclidean),43,245,,,,29,0.001109,44768
+30,3,pathfinding,A* (Chebyshev),43,284,,,,31,0.001336,46972
+30,3,mdp,Value Iteration,42,,36,,,,0.106416,21752
+30,3,mdp,Policy Iteration,42,,154,119,35,,0.280401,23648
+30,4,pathfinding,DFS,87,465,,,,49,0.001435,61720
+30,4,pathfinding,BFS,51,464,,,,25,0.001217,66768
+30,4,pathfinding,A* (Manhattan),51,225,,,,27,0.001021,44768
+30,4,pathfinding,A* (Euclidean),51,270,,,,24,0.001292,45804
+30,4,pathfinding,A* (Chebyshev),51,297,,,,23,0.001413,47724
+30,4,mdp,Value Iteration,50,,26,,,,0.068374,21608
+30,4,mdp,Policy Iteration,50,,148,115,33,,0.258688,23504
+30,5,pathfinding,DFS,147,323,,,,43,0.001010,51856
+30,5,pathfinding,BFS,43,480,,,,24,0.001288,66768
+30,5,pathfinding,A* (Manhattan),43,110,,,,19,0.000454,21472
+30,5,pathfinding,A* (Euclidean),43,184,,,,22,0.000915,44608
+30,5,pathfinding,A* (Chebyshev),43,261,,,,32,0.001254,45444
+30,5,mdp,Value Iteration,42,,14,,,,0.036525,21704
+30,5,mdp,Policy Iteration,42,,103,84,19,,0.190933,23600
+30,6,pathfinding,DFS,45,94,,,,12,0.000312,15416
+30,6,pathfinding,BFS,45,459,,,,21,0.001216,66768
+30,6,pathfinding,A* (Manhattan),45,219,,,,24,0.001010,44704
+30,6,pathfinding,A* (Euclidean),45,263,,,,25,0.001180,45228
+30,6,pathfinding,A* (Chebyshev),45,291,,,,26,0.001356,47276
+30,6,mdp,Value Iteration,44,,54,,,,0.138980,21560
+30,6,mdp,Policy Iteration,44,,205,153,52,,0.345210,23504
+30,7,pathfinding,DFS,51,276,,,,26,0.000851,31812
+30,7,pathfinding,BFS,47,480,,,,22,0.001234,66768
+30,7,pathfinding,A* (Manhattan),47,240,,,,33,0.001128,45072
+30,7,pathfinding,A* (Euclidean),47,319,,,,33,0.001453,49164
+30,7,pathfinding,A* (Chebyshev),47,374,,,,37,0.001722,91656
+30,7,mdp,Value Iteration,46,,54,,,,0.142542,21608
+30,7,mdp,Policy Iteration,46,,204,151,53,,0.344250,23504
+30,8,pathfinding,DFS,173,434,,,,57,0.001363,61784
+30,8,pathfinding,BFS,45,453,,,,25,0.001190,66768
+30,8,pathfinding,A* (Manhattan),45,125,,,,23,0.000529,21644
+30,8,pathfinding,A* (Euclidean),45,182,,,,27,0.000820,44680
+30,8,pathfinding,A* (Chebyshev),45,226,,,,31,0.001022,44608
+30,8,mdp,Value Iteration,44,,28,,,,0.074074,21728
+30,8,mdp,Policy Iteration,44,,135,108,27,,0.246391,23624
+30,9,pathfinding,DFS,147,389,,,,43,0.001195,61688
+30,9,pathfinding,BFS,43,360,,,,17,0.000945,66768
+30,9,pathfinding,A* (Manhattan),43,132,,,,15,0.000558,21780
+30,9,pathfinding,A* (Euclidean),43,164,,,,16,0.000803,23500
+30,9,pathfinding,A* (Chebyshev),43,198,,,,19,0.000920,44504
+30,9,mdp,Value Iteration,42,,12,,,,0.029696,21416
+30,9,mdp,Policy Iteration,42,,109,89,20,,0.193504,23312
+30,10,pathfinding,DFS,107,240,,,,31,0.000752,30944
+30,10,pathfinding,BFS,43,425,,,,24,0.001129,66768
+30,10,pathfinding,A* (Manhattan),43,128,,,,24,0.000545,21836
+30,10,pathfinding,A* (Euclidean),43,200,,,,26,0.001019,44792
+30,10,pathfinding,A* (Chebyshev),43,223,,,,22,0.001041,44584
+30,10,mdp,Value Iteration,42,,22,,,,0.058113,21728
+30,10,mdp,Policy Iteration,42,,120,98,22,,0.225506,23624
+30,11,pathfinding,DFS,153,442,,,,54,0.001363,61720
+30,11,pathfinding,BFS,41,455,,,,24,0.001181,66768
+30,11,pathfinding,A* (Manhattan),41,139,,,,26,0.000611,22564
+30,11,pathfinding,A* (Euclidean),41,201,,,,29,0.001009,44784
+30,11,pathfinding,A* (Chebyshev),41,248,,,,35,0.001152,45072
+30,11,mdp,Value Iteration,40,,14,,,,0.037142,21896
+30,11,mdp,Policy Iteration,40,,102,84,18,,0.195083,23792
+30,12,pathfinding,DFS,205,398,,,,50,0.001292,61688
+30,12,pathfinding,BFS,45,416,,,,21,0.001104,66768
+30,12,pathfinding,A* (Manhattan),45,152,,,,22,0.000666,23132
+30,12,pathfinding,A* (Euclidean),45,188,,,,24,0.000916,44632
+30,12,pathfinding,A* (Chebyshev),45,215,,,,23,0.001013,44584
+30,12,mdp,Value Iteration,44,,16,,,,0.041324,21584
+30,12,mdp,Policy Iteration,44,,107,87,20,,0.193831,23528
+30,13,pathfinding,DFS,75,174,,,,25,0.000565,30976
+30,13,pathfinding,BFS,47,476,,,,22,0.001275,66768
+30,13,pathfinding,A* (Manhattan),47,147,,,,23,0.000649,22900
+30,13,pathfinding,A* (Euclidean),47,238,,,,26,0.001184,44736
+30,13,pathfinding,A* (Chebyshev),47,279,,,,29,0.001321,46612
+30,13,mdp,Value Iteration,46,,42,,,,0.108590,21608
+30,13,mdp,Policy Iteration,46,,162,124,38,,0.280847,23504
+30,14,pathfinding,DFS,77,182,,,,21,0.000582,30912
+30,14,pathfinding,BFS,53,435,,,,20,0.001174,66768
+30,14,pathfinding,A* (Manhattan),53,145,,,,22,0.000678,22740
+30,14,pathfinding,A* (Euclidean),53,243,,,,24,0.001177,44656
+30,14,pathfinding,A* (Chebyshev),53,257,,,,21,0.001225,44772
+30,14,mdp,Value Iteration,52,,51,,,,0.132493,21608
+30,14,mdp,Policy Iteration,52,,200,151,49,,0.364998,23504
+30,15,pathfinding,DFS,59,126,,,,11,0.000408,15668
+30,15,pathfinding,BFS,43,486,,,,27,0.001295,66768
+30,15,pathfinding,A* (Manhattan),43,194,,,,26,0.000861,44712
+30,15,pathfinding,A* (Euclidean),43,255,,,,24,0.001220,44796
+30,15,pathfinding,A* (Chebyshev),43,308,,,,28,0.001471,48652
+30,15,mdp,Value Iteration,42,,30,,,,0.082524,21896
+30,15,mdp,Policy Iteration,42,,156,122,34,,0.285001,23744
+30,16,pathfinding,DFS,167,388,,,,59,0.001222,61784
+30,16,pathfinding,BFS,51,483,,,,22,0.001269,66768
+30,16,pathfinding,A* (Manhattan),51,266,,,,31,0.001191,45612
+30,16,pathfinding,A* (Euclidean),51,345,,,,30,0.001799,91080
+30,16,pathfinding,A* (Chebyshev),51,382,,,,32,0.001911,91136
+30,16,mdp,Value Iteration,50,,20,,,,0.051667,21680
+30,16,mdp,Policy Iteration,50,,122,99,23,,0.222441,23576
+30,17,pathfinding,DFS,191,370,,,,41,0.001164,61624
+30,17,pathfinding,BFS,63,487,,,,23,0.001316,66768
+30,17,pathfinding,A* (Manhattan),63,432,,,,30,0.002077,91640
+30,17,pathfinding,A* (Euclidean),63,466,,,,27,0.002566,91336
+30,17,pathfinding,A* (Chebyshev),63,468,,,,25,0.002418,91304
+30,17,mdp,Value Iteration,62,,16,,,,0.041889,21704
+30,17,mdp,Policy Iteration,62,,115,91,24,,0.207336,23648
+30,18,pathfinding,DFS,49,50,,,,17,0.000195,7616
+30,18,pathfinding,BFS,49,471,,,,24,0.001237,66768
+30,18,pathfinding,A* (Manhattan),49,209,,,,30,0.000963,44864
+30,18,pathfinding,A* (Euclidean),49,302,,,,32,0.001506,48060
+30,18,pathfinding,A* (Chebyshev),49,349,,,,29,0.001611,91568
+30,18,mdp,Value Iteration,48,,48,,,,0.124776,21560
+30,18,mdp,Policy Iteration,48,,187,141,46,,0.316209,23504
+30,19,pathfinding,DFS,91,194,,,,26,0.000628,30976
+30,19,pathfinding,BFS,51,466,,,,22,0.001279,66768
+30,19,pathfinding,A* (Manhattan),51,176,,,,22,0.000818,44680
+30,19,pathfinding,A* (Euclidean),51,255,,,,19,0.001318,44644
+30,19,pathfinding,A* (Chebyshev),51,277,,,,22,0.001313,46524
+30,19,mdp,Value Iteration,50,,30,,,,0.077937,21632
+30,19,mdp,Policy Iteration,50,,141,111,30,,0.251231,23480
+30,20,pathfinding,DFS,49,76,,,,20,0.000269,12624
+30,20,pathfinding,BFS,41,477,,,,22,0.001261,66768
+30,20,pathfinding,A* (Manhattan),41,147,,,,27,0.000655,22980
+30,20,pathfinding,A* (Euclidean),41,222,,,,31,0.001059,44864
+30,20,pathfinding,A* (Chebyshev),41,278,,,,33,0.001264,46620
+30,20,mdp,Value Iteration,40,,52,,,,0.136481,21752
+30,20,mdp,Policy Iteration,40,,205,154,51,,0.360892,23648
+40,1,pathfinding,DFS,201,845,,,,110,0.002618,123264
+40,1,pathfinding,BFS,47,695,,,,33,0.001862,131960
+40,1,pathfinding,A* (Manhattan),47,84,,,,24,0.000326,11100
+40,1,pathfinding,A* (Euclidean),47,106,,,,25,0.000482,21504
+40,1,pathfinding,A* (Chebyshev),47,140,,,,33,0.000598,22828
+40,1,mdp,Value Iteration,46,,36,,,,0.180491,41520
+40,1,mdp,Policy Iteration,46,,189,151,38,,0.642362,43472
+40,2,pathfinding,DFS,127,262,,,,25,0.000852,31460
+40,2,pathfinding,BFS,79,884,,,,35,0.002402,131960
+40,2,pathfinding,A* (Manhattan),79,350,,,,50,0.001653,92000
+40,2,pathfinding,A* (Euclidean),79,626,,,,40,0.003517,98212
+40,2,pathfinding,A* (Chebyshev),79,660,,,,39,0.003311,99764
+40,2,mdp,Value Iteration,78,,50,,,,0.250146,41424
+40,2,mdp,Policy Iteration,78,,233,180,53,,0.777838,43328
+40,3,pathfinding,DFS,247,762,,,,119,0.002328,123392
+40,3,pathfinding,BFS,59,808,,,,30,0.002151,131960
+40,3,pathfinding,A* (Manhattan),59,326,,,,44,0.001550,49624
+40,3,pathfinding,A* (Euclidean),59,421,,,,33,0.002225,91424
+40,3,pathfinding,A* (Chebyshev),59,447,,,,34,0.002152,91392
+40,3,mdp,Value Iteration,58,,30,,,,0.145844,41328
+40,3,mdp,Policy Iteration,58,,151,121,30,,0.514169,43280
+40,4,pathfinding,DFS,177,682,,,,89,0.002129,103976
+40,4,pathfinding,BFS,57,775,,,,32,0.002079,131960
+40,4,pathfinding,A* (Manhattan),57,273,,,,37,0.001290,46388
+40,4,pathfinding,A* (Euclidean),57,361,,,,36,0.001835,91984
+40,4,pathfinding,A* (Chebyshev),57,426,,,,37,0.002039,91736
+40,4,mdp,Value Iteration,56,,64,,,,0.305803,40992
+40,4,mdp,Policy Iteration,56,,249,188,61,,0.785998,42944
+40,5,pathfinding,DFS,275,559,,,,77,0.001756,63860
+40,5,pathfinding,BFS,59,783,,,,29,0.002049,131960
+40,5,pathfinding,A* (Manhattan),59,297,,,,32,0.001338,47788
+40,5,pathfinding,A* (Euclidean),59,372,,,,27,0.001957,91472
+40,5,pathfinding,A* (Chebyshev),59,427,,,,32,0.002065,91736
+40,5,mdp,Value Iteration,58,,36,,,,0.172619,41208
+40,5,mdp,Policy Iteration,58,,169,133,36,,0.557964,43160
+40,6,pathfinding,DFS,99,187,,,,39,0.000622,31040
+40,6,pathfinding,BFS,63,816,,,,32,0.002206,131960
+40,6,pathfinding,A* (Manhattan),63,258,,,,39,0.001215,45552
+40,6,pathfinding,A* (Euclidean),63,410,,,,35,0.002132,92040
+40,6,pathfinding,A* (Chebyshev),63,461,,,,36,0.002200,91992
+40,6,mdp,Value Iteration,62,,62,,,,0.310140,41424
+40,6,mdp,Policy Iteration,62,,247,186,61,,0.805391,43328
+40,7,pathfinding,DFS,87,102,,,,28,0.000356,15576
+40,7,pathfinding,BFS,79,884,,,,28,0.002388,131960
+40,7,pathfinding,A* (Manhattan),79,501,,,,51,0.002510,91912
+40,7,pathfinding,A* (Euclidean),79,739,,,,36,0.004030,183832
+40,7,pathfinding,A* (Chebyshev),79,766,,,,36,0.003760,183752
+40,7,mdp,Value Iteration,78,,79,,,,0.393479,41400
+40,7,mdp,Policy Iteration,78,,294,216,78,,0.932282,43352
+40,8,pathfinding,DFS,149,264,,,,38,0.000853,31588
+40,8,pathfinding,BFS,53,788,,,,30,0.002088,131960
+40,8,pathfinding,A* (Manhattan),53,198,,,,28,0.000884,44808
+40,8,pathfinding,A* (Euclidean),53,278,,,,32,0.001375,46832
+40,8,pathfinding,A* (Chebyshev),53,377,,,,48,0.001740,92704
+40,8,mdp,Value Iteration,52,,54,,,,0.258157,41160
+40,8,mdp,Policy Iteration,52,,212,161,51,,0.681617,43112
+40,9,pathfinding,DFS,73,850,,,,97,0.002566,123232
+40,9,pathfinding,BFS,53,799,,,,34,0.002129,131960
+40,9,pathfinding,A* (Manhattan),53,193,,,,25,0.000850,44648
+40,9,pathfinding,A* (Euclidean),53,291,,,,31,0.001397,47552
+40,9,pathfinding,A* (Chebyshev),53,357,,,,33,0.001688,91304
+40,9,mdp,Value Iteration,52,,52,,,,0.250529,41184
+40,9,mdp,Policy Iteration,52,,227,175,52,,0.733450,43136
+40,10,pathfinding,DFS,59,785,,,,93,0.002394,123232
+40,10,pathfinding,BFS,55,748,,,,29,0.002005,131960
+40,10,pathfinding,A* (Manhattan),55,180,,,,26,0.000813,44760
+40,10,pathfinding,A* (Euclidean),55,269,,,,32,0.001221,46124
+40,10,pathfinding,A* (Chebyshev),55,336,,,,37,0.001531,50620
+40,10,mdp,Value Iteration,54,,76,,,,0.360318,40992
+40,10,mdp,Policy Iteration,54,,288,213,75,,0.889711,42944
+40,11,pathfinding,DFS,157,281,,,,43,0.000897,32228
+40,11,pathfinding,BFS,67,865,,,,33,0.002335,131960
+40,11,pathfinding,A* (Manhattan),67,466,,,,40,0.002233,92240
+40,11,pathfinding,A* (Euclidean),67,551,,,,33,0.002809,94100
+40,11,pathfinding,A* (Chebyshev),67,608,,,,34,0.002993,97628
+40,11,mdp,Value Iteration,66,,66,,,,0.331128,41544
+40,11,mdp,Policy Iteration,66,,249,185,64,,0.816727,43496
+40,12,pathfinding,DFS,93,186,,,,27,0.000611,30944
+40,12,pathfinding,BFS,53,797,,,,32,0.002136,131960
+40,12,pathfinding,A* (Manhattan),53,181,,,,26,0.000827,44728
+40,12,pathfinding,A* (Euclidean),53,249,,,,28,0.001225,44668
+40,12,pathfinding,A* (Chebyshev),53,367,,,,54,0.001712,92816
+40,12,mdp,Value Iteration,52,,64,,,,0.313337,41328
+40,12,mdp,Policy Iteration,52,,249,187,62,,0.799004,43232
+40,13,pathfinding,DFS,305,611,,,,108,0.001877,65748
+40,13,pathfinding,BFS,57,811,,,,29,0.002171,131960
+40,13,pathfinding,A* (Manhattan),57,271,,,,39,0.001205,46276
+40,13,pathfinding,A* (Euclidean),57,388,,,,43,0.002026,92072
+40,13,pathfinding,A* (Chebyshev),57,477,,,,45,0.002360,92144
+40,13,mdp,Value Iteration,56,,38,,,,0.181577,41064
+40,13,mdp,Policy Iteration,56,,182,143,39,,0.595222,43016
+40,14,pathfinding,DFS,77,116,,,,21,0.000394,15512
+40,14,pathfinding,BFS,53,763,,,,31,0.002009,131960
+40,14,pathfinding,A* (Manhattan),53,198,,,,22,0.000931,44680
+40,14,pathfinding,A* (Euclidean),53,289,,,,28,0.001445,47532
+40,14,pathfinding,A* (Chebyshev),53,369,,,,36,0.001716,91992
+40,14,mdp,Value Iteration,52,,78,,,,0.378270,41208
+40,14,mdp,Policy Iteration,52,,289,213,76,,0.915657,43208
+40,15,pathfinding,DFS,291,635,,,,90,0.001978,103240
+40,15,pathfinding,BFS,59,775,,,,34,0.002078,131960
+40,15,pathfinding,A* (Manhattan),59,191,,,,29,0.000842,44784
+40,15,pathfinding,A* (Euclidean),59,271,,,,31,0.001382,46236
+40,15,pathfinding,A* (Chebyshev),59,358,,,,40,0.001707,92104
+40,15,mdp,Value Iteration,58,,44,,,,0.207508,41112
+40,15,mdp,Policy Iteration,58,,197,156,41,,0.660211,43064
+40,16,pathfinding,DFS,197,381,,,,55,0.001210,61720
+40,16,pathfinding,BFS,57,835,,,,32,0.002239,131960
+40,16,pathfinding,A* (Manhattan),57,228,,,,35,0.001008,44912
+40,16,pathfinding,A* (Euclidean),57,338,,,,40,0.001758,51164
+40,16,pathfinding,A* (Chebyshev),57,451,,,,46,0.002244,92304
+40,16,mdp,Value Iteration,56,,48,,,,0.236558,41376
+40,16,mdp,Policy Iteration,56,,222,173,49,,0.738904,43328
+40,17,pathfinding,DFS,131,460,,,,68,0.001442,61816
+40,17,pathfinding,BFS,59,857,,,,31,0.002296,131960
+40,17,pathfinding,A* (Manhattan),59,268,,,,31,0.001251,45884
+40,17,pathfinding,A* (Euclidean),59,452,,,,41,0.002335,92240
+40,17,pathfinding,A* (Chebyshev),59,553,,,,53,0.002726,94660
+40,17,mdp,Value Iteration,58,,56,,,,0.272583,41208
+40,17,mdp,Policy Iteration,58,,225,172,53,,0.723894,43208
+40,18,pathfinding,DFS,71,134,,,,20,0.000446,16020
+40,18,pathfinding,BFS,63,819,,,,30,0.002142,131960
+40,18,pathfinding,A* (Manhattan),63,247,,,,24,0.001150,44372
+40,18,pathfinding,A* (Euclidean),63,318,,,,23,0.001574,48972
+40,18,pathfinding,A* (Chebyshev),63,390,,,,31,0.001791,91704
+40,18,mdp,Value Iteration,62,,78,,,,0.377259,41112
+40,18,mdp,Policy Iteration,62,,284,208,76,,0.881849,43064
+40,19,pathfinding,DFS,87,172,,,,30,0.000565,30976
+40,19,pathfinding,BFS,63,835,,,,27,0.002231,131960
+40,19,pathfinding,A* (Manhattan),63,348,,,,55,0.001665,92264
+40,19,pathfinding,A* (Euclidean),63,522,,,,46,0.002744,93300
+40,19,pathfinding,A* (Chebyshev),63,561,,,,39,0.002652,95164
+40,19,mdp,Value Iteration,62,,68,,,,0.325276,41040
+40,19,mdp,Policy Iteration,62,,272,205,67,,0.859180,42992
+40,20,pathfinding,DFS,269,780,,,,97,0.002479,123264
+40,20,pathfinding,BFS,53,760,,,,30,0.002026,131960
+40,20,pathfinding,A* (Manhattan),53,196,,,,31,0.000897,44864
+40,20,pathfinding,A* (Euclidean),53,263,,,,39,0.001357,45832
+40,20,pathfinding,A* (Chebyshev),53,335,,,,46,0.001599,51252
+40,20,mdp,Value Iteration,52,,40,,,,0.200859,41304
+40,20,mdp,Policy Iteration,52,,199,155,44,,0.657202,43208
+50,1,pathfinding,DFS,97,130,,,,38,0.000455,16020
+50,1,pathfinding,BFS,85,1371,,,,38,0.003753,262352
+50,1,pathfinding,A* (Manhattan),85,497,,,,63,0.002515,92204
+50,1,pathfinding,A* (Euclidean),85,903,,,,51,0.004596,184576
+50,1,pathfinding,A* (Chebyshev),85,963,,,,50,0.004777,184128
+50,1,mdp,Value Iteration,84,,92,,,,0.715356,65600
+50,1,mdp,Policy Iteration,84,,348,256,92,,1.747504,67552
+50,2,pathfinding,DFS,309,511,,,,86,0.001626,62420
+50,2,pathfinding,BFS,97,1392,,,,41,0.003757,262352
+50,2,pathfinding,A* (Manhattan),97,830,,,,69,0.004176,185480
+50,2,pathfinding,A* (Euclidean),97,1179,,,,50,0.006415,193520
+50,2,pathfinding,A* (Chebyshev),97,1217,,,,47,0.006324,195284
+50,2,mdp,Value Iteration,96,,66,,,,0.527423,65840
+50,2,mdp,Policy Iteration,96,,294,228,66,,1.536576,67744
+50,3,pathfinding,DFS,589,1184,,,,175,0.003615,129892
+50,3,pathfinding,BFS,71,1337,,,,41,0.003592,134476
+50,3,pathfinding,A* (Manhattan),71,289,,,,43,0.001305,47716
+50,3,pathfinding,A* (Euclidean),71,591,,,,60,0.003253,98292
+50,3,pathfinding,A* (Chebyshev),71,762,,,,65,0.003952,185888
+50,3,mdp,Value Iteration,70,,31,,,,0.236688,65624
+50,3,mdp,Policy Iteration,70,,164,130,34,,1.002121,67576
+50,4,pathfinding,DFS,423,770,,,,145,0.002599,123552
+50,4,pathfinding,BFS,71,1338,,,,35,0.003756,134508
+50,4,pathfinding,A* (Manhattan),71,217,,,,37,0.001050,44792
+50,4,pathfinding,A* (Euclidean),71,505,,,,54,0.002694,93284
+50,4,pathfinding,A* (Chebyshev),71,762,,,,65,0.003992,184504
+50,4,mdp,Value Iteration,70,,60,,,,0.623155,65720
+50,4,mdp,Policy Iteration,70,,247,193,54,,1.858740,67624
+50,5,pathfinding,DFS,237,1283,,,,144,0.003925,132068
+50,5,pathfinding,BFS,81,1261,,,,34,0.003312,132044
+50,5,pathfinding,A* (Manhattan),81,336,,,,24,0.001616,50092
+50,5,pathfinding,A* (Euclidean),81,509,,,,25,0.002739,91280
+50,5,pathfinding,A* (Chebyshev),81,638,,,,34,0.003139,99084
+50,5,mdp,Value Iteration,80,,65,,,,0.507460,65768
+50,5,mdp,Policy Iteration,80,,274,212,62,,1.439017,67720
+50,6,pathfinding,DFS,117,403,,,,59,0.001260,61784
+50,6,pathfinding,BFS,97,1395,,,,36,0.003789,262352
+50,6,pathfinding,A* (Manhattan),97,664,,,,75,0.003347,102084
+50,6,pathfinding,A* (Euclidean),97,1172,,,,54,0.006493,193156
+50,6,pathfinding,A* (Chebyshev),97,1217,,,,55,0.005963,195484
+50,6,mdp,Value Iteration,96,,98,,,,0.766558,65912
+50,6,mdp,Policy Iteration,96,,366,269,97,,1.858374,67848
+50,7,pathfinding,DFS,135,1277,,,,195,0.003965,131812
+50,7,pathfinding,BFS,75,1280,,,,41,0.003387,132652
+50,7,pathfinding,A* (Manhattan),75,364,,,,28,0.001749,91640
+50,7,pathfinding,A* (Euclidean),75,542,,,,32,0.002868,93252
+50,7,pathfinding,A* (Chebyshev),75,689,,,,42,0.003338,183784
+50,7,mdp,Value Iteration,74,,62,,,,0.483916,65768
+50,7,mdp,Policy Iteration,74,,265,206,59,,1.391347,67672
+50,8,pathfinding,DFS,109,216,,,,30,0.000744,30976
+50,8,pathfinding,BFS,81,1326,,,,38,0.003794,134120
+50,8,pathfinding,A* (Manhattan),81,530,,,,61,0.002719,95100
+50,8,pathfinding,A* (Euclidean),81,720,,,,47,0.004130,184376
+50,8,pathfinding,A* (Chebyshev),81,800,,,,49,0.004170,184424
+50,8,mdp,Value Iteration,80,,74,,,,0.579446,65768
+50,8,mdp,Policy Iteration,80,,292,220,72,,1.482319,67720
+50,9,pathfinding,DFS,581,1041,,,,178,0.003269,125316
+50,9,pathfinding,BFS,75,1265,,,,37,0.003345,132172
+50,9,pathfinding,A* (Manhattan),75,394,,,,67,0.001833,92672
+50,9,pathfinding,A* (Euclidean),75,637,,,,49,0.003523,99932
+50,9,pathfinding,A* (Chebyshev),75,721,,,,45,0.003694,183824
+50,9,mdp,Value Iteration,74,,34,,,,0.256118,65888
+50,9,mdp,Policy Iteration,74,,176,144,32,,1.281905,67792
+50,10,pathfinding,DFS,493,899,,,,142,0.005283,123424
+50,10,pathfinding,BFS,75,1179,,,,40,0.005290,131960
+50,10,pathfinding,A* (Manhattan),75,344,,,,38,0.002088,92264
+50,10,pathfinding,A* (Euclidean),75,432,,,,36,0.004332,91280
+50,10,pathfinding,A* (Chebyshev),75,531,,,,53,0.004676,94684
+50,10,mdp,Value Iteration,74,,27,,,,0.378319,65648
+50,10,mdp,Policy Iteration,74,,180,144,36,,1.717538,67552
+50,11,pathfinding,DFS,315,581,,,,104,0.003755,65180
+50,11,pathfinding,BFS,63,1069,,,,42,0.005206,131960
+50,11,pathfinding,A* (Manhattan),63,287,,,,46,0.002785,52980
+50,11,pathfinding,A* (Euclidean),63,347,,,,42,0.003458,92048
+50,11,pathfinding,A* (Chebyshev),63,389,,,,44,0.003746,92360
+50,11,mdp,Value Iteration,62,,52,,,,0.749602,65840
+50,11,mdp,Policy Iteration,62,,236,183,53,,2.014208,67744
+50,12,pathfinding,DFS,257,1346,,,,144,0.007496,208272
+50,12,pathfinding,BFS,73,1366,,,,39,0.006346,262352
+50,12,pathfinding,A* (Manhattan),73,399,,,,50,0.003428,92648
+50,12,pathfinding,A* (Euclidean),73,715,,,,54,0.006847,184752
+50,12,pathfinding,A* (Chebyshev),73,860,,,,52,0.008270,184408
+50,12,mdp,Value Iteration,72,,66,,,,0.934418,65816
+50,12,mdp,Policy Iteration,72,,271,209,62,,2.637394,67768
+50,13,pathfinding,DFS,85,114,,,,32,0.000408,15576
+50,13,pathfinding,BFS,69,1141,,,,38,0.003085,131960
+50,13,pathfinding,A* (Manhattan),69,260,,,,37,0.001235,45652
+50,13,pathfinding,A* (Euclidean),69,380,,,,44,0.001943,92560
+50,13,pathfinding,A* (Chebyshev),69,450,,,,49,0.002160,92536
+50,13,mdp,Value Iteration,68,,92,,,,1.204429,65816
+50,13,mdp,Policy Iteration,68,,347,259,88,,1.804917,67752
+50,14,pathfinding,DFS,77,195,,,,25,0.000644,30944
+50,14,pathfinding,BFS,69,1142,,,,37,0.003060,131960
+50,14,pathfinding,A* (Manhattan),69,412,,,,44,0.002023,92472
+50,14,pathfinding,A* (Euclidean),69,518,,,,35,0.002713,92580
+50,14,pathfinding,A* (Chebyshev),69,592,,,,43,0.002920,96740
+50,14,mdp,Value Iteration,68,,88,,,,0.691477,65600
+50,14,mdp,Policy Iteration,68,,334,246,88,,1.669006,67552
+50,15,pathfinding,DFS,103,281,,,,35,0.000884,32132
+50,15,pathfinding,BFS,67,1289,,,,49,0.003433,132940
+50,15,pathfinding,A* (Manhattan),67,312,,,,47,0.001489,49236
+50,15,pathfinding,A* (Euclidean),67,467,,,,50,0.002350,92520
+50,15,pathfinding,A* (Chebyshev),67,636,,,,61,0.003072,101232
+50,15,mdp,Value Iteration,66,,86,,,,0.682996,65888
+50,15,mdp,Policy Iteration,66,,320,241,79,,1.656410,67792
+50,16,pathfinding,DFS,405,1169,,,,139,0.003594,128996
+50,16,pathfinding,BFS,67,1288,,,,41,0.003434,132908
+50,16,pathfinding,A* (Manhattan),67,325,,,,53,0.001486,50292
+50,16,pathfinding,A* (Euclidean),67,465,,,,38,0.002397,91992
+50,16,pathfinding,A* (Chebyshev),67,600,,,,52,0.003103,98340
+50,16,mdp,Value Iteration,66,,32,,,,0.248328,65432
+50,16,mdp,Policy Iteration,66,,194,153,41,,0.999282,67384
+50,17,pathfinding,DFS,483,1289,,,,192,0.003945,133252
+50,17,pathfinding,BFS,63,1110,,,,41,0.002905,131960
+50,17,pathfinding,A* (Manhattan),63,345,,,,49,0.001624,92832
+50,17,pathfinding,A* (Euclidean),63,402,,,,42,0.001991,91920
+50,17,pathfinding,A* (Chebyshev),63,441,,,,40,0.002125,91768
+50,17,mdp,Value Iteration,62,,27,,,,0.213149,65984
+50,17,mdp,Policy Iteration,62,,157,125,32,,0.853754,67888
+50,18,pathfinding,DFS,117,149,,,,37,0.000499,25416
+50,18,pathfinding,BFS,81,1374,,,,41,0.003695,262352
+50,18,pathfinding,A* (Manhattan),81,704,,,,54,0.003619,185000
+50,18,pathfinding,A* (Euclidean),81,919,,,,55,0.005014,184824
+50,18,pathfinding,A* (Chebyshev),81,1039,,,,60,0.005199,185276
+50,18,mdp,Value Iteration,80,,90,,,,0.690721,65384
+50,18,mdp,Policy Iteration,80,,339,252,87,,1.675331,67336
+50,19,pathfinding,DFS,145,282,,,,32,0.000869,32100
+50,19,pathfinding,BFS,73,1170,,,,39,0.003043,131960
+50,19,pathfinding,A* (Manhattan),73,289,,,,26,0.001350,47228
+50,19,pathfinding,A* (Euclidean),73,426,,,,37,0.002267,92184
+50,19,pathfinding,A* (Chebyshev),73,531,,,,41,0.002583,93628
+50,19,mdp,Value Iteration,72,,60,,,,0.475142,65768
+50,19,mdp,Policy Iteration,72,,273,208,65,,1.420167,67672
+50,20,pathfinding,DFS,647,1155,,,,194,0.003529,128964
+50,20,pathfinding,BFS,63,1259,,,,47,0.003349,131980
+50,20,pathfinding,A* (Manhattan),63,274,,,,44,0.001244,46812
+50,20,pathfinding,A* (Euclidean),63,400,,,,46,0.002124,92504
+50,20,pathfinding,A* (Chebyshev),63,503,,,,50,0.002520,92796
+50,20,mdp,Value Iteration,62,,26,,,,0.202348,65648
+50,20,mdp,Policy Iteration,62,,145,117,28,,0.776239,67552
+100,1,pathfinding,DFS,1287,4127,,,,758,0.014728,499024
+100,1,pathfinding,BFS,155,5711,,,,77,0.015635,1045216
+100,1,pathfinding,A* (Manhattan),155,1463,,,,138,0.007563,377464
+100,1,pathfinding,A* (Euclidean),155,3407,,,,112,0.019413,739288
+100,1,pathfinding,A* (Chebyshev),155,3998,,,,122,0.021195,738624
+100,1,mdp,Value Iteration,34,,95,,,,3.204242,267472
+100,1,mdp,Policy Iteration,154,,439,326,113,,9.475486,269352
+100,2,pathfinding,DFS,573,862,,,,217,0.002674,124080
+100,2,pathfinding,BFS,135,5240,,,,78,0.013960,530236
+100,2,pathfinding,A* (Manhattan),135,1174,,,,109,0.006022,197772
+100,2,pathfinding,A* (Euclidean),135,2107,,,,105,0.012076,376692
+100,2,pathfinding,A* (Chebyshev),135,2666,,,,147,0.013858,408644
+100,2,mdp,Value Iteration,134,,108,,,,3.629102,267760
+100,2,mdp,Policy Iteration,134,,532,382,150,,11.238222,269688
+100,3,pathfinding,DFS,435,4702,,,,669,0.016333,512688
+100,3,pathfinding,BFS,129,4338,,,,78,0.011704,523128
+100,3,pathfinding,A* (Manhattan),129,945,,,,90,0.004853,187016
+100,3,pathfinding,A* (Euclidean),129,1356,,,,74,0.007431,205548
+100,3,pathfinding,A* (Chebyshev),129,1525,,,,86,0.007794,370776
+100,3,mdp,Value Iteration,144,,102,,,,3.450842,267040
+100,3,mdp,Policy Iteration,128,,451,333,118,,9.659511,268920
+100,4,pathfinding,DFS,193,331,,,,81,0.001083,50656
+100,4,pathfinding,BFS,133,4429,,,,77,0.012055,523128
+100,4,pathfinding,A* (Manhattan),133,1120,,,,86,0.005742,193300
+100,4,pathfinding,A* (Euclidean),133,1562,,,,69,0.008900,369384
+100,4,pathfinding,A* (Chebyshev),133,1698,,,,80,0.008658,370088
+100,4,mdp,Value Iteration,132,,110,,,,3.688013,267472
+100,4,mdp,Policy Iteration,132,,546,380,166,,11.261128,269352
+100,5,pathfinding,DFS,295,1051,,,,102,0.003186,124884
+100,5,pathfinding,BFS,131,5231,,,,74,0.014180,529948
+100,5,pathfinding,A* (Manhattan),131,1256,,,,93,0.006430,201040
+100,5,pathfinding,A* (Euclidean),131,2097,,,,92,0.011377,374884
+100,5,pathfinding,A* (Chebyshev),131,2701,,,,133,0.013724,411708
+100,5,mdp,Value Iteration,138,,108,,,,3.584366,266584
+100,5,mdp,Policy Iteration,130,,499,370,129,,11.411320,268920
+100,6,pathfinding,DFS,2435,4865,,,,844,0.017650,523496
+100,6,pathfinding,BFS,129,5242,,,,73,0.014231,530300
+100,6,pathfinding,A* (Manhattan),129,1064,,,,92,0.005389,195924
+100,6,pathfinding,A* (Euclidean),129,1954,,,,111,0.010965,371000
+100,6,pathfinding,A* (Chebyshev),129,2555,,,,138,0.013851,404924
+100,6,mdp,Value Iteration,9,,51,,,,1.744765,267616
+100,6,mdp,Policy Iteration,128,,262,209,53,,5.984990,269464
+100,7,pathfinding,DFS,1111,2055,,,,352,0.006870,249212
+100,7,pathfinding,BFS,143,5639,,,,75,0.015792,1045216
+100,7,pathfinding,A* (Manhattan),143,1052,,,,120,0.005377,191684
+100,7,pathfinding,A* (Euclidean),143,2748,,,,128,0.015648,739288
+100,7,pathfinding,A* (Chebyshev),143,3440,,,,125,0.018534,739960
+100,7,mdp,Value Iteration,142,,97,,,,3.246148,267328
+100,7,mdp,Policy Iteration,142,,468,343,125,,10.001039,269208
+100,8,pathfinding,DFS,409,632,,,,143,0.002039,102712
+100,8,pathfinding,BFS,133,4934,,,,74,0.013458,523128
+100,8,pathfinding,A* (Manhattan),133,1097,,,,114,0.005725,193108
+100,8,pathfinding,A* (Euclidean),133,1961,,,,85,0.011334,370272
+100,8,pathfinding,A* (Chebyshev),133,2225,,,,85,0.011691,381828
+100,8,mdp,Value Iteration,132,,110,,,,3.759203,268120
+100,8,mdp,Policy Iteration,132,,537,383,154,,11.550924,270000
+100,9,pathfinding,DFS,203,251,,,,86,0.000828,31700
+100,9,pathfinding,BFS,135,5243,,,,78,0.014203,530332
+100,9,pathfinding,A* (Manhattan),135,1408,,,,90,0.007295,370768
+100,9,pathfinding,A* (Euclidean),135,2409,,,,103,0.013551,392796
+100,9,pathfinding,A* (Chebyshev),135,2955,,,,128,0.015158,739488
+100,9,mdp,Value Iteration,134,,110,,,,3.687720,267496
+100,9,mdp,Policy Iteration,134,,511,379,132,,11.095010,269376
+100,10,pathfinding,DFS,2525,4612,,,,838,0.016343,515344
+100,10,pathfinding,BFS,137,4645,,,,77,0.012555,523128
+100,10,pathfinding,A* (Manhattan),137,1035,,,,55,0.005112,186460
+100,10,pathfinding,A* (Euclidean),137,1621,,,,59,0.009101,367976
+100,10,pathfinding,A* (Chebyshev),137,1998,,,,73,0.010986,369360
+100,10,mdp,Value Iteration,9,,51,,,,1.729682,267736
+100,10,mdp,Policy Iteration,136,,270,209,61,,6.031456,269584
+100,11,pathfinding,DFS,229,398,,,,72,0.001277,61992
+100,11,pathfinding,BFS,141,5622,,,,77,0.015708,1045216
+100,11,pathfinding,A* (Manhattan),141,1464,,,,140,0.007851,373296
+100,11,pathfinding,A* (Euclidean),141,2714,,,,114,0.014731,410292
+100,11,pathfinding,A* (Chebyshev),141,3450,,,,127,0.017878,739960
+100,11,mdp,Value Iteration,140,,108,,,,3.651154,267616
+100,11,mdp,Policy Iteration,140,,570,385,185,,11.628476,269496
+100,12,pathfinding,DFS,2367,4078,,,,764,0.014446,498256
+100,12,pathfinding,BFS,139,5477,,,,71,0.014976,1045216
+100,12,pathfinding,A* (Manhattan),139,1495,,,,116,0.007473,371736
+100,12,pathfinding,A* (Euclidean),139,2675,,,,110,0.016107,408908
+100,12,pathfinding,A* (Chebyshev),139,3397,,,,122,0.018434,739848
+100,12,mdp,Value Iteration,8,,60,,,,3.039555,270040
+100,12,mdp,Policy Iteration,138,,292,233,59,,6.967525,269368
+100,13,pathfinding,DFS,669,1121,,,,219,0.003563,128300
+100,13,pathfinding,BFS,143,4753,,,,78,0.012695,523128
+100,13,pathfinding,A* (Manhattan),143,1415,,,,95,0.007442,376864
+100,13,pathfinding,A* (Euclidean),143,2046,,,,88,0.011922,371524
+100,13,pathfinding,A* (Chebyshev),143,2244,,,,90,0.011659,382416
+100,13,mdp,Value Iteration,142,,110,,,,3.742794,267424
+100,13,mdp,Policy Iteration,142,,566,406,160,,15.771771,269304
+100,14,pathfinding,DFS,2303,4361,,,,732,0.015548,506512
+100,14,pathfinding,BFS,139,4957,,,,71,0.013447,523128
+100,14,pathfinding,A* (Manhattan),139,1525,,,,102,0.007780,371712
+100,14,pathfinding,A* (Euclidean),139,2244,,,,85,0.012992,382248
+100,14,pathfinding,A* (Chebyshev),139,2575,,,,97,0.013774,402092
+100,14,mdp,Value Iteration,28,,51,,,,1.697872,266632
+100,14,mdp,Policy Iteration,138,,248,199,49,,5.653864,268480
+100,15,pathfinding,DFS,1085,2360,,,,326,0.007642,258976
+100,15,pathfinding,BFS,135,4471,,,,71,0.012107,523128
+100,15,pathfinding,A* (Manhattan),135,1270,,,,80,0.006653,200676
+100,15,pathfinding,A* (Euclidean),135,1658,,,,63,0.008504,368536
+100,15,pathfinding,A* (Chebyshev),135,1838,,,,74,0.009408,368968
+100,15,mdp,Value Iteration,134,,102,,,,3.447021,267136
+100,15,mdp,Policy Iteration,134,,461,340,121,,9.776028,269016
+100,16,pathfinding,DFS,219,2208,,,,322,0.007387,252224
+100,16,pathfinding,BFS,171,5609,,,,74,0.015362,1045216
+100,16,pathfinding,A* (Manhattan),171,1838,,,,155,0.009788,377000
+100,16,pathfinding,A* (Euclidean),171,3867,,,,93,0.021153,737264
+100,16,pathfinding,A* (Chebyshev),171,3988,,,,95,0.020511,736896
+100,16,mdp,Value Iteration,174,,108,,,,3.660985,267712
+100,16,mdp,Policy Iteration,170,,548,377,171,,11.496674,269592
+100,17,pathfinding,DFS,967,1594,,,,341,0.005283,247172
+100,17,pathfinding,BFS,147,5452,,,,86,0.015150,537020
+100,17,pathfinding,A* (Manhattan),147,1816,,,,152,0.009736,373592
+100,17,pathfinding,A* (Euclidean),147,3130,,,,104,0.019179,738176
+100,17,pathfinding,A* (Chebyshev),147,3364,,,,99,0.018778,737120
+100,17,mdp,Value Iteration,146,,108,,,,3.730422,267208
+100,17,mdp,Policy Iteration,146,,504,371,133,,11.086462,269088
+100,18,pathfinding,DFS,1429,2580,,,,441,0.008890,413524
+100,18,pathfinding,BFS,147,5007,,,,80,0.013519,523128
+100,18,pathfinding,A* (Manhattan),147,1344,,,,132,0.006682,208868
+100,18,pathfinding,A* (Euclidean),147,2245,,,,89,0.013792,382532
+100,18,pathfinding,A* (Chebyshev),147,2433,,,,91,0.013304,392700
+100,18,mdp,Value Iteration,146,,72,,,,2.463379,267136
+100,18,mdp,Policy Iteration,146,,363,281,82,,8.819730,269472
+100,19,pathfinding,DFS,215,390,,,,71,0.001246,62048
+100,19,pathfinding,BFS,143,5544,,,,78,0.015424,1045216
+100,19,pathfinding,A* (Manhattan),143,1772,,,,144,0.009523,380896
+100,19,pathfinding,A* (Euclidean),143,2784,,,,105,0.015282,738232
+100,19,pathfinding,A* (Chebyshev),143,3421,,,,135,0.017997,739000
+100,19,mdp,Value Iteration,142,,108,,,,3.710761,267280
+100,19,mdp,Policy Iteration,142,,564,381,183,,11.595098,269160
+100,20,pathfinding,DFS,1549,5257,,,,782,0.020382,536016
+100,20,pathfinding,BFS,141,4978,,,,78,0.014274,523128
+100,20,pathfinding,A* (Manhattan),141,1439,,,,179,0.007717,377680
+100,20,pathfinding,A* (Euclidean),141,2274,,,,88,0.014589,384124
+100,20,pathfinding,A* (Chebyshev),141,2403,,,,83,0.013877,391356
+100,20,mdp,Value Iteration,140,,74,,,,2.559093,266608
+100,20,mdp,Policy Iteration,140,,359,280,79,,8.510452,268488

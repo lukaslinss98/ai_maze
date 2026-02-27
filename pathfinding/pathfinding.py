@@ -64,7 +64,7 @@ def run_pathfinding(**kwargs):
         entries = [
             ('Solver', solver),
             ('Generator', generator),
-            ('Size', f'{width}x{height}'),
+            ('Size', f'{cols}x{rows}'),
             ('---', ''),
             ('Iteration', str(iterations)),
         ]

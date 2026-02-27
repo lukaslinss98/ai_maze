@@ -16,7 +16,7 @@ def generate_maze(
     if seed:
         m.set_seed(seed)
 
-    m.generator = create_generator(generator, height, width)  # type: ignore[assignment]
+    m.generator = create_generator(generator, height // 2, width // 2)  # type: ignore[assignment]
     m.generate()
     m.generate_entrances(start_outer=True, end_outer=True)
     return m.grid.tolist(), m.start, m.end  # type: ignore[assignment]
