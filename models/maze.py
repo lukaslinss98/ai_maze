@@ -21,6 +21,9 @@ class Maze:
         self, screen: pygame.Surface, draw_values=False, draw_actions=False
     ) -> None:
         for cell in self.get_cells():
+            is_start = cell == self.start
+            is_end = cell == self.end
+
             cell_size = cell.size
             px, py = cell.y * cell_size, cell.x * cell_size
             rect = pygame.Rect(px, py, cell_size, cell.size)
@@ -28,26 +31,28 @@ class Maze:
             if isinstance(cell, Wall):
                 pygame.draw.rect(screen, DARK_GREY, rect)
             elif isinstance(cell, Open):
-                if cell == self.start:
+                if is_start:
                     pygame.draw.rect(screen, BLUE, rect)
-                elif cell == self.end:
+                elif is_end:
                     pygame.draw.rect(screen, GREEN, rect)
-                elif draw_values:
-                    values = [
-                        c.value for c in self.get_open_cells() if c.value is not None
-                    ]
-                    min_v = min(values) if values else 0
-                    max_v = max(values) if values else 1
-                    range_v = max_v - min_v if max_v != min_v else 1
-                    t = ((cell.value - min_v) / range_v) ** 0.3
-                    pygame.draw.rect(
-                        screen, (int(240 * (1 - t)), int(240 * t), 0), rect
-                    )
                 else:
                     pygame.draw.rect(screen, WHITE, rect)
+                    if draw_values:
+                        values = [
+                            c.value
+                            for c in self.get_open_cells()
+                            if c.value is not None
+                        ]
+                        min_v = min(values) if values else 0
+                        max_v = max(values) if values else 1
+                        range_v = max_v - min_v if max_v != min_v else 1
+                        t = ((cell.value - min_v) / range_v) ** 0.3
+                        pygame.draw.rect(
+                            screen, (int(240 * (1 - t)), int(240 * t), 0), rect
+                        )
 
-                if draw_actions:
-                    cell.draw_action(screen)
+                    if draw_actions and not cell == self.end and not cell == self.start:
+                        cell.draw_action(screen)
 
     def get_cell(self, x: int, y: int) -> Open:
         cell = self.grid[x][y]
@@ -155,10 +160,7 @@ class MdpMaze(Maze):
     def value_by_action(self, cell, noise) -> dict[Action, float]:
         value_by_action = {}
         neighbors = self.neighbors(cell)
-        for dir, neigh in neighbors:
-            if neigh.value is None:
-                continue
-
+        for dir, _ in neighbors:
             expected_value = 0
             for dir2, neigh2 in neighbors:
                 no_neighbors = len(neighbors)

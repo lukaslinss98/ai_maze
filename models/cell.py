@@ -39,16 +39,32 @@ class Open(Cell):
 
         cx = self.y * self.size + self.size // 2
         cy = self.x * self.size + self.size // 2
-        half = self.size // 3
+        shift = self.size // 4
 
         if self.policy == Action.NORTH:
-            points = [(cx, cy - half), (cx - half, cy + half), (cx + half, cy + half)]
+            points = [
+                (cx, cy - shift),
+                (cx - shift, cy + shift),
+                (cx + shift, cy + shift),
+            ]
         elif self.policy == Action.SOUTH:
-            points = [(cx, cy + half), (cx - half, cy - half), (cx + half, cy - half)]
+            points = [
+                (cx, cy + shift),
+                (cx - shift, cy - shift),
+                (cx + shift, cy - shift),
+            ]
         elif self.policy == Action.EAST:
-            points = [(cx + half, cy), (cx - half, cy - half), (cx - half, cy + half)]
+            points = [
+                (cx + shift, cy),
+                (cx - shift, cy - shift),
+                (cx - shift, cy + shift),
+            ]
         elif self.policy == Action.WEST:
-            points = [(cx - half, cy), (cx + half, cy - half), (cx + half, cy + half)]
+            points = [
+                (cx - shift, cy),
+                (cx + shift, cy - shift),
+                (cx + shift, cy + shift),
+            ]
         else:
             print(f'Could not work with direction {self.policy}')
             return
