@@ -6,7 +6,7 @@ from pygame import Surface
 
 from models.cell import Cell, Open, Wall
 from models.direction import Action
-from util.colors import BLUE, DARK_GREY, GREEN, RED, WHITE
+from util.colors import BLUE, DARK_GREY, GREEN, WHITE
 
 
 class Maze:
