@@ -28,7 +28,7 @@ def run_mdp(**kwargs):
 
     raw_maze, start, end = generate_maze(height, width, generator, seed)
     maze = MdpMaze(raw_maze, start, end, cell_size)
-    maze.init_states(initial_value=0, goal_reward=10)
+    maze.init_states(initial_value=0, goal_reward=20)
 
     if solver == 'value-iteration':
         run_value_iteration(
@@ -73,7 +73,7 @@ def run_value_iteration(
         screen.fill(DARK_GREY)
 
         snapshot = result.snapshots[iteration]
-        snapshot.maze.draw(screen, draw_values=True, draw_actions=True)
+        snapshot.maze.draw(screen, draw_values=True, draw_actions=False)
         is_last = iteration >= len(result.snapshots) - 1
         if is_last:
             snapshot.maze.draw_policy(screen, maze.start, maze.end)

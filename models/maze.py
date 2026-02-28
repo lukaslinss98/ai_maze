@@ -155,6 +155,9 @@ class MdpMaze(Maze):
             seen.add(curr)
             curr = self.move_to(curr, curr.policy)
 
+        if curr == end:
+            path.append(curr)
+
         return path
 
     def value_by_action(self, cell, noise) -> dict[Action, float]:

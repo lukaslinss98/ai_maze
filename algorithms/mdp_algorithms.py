@@ -10,13 +10,13 @@ from models.maze import MdpMaze
 
 
 @dataclass(frozen=True)
-class Snapshot:
+class VISnapshot:
     maze: MdpMaze
     delta_v: float
 
 
 @dataclass(frozen=True)
-class PolicySnapshot:
+class PISnapshot:
     maze: MdpMaze
     delta_v: float
     mode: str
@@ -26,7 +26,7 @@ class PolicySnapshot:
 
 @dataclass(frozen=True)
 class ValueIterationResult:
-    snapshots: List[Snapshot]
+    snapshots: List[VISnapshot]
     shortest_path: List[Open]
     run_time: float
     peak_memory: int
@@ -35,7 +35,7 @@ class ValueIterationResult:
 
 @dataclass(frozen=True)
 class PolicyIterationResult:
-    snapshots: List[PolicySnapshot]
+    snapshots: List[PISnapshot]
     shortest_path: List[Open]
     run_time: float
     peak_memory: int
@@ -61,7 +61,7 @@ class MdpAlgorithm(ABC):
 
 class ValueIteration(MdpAlgorithm):
     def __init__(
-        self, discount: float, living_reward: float, noise=0.2, theta=0.0001
+        self, discount: float, living_reward: float, noise=0.2, theta=0.0000001
     ) -> None:
         super().__init__(discount, living_reward, noise, theta)
 
@@ -71,18 +71,27 @@ class ValueIteration(MdpAlgorithm):
         iterations = 0
         start_time = perf_counter()
         tracemalloc.start()
+
         while delta_V > self.theta:
             delta_V = self._value_iteration_step(maze)
             iterations += 1
 
             if take_snapshots:
-                snapshot = Snapshot(deepcopy(maze), delta_V)
+                snapshot = VISnapshot(deepcopy(maze), delta_V)
                 snapshots.append(snapshot)
+
+        for cell in maze.get_open_cells():
+            if cell == maze.end:
+                continue
+            vba = maze.value_by_action(cell, self.noise)
+            if vba:
+                cell.policy = max(vba, key=lambda a: vba[a])
 
         _, peak_mem = tracemalloc.get_traced_memory()
         tracemalloc.stop()
         run_time = perf_counter() - start_time
         shortest_path = maze.shortest_path(maze.start, maze.end)
+
         return ValueIterationResult(
             snapshots, shortest_path, run_time, peak_mem, iterations
         )
@@ -104,7 +113,6 @@ class ValueIteration(MdpAlgorithm):
 
                 max_diff_value = max(max_diff_value, abs(new_value - old_value))
                 cell.value = new_value
-                cell.policy = best_direction
 
         return max_diff_value
 
@@ -129,7 +137,7 @@ class PolicyIteration(MdpAlgorithm):
                 delta = self._policy_evaluation_step(maze)
                 eval_iters += 1
                 if take_snapshots:
-                    snapshot = PolicySnapshot(
+                    snapshot = PISnapshot(
                         deepcopy(maze), delta, 'eval', eval_iters, improve_iters
                     )
                     snapshots.append(snapshot)
@@ -139,7 +147,7 @@ class PolicyIteration(MdpAlgorithm):
             delta = float('inf')
 
             if take_snapshots:
-                snapshot = PolicySnapshot(
+                snapshot = PISnapshot(
                     deepcopy(maze), 0.0, 'improve', eval_iters, improve_iters
                 )
                 snapshots.append(snapshot)
