@@ -76,7 +76,7 @@ def run_pathfinding(**kwargs):
                     ('---', ''),
                     ('Path Length', str(len(result.shortest_path))),
                     ('Visited', str(len(result.visited))),
-                    ('Max Frontier', str(result.max_frontier_size)),
+                    ('Max Fringe', str(result.max_fringe_size)),
                     ('Runtime', f'{result.run_time:.4f}s'),
                     ('Memory', f'{result.peak_memory_bytes} B'),
                 ]

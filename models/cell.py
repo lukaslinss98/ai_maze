@@ -17,7 +17,7 @@ class Cell:
     def coordinates(self):
         return (self.x, self.y)
 
-    def manhatten_dist(self, other) -> int:
+    def manhattan_dist(self, other) -> int:
         return abs(self.x - other.x) + abs(self.y - other.y)
 
     def __str__(self) -> str:

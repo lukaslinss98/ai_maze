@@ -17,11 +17,11 @@ def read_args() -> argparse.Namespace:
     pathfinding.add_argument('--width', type=int, default=10)
     pathfinding.add_argument('--seed', type=int)
     pathfinding.add_argument('--speed', type=int, default=30)
-    pathfinding.add_argument('--cell_size', type=int, default=30)
+    pathfinding.add_argument('--cell-size', type=int, default=30)
     pathfinding.add_argument(
         '--solver',
         type=str,
-        choices=['bfs', 'dfs', 'astar_manhatten', 'astar_euclid', 'astar_chebyshev'],
+        choices=['bfs', 'dfs', 'astar_manhattan', 'astar_euclid', 'astar_chebyshev'],
         default='dfs',
     )
     pathfinding.add_argument(

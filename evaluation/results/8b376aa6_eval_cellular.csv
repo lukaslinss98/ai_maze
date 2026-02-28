@@ -1,4 +1,4 @@
-size,seed,type,algorithm,path_length,visited,total_iterations,inner_iterations,outer_iterations,max_frontier_size,runtime_s,memory_bytes
+size,seed,type,algorithm,path_length,visited,total_iterations,inner_iterations,outer_iterations,max_fringe_size,runtime_s,memory_bytes
 10,1,pathfinding,DFS,17,28,,,,4,0.000110,3948
 10,1,pathfinding,BFS,17,47,,,,7,0.000130,8872
 10,1,pathfinding,A* (Manhattan),17,31,,,,6,0.000162,6296

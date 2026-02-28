@@ -1,4 +1,4 @@
-type,algorithm,size,path_length_mean,path_length_std,visited_mean,visited_std,max_frontier_size_mean,max_frontier_size_std,runtime_ms_mean,runtime_ms_std,memory_kb_mean,memory_kb_std,total_iterations_mean,total_iterations_std,inner_iterations_mean,inner_iterations_std,outer_iterations_mean,outer_iterations_std,runtime_s_mean,runtime_s_std
+type,algorithm,size,path_length_mean,path_length_std,visited_mean,visited_std,max_fringe_size_mean,max_fringe_size_std,runtime_ms_mean,runtime_ms_std,memory_kb_mean,memory_kb_std,total_iterations_mean,total_iterations_std,inner_iterations_mean,inner_iterations_std,outer_iterations_mean,outer_iterations_std,runtime_s_mean,runtime_s_std
 pathfinding,A* (Euclidean),10,16.0526,1.6824,30.9474,5.4515,6.1579,1.385,0.1239,0.0211,5.2611,0.5296,,,,,,,,
 pathfinding,A* (Euclidean),25,38.0526,5.307,159.2632,56.7057,18.7895,4.6854,0.7331,0.2855,30.0434,13.9178,,,,,,,,
 pathfinding,A* (Euclidean),50,75.4211,9.7201,622.4737,252.7285,45.2105,9.2711,3.4427,1.4105,120.2097,44.0149,,,,,,,,

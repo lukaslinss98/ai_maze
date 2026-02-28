@@ -9,7 +9,7 @@ RESULTS_DIR = os.path.join(os.path.dirname(__file__), '..', 'results')
 METRIC_COLS = [
     'path_length',
     'visited',
-    'max_frontier_size',
+    'max_fringe_size',
     'total_iterations',
     'inner_iterations',
     'outer_iterations',
@@ -75,7 +75,7 @@ def _write_csv(pf_stats: pd.DataFrame, mdp_stats: pd.DataFrame, run_id: str) -> 
 _METRIC_LABELS = {
     'path_length': 'Path length',
     'visited': 'Cells visited',
-    'max_frontier_size': 'Max frontier size',
+    'max_fringe_size': 'Max frontier size',
     'runtime_ms': 'Runtime (ms)',
     'memory_kb': 'Memory (KB)',
 }
@@ -84,7 +84,7 @@ _METRIC_LABELS = {
 def _plot_pf_metric(pf: pd.DataFrame, sizes: list[int], metric: str) -> None:
     label = _METRIC_LABELS.get(metric, metric)
     fig, axes = plt.subplots(2, 3, figsize=(14, 8), sharey=True)
-    fig.suptitle(f'Pathfinding — {label} by Algorithm and Maze Size')
+    fig.suptitle(f'Pathfinding - {label} by Algorithm and Maze Size')
 
     for ax, size in zip(axes.flat, sizes):
         sub = pf[pf['size'] == size].groupby('algorithm')[metric].agg(['mean', 'std'])
@@ -138,7 +138,7 @@ def main() -> None:
     pf_metrics = [
         'path_length',
         'visited',
-        'max_frontier_size',
+        'max_fringe_size',
         'runtime_ms',
         'memory_kb',
     ]

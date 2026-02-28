@@ -5,6 +5,8 @@ from dataclasses import dataclass
 from time import perf_counter
 from typing import List, Union
 
+from numpy import ma
+
 from models.cell import Open
 from models.maze import MdpMaze
 
@@ -90,6 +92,7 @@ class ValueIteration(MdpAlgorithm):
         _, peak_mem = tracemalloc.get_traced_memory()
         tracemalloc.stop()
         run_time = perf_counter() - start_time
+        snapshots.append(VISnapshot(deepcopy(maze), delta_V))
         shortest_path = maze.shortest_path(maze.start, maze.end)
 
         return ValueIterationResult(

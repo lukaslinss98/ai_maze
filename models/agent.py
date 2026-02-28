@@ -6,7 +6,7 @@ from algorithms.pathfinding_algorithms import (BFS, DFS, AStar,
                                                PathFindingResult,
                                                chebyshev_distance,
                                                euclidean_distance,
-                                               manhatten_distance)
+                                               manhattan_distance)
 from models.cell import Open
 from models.maze import Maze
 
@@ -58,8 +58,8 @@ class Agent:
             return BFS()
         elif solver == 'dfs':
             return DFS()
-        elif solver == 'astar_manhatten':
-            return AStar(heuristic=manhatten_distance)
+        elif solver == 'astar_manhattan':
+            return AStar(heuristic=manhattan_distance)
         elif solver == 'astar_euclid':
             return AStar(heuristic=euclidean_distance)
         elif solver == 'astar_chebyshev':

@@ -4,14 +4,10 @@ import uuid
 from dataclasses import dataclass
 
 from algorithms.mdp_algorithms import PolicyIteration, ValueIteration
-from algorithms.pathfinding_algorithms import (
-    BFS,
-    DFS,
-    AStar,
-    chebyshev_distance,
-    euclidean_distance,
-    manhatten_distance,
-)
+from algorithms.pathfinding_algorithms import (BFS, DFS, AStar,
+                                               chebyshev_distance,
+                                               euclidean_distance,
+                                               manhattan_distance)
 from models.maze import Maze, MdpMaze
 from util.maze_generation import generate_maze
 
@@ -29,7 +25,7 @@ class EvalRow:
     total_iterations: int | None
     inner_iterations: int | None
     outer_iterations: int | None
-    max_frontier_size: int | None
+    max_fringe_size: int | None
     runtime_s: float
     memory_bytes: int
 
@@ -88,7 +84,7 @@ def _run_pathfinding_eval(
     solvers = [
         ('DFS', DFS()),
         ('BFS', BFS()),
-        ('A* (Manhattan)', AStar(heuristic=manhatten_distance)),
+        ('A* (Manhattan)', AStar(heuristic=manhattan_distance)),
         ('A* (Euclidean)', AStar(heuristic=euclidean_distance)),
         ('A* (Chebyshev)', AStar(heuristic=chebyshev_distance)),
     ]
@@ -107,7 +103,7 @@ def _run_pathfinding_eval(
                 total_iterations=None,
                 inner_iterations=None,
                 outer_iterations=None,
-                max_frontier_size=result.max_frontier_size,
+                max_fringe_size=result.max_fringe_size,
                 runtime_s=result.run_time,
                 memory_bytes=result.peak_memory_bytes,
             )
@@ -142,7 +138,7 @@ def _run_mdp_eval(
             total_iterations=vi_result.iterations,
             inner_iterations=None,
             outer_iterations=None,
-            max_frontier_size=None,
+            max_fringe_size=None,
             runtime_s=vi_result.run_time,
             memory_bytes=vi_result.peak_memory,
         ),
@@ -157,7 +153,7 @@ def _run_mdp_eval(
             + pi_result.total_improve_iterations,
             inner_iterations=pi_result.total_eval_iterations,
             outer_iterations=pi_result.total_improve_iterations,
-            max_frontier_size=None,
+            max_fringe_size=None,
             runtime_s=pi_result.run_time,
             memory_bytes=pi_result.peak_memory,
         ),
@@ -172,13 +168,13 @@ def _print_results(rows: list[EvalRow]) -> None:
         print('\n=== Pathfinding ===\n')
         print(
             f'{"Algorithm":<22} {"Path Length":>11} {"Visited":>8}'
-            f' {"Max Frontier":>13} {"Runtime":>10} {"Memory":>10}'
+            f' {"Max Fringe":>13} {"Runtime":>10} {"Memory":>10}'
         )
         for r in pf_rows:
             print(
                 f'{r.algorithm:<22} {r.path_length:>11}'
                 f' {r.visited:>8}'
-                f' {r.max_frontier_size:>13}'
+                f' {r.max_fringe_size:>13}'
                 f' {r.runtime_s:>9.4f}s'
                 f' {r.memory_bytes:>8} B'
             )
@@ -222,7 +218,7 @@ def _write_csv(rows: list[EvalRow], generator: str, run_id: str) -> None:
                 'total_iterations',
                 'inner_iterations',
                 'outer_iterations',
-                'max_frontier_size',
+                'max_fringe_size',
                 'runtime_s',
                 'memory_bytes',
             ]
@@ -239,7 +235,7 @@ def _write_csv(rows: list[EvalRow], generator: str, run_id: str) -> None:
                     r.total_iterations if r.total_iterations is not None else '',
                     r.inner_iterations if r.inner_iterations is not None else '',
                     r.outer_iterations if r.outer_iterations is not None else '',
-                    r.max_frontier_size if r.max_frontier_size is not None else '',
+                    r.max_fringe_size if r.max_fringe_size is not None else '',
                     f'{r.runtime_s:.6f}',
                     r.memory_bytes,
                 ]

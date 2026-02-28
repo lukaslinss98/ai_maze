@@ -31,9 +31,7 @@ def run_mdp(**kwargs):
     maze.init_states(initial_value=0, goal_reward=20)
 
     if solver == 'value-iteration':
-        run_value_iteration(
-            maze, discount, reward, noise, speed, height, width, generator
-        )
+        run_value_iteration(maze, discount, reward, noise, speed, generator)
 
     if solver == 'policy-iteration':
         run_policy_iteration(
@@ -41,9 +39,7 @@ def run_mdp(**kwargs):
         )
 
 
-def run_value_iteration(
-    maze: MdpMaze, discount, reward, noise, speed, height, width, generator
-):
+def run_value_iteration(maze: MdpMaze, discount, reward, noise, speed, generator):
     pygame.init()
     title_font = pygame.font.SysFont('arial', 18, bold=True)
     body_font = pygame.font.SysFont('arial', 14)
@@ -73,8 +69,8 @@ def run_value_iteration(
         screen.fill(DARK_GREY)
 
         snapshot = result.snapshots[iteration]
-        snapshot.maze.draw(screen, draw_values=True, draw_actions=False)
         is_last = iteration >= len(result.snapshots) - 1
+        snapshot.maze.draw(screen, draw_values=True, draw_actions=is_last)
         if is_last:
             snapshot.maze.draw_policy(screen, maze.start, maze.end)
         else:
@@ -88,7 +84,7 @@ def run_value_iteration(
             ('Reward', str(reward)),
             ('---', ''),
             ('Iteration', str(iteration)),
-            ('Delta V', f'{snapshot.delta_v:.4f}'),
+            ('Delta V', f'{snapshot.delta_v:.8f}'),
         ]
 
         if is_last:
