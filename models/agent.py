@@ -23,7 +23,7 @@ class Agent:
         self.solver = self._create_solver(solver)
         self.pathfinding_result: PathFindingResult = self.solver.solve(maze, self.curr)
 
-    def draw(self, screen: pygame.Surface) -> None:
+    def draw(self, screen: pygame.Surface, highlight_head: bool) -> None:
         sub_path = self.pathfinding_result.visited[: self.curr_i + 1]
         for i, cell in enumerate(sub_path):
             cell_size = cell.size
@@ -31,7 +31,10 @@ class Agent:
                 (cell.y * cell_size) + cell_size / 2,
                 (cell.x * cell_size) + cell_size / 2,
             )
-            color = (0, 240, 0) if i == len(sub_path) - 1 else (128, 0, 128)
+            if highlight_head:
+                color = (0, 240, 0) if i == len(sub_path) - 1 else (128, 0, 128)
+            else:
+                color = (128, 0, 128)
             pygame.draw.circle(screen, color, (px, py), cell_size // 4)
 
     def draw_shortest_path(self, screen: pygame.Surface, cell_size: int = 32) -> None:

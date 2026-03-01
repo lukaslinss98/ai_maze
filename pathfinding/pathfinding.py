@@ -52,8 +52,8 @@ def run_pathfinding(**kwargs):
         screen.fill(DARK_GREY)
 
         maze.draw(screen)
-        agent.draw(screen)
         is_last_step = agent.step()
+        agent.draw(screen, not is_last_step)
 
         if is_last_step:
             agent.draw_shortest_path(screen, cell_size)
