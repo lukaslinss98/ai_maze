@@ -13,8 +13,8 @@ def read_args() -> argparse.Namespace:
     subparser = parser.add_subparsers(dest='mode', required=True)
 
     pathfinding = subparser.add_parser('pathfinding', help='Run search algorithms')
-    pathfinding.add_argument('--height', type=int, default=10)
-    pathfinding.add_argument('--width', type=int, default=10)
+    pathfinding.add_argument('--height', type=int, default=20)
+    pathfinding.add_argument('--width', type=int, default=20)
     pathfinding.add_argument('--seed', type=int)
     pathfinding.add_argument('--speed', type=int, default=40)
     pathfinding.add_argument('--cell-size', type=int, default=20)
@@ -32,8 +32,8 @@ def read_args() -> argparse.Namespace:
     )
 
     mdp = subparser.add_parser('mdp', help='Run MDP algorithms')
-    mdp.add_argument('--height', type=int, default=10)
-    mdp.add_argument('--width', type=int, default=10)
+    mdp.add_argument('--height', type=int, default=20)
+    mdp.add_argument('--width', type=int, default=20)
     mdp.add_argument('--seed', type=int)
     mdp.add_argument('--speed', type=int, default=40)
     mdp.add_argument('--cell-size', type=int, default=20)
