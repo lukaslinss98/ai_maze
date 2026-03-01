@@ -16,8 +16,8 @@ def read_args() -> argparse.Namespace:
     pathfinding.add_argument('--height', type=int, default=10)
     pathfinding.add_argument('--width', type=int, default=10)
     pathfinding.add_argument('--seed', type=int)
-    pathfinding.add_argument('--speed', type=int, default=30)
-    pathfinding.add_argument('--cell-size', type=int, default=30)
+    pathfinding.add_argument('--speed', type=int, default=40)
+    pathfinding.add_argument('--cell-size', type=int, default=20)
     pathfinding.add_argument(
         '--solver',
         type=str,
@@ -35,8 +35,8 @@ def read_args() -> argparse.Namespace:
     mdp.add_argument('--height', type=int, default=10)
     mdp.add_argument('--width', type=int, default=10)
     mdp.add_argument('--seed', type=int)
-    mdp.add_argument('--speed', type=int, default=30)
-    mdp.add_argument('--cell-size', type=int, default=30)
+    mdp.add_argument('--speed', type=int, default=40)
+    mdp.add_argument('--cell-size', type=int, default=20)
     mdp.add_argument('--noise', type=float, default=0.2)
     mdp.add_argument('--discount', type=float, default=0.9)
     mdp.add_argument('--reward', type=float, default=-0.01)
