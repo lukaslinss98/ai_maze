@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 RESULTS_DIR = os.path.join(os.path.dirname(__file__), '..', 'results')
+PLOTS_DIR = os.path.join(os.path.dirname(__file__), '..', 'plots')
 
 METRIC_COLS = [
     'path_length',
@@ -76,12 +77,18 @@ _METRIC_LABELS = {
     'path_length': 'Path length',
     'visited': 'Cells visited',
     'max_fringe_size': 'Max frontier size',
+    'total_iterations': 'Total iterations',
+    'inner_iterations': 'Inner iterations (policy eval)',
+    'outer_iterations': 'Outer iterations (policy improve)',
     'runtime_ms': 'Runtime (ms)',
+    'runtime_s': 'Runtime (s)',
     'memory_kb': 'Memory (KB)',
 }
 
 
-def _plot_pf_metric(pf: pd.DataFrame, sizes: list[int], metric: str) -> None:
+def _plot_pf_metric(
+    pf: pd.DataFrame, sizes: list[int], metric: str, run_id: str
+) -> None:
     label = _METRIC_LABELS.get(metric, metric)
     fig, axes = plt.subplots(2, 3, figsize=(14, 8), sharey=True)
     fig.suptitle(f'Pathfinding - {label} by Algorithm and Maze Size')
@@ -116,7 +123,104 @@ def _plot_pf_metric(pf: pd.DataFrame, sizes: list[int], metric: str) -> None:
     legend_ax.legend(handles=handles, labels=labels, loc='center', frameon=True)
 
     plt.tight_layout()
-    plt.show()
+    plots_dir = os.path.abspath(PLOTS_DIR)
+    os.makedirs(plots_dir, exist_ok=True)
+    fig.savefig(os.path.join(plots_dir, f'pathfinding-{metric}-{run_id}.png'))
+    plt.close(fig)
+
+
+def _plot_mdp_metric(
+    mdp: pd.DataFrame, sizes: list[int], metric: str, run_id: str
+) -> None:
+    label = _METRIC_LABELS.get(metric, metric)
+    fig, axes = plt.subplots(2, 3, figsize=(14, 8), sharey=True)
+    fig.suptitle(f'MDP - {label} by Algorithm and Maze Size')
+
+    for ax, size in zip(axes.flat, sizes):
+        sub = mdp[mdp['size'] == size].groupby('algorithm')[metric].agg(['mean', 'std'])
+        algorithms = sub.index.tolist()
+        means = sub['mean'].tolist()
+        stds = sub['std'].fillna(0).tolist()
+
+        ax.errorbar(
+            algorithms,
+            means,
+            yerr=stds,
+            fmt='o',
+            capsize=5,
+            capthick=1.5,
+            elinewidth=1.5,
+            markersize=6,
+            ecolor='grey',
+            label='Mean ± Std. dev.',
+        )
+        ax.margins(x=0.5)
+        ax.set_title(f'Size {size}×{size}')
+        ax.set_xlabel('Algorithm')
+        ax.set_ylabel(label)
+        ax.grid(axis='y', linestyle='--', alpha=0.5)
+
+    legend_ax = axes.flat[-1]
+    legend_ax.set_visible(True)
+    legend_ax.axis('off')
+    handles, labels = axes.flat[0].get_legend_handles_labels()
+    legend_ax.legend(handles=handles, labels=labels, loc='center', frameon=True)
+
+    plt.tight_layout()
+    plots_dir = os.path.abspath(PLOTS_DIR)
+    os.makedirs(plots_dir, exist_ok=True)
+    fig.savefig(os.path.join(plots_dir, f'mdp-{metric}-{run_id}.png'))
+    plt.close(fig)
+
+
+def _plot_mdp_iterations(mdp: pd.DataFrame, sizes: list[int], run_id: str) -> None:
+    series = [
+        ('VI Total', 'Value Iteration', 'total_iterations'),
+        ('PI Total', 'Policy Iteration', 'total_iterations'),
+        ('PI Outer', 'Policy Iteration', 'outer_iterations'),
+        ('PI Inner', 'Policy Iteration', 'inner_iterations'),
+    ]
+    x_labels = [label for label, _, _ in series]
+
+    fig, axes = plt.subplots(2, 3, figsize=(14, 8), sharey=True)
+    fig.suptitle('MDP - Iterations by Algorithm and Maze Size')
+
+    for ax, size in zip(axes.flat, sizes):
+        means, stds = [], []
+        for _, algo, col in series:
+            sub = mdp[(mdp['size'] == size) & (mdp['algorithm'] == algo)][col]
+            means.append(sub.mean())
+            stds.append(sub.std(ddof=1) if len(sub) > 1 else 0)
+
+        ax.errorbar(
+            x_labels,
+            means,
+            yerr=stds,
+            fmt='o',
+            capsize=5,
+            capthick=1.5,
+            elinewidth=1.5,
+            markersize=6,
+            ecolor='grey',
+            label='Mean ± Std. dev.',
+        )
+        ax.margins(x=0.3)
+        ax.set_title(f'Size {size}×{size}')
+        ax.set_xlabel('Scope')
+        ax.set_ylabel('Iterations')
+        ax.grid(axis='y', linestyle='--', alpha=0.5)
+
+    legend_ax = axes.flat[-1]
+    legend_ax.set_visible(True)
+    legend_ax.axis('off')
+    handles, labels = axes.flat[0].get_legend_handles_labels()
+    legend_ax.legend(handles=handles, labels=labels, loc='center', frameon=True)
+
+    plt.tight_layout()
+    plots_dir = os.path.abspath(PLOTS_DIR)
+    os.makedirs(plots_dir, exist_ok=True)
+    fig.savefig(os.path.join(plots_dir, f'mdp-iterations-{run_id}.png'))
+    plt.close(fig)
 
 
 def main() -> None:
@@ -144,9 +248,6 @@ def main() -> None:
     ]
     mdp_metrics = [
         'path_length',
-        'total_iterations',
-        'inner_iterations',
-        'outer_iterations',
         'runtime_s',
         'memory_kb',
     ]
@@ -171,7 +272,13 @@ def main() -> None:
     if not pf.empty:
         plot_sizes = sorted(pf['size'].unique())[:5]
         for metric in pf_metrics:
-            _plot_pf_metric(pf, plot_sizes, metric)
+            _plot_pf_metric(pf, plot_sizes, metric, run_id)
+
+    if not mdp.empty:
+        plot_sizes = sorted(mdp['size'].unique())[:5]
+        for metric in mdp_metrics:
+            _plot_mdp_metric(mdp, plot_sizes, metric, run_id)
+        _plot_mdp_iterations(mdp, plot_sizes, run_id)
 
 
 if __name__ == '__main__':

@@ -78,7 +78,7 @@ def run_value_iteration(maze: MdpMaze, discount, reward, noise, speed, generator
 
         entries = [
             ('Generator', generator),
-            ('Size', f'{rows}x{cols}'),
+            ('Size', f'{rows - 1}x{cols - 1}'),
             ('Discount', str(discount)),
             ('Noise', str(noise)),
             ('Reward', str(reward)),
@@ -163,7 +163,7 @@ def run_policy_iteration(
 
         entries = [
             ('Generator', generator),
-            ('Size', f'{rows}x{cols}'),
+            ('Size', f'{rows - 1}x{cols - 1}'),
             ('Discount', str(discount)),
             ('Noise', str(noise)),
             ('Reward', str(reward)),
